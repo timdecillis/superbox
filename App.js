@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Signin from './pages/Signin';
+import SignIn from './pages/SignIn';
 import styled from 'styled-components/native'
 
 const Container = styled.View`
@@ -14,8 +14,9 @@ height:100%;
 
 export default function App() {
   return (
+
     <Container>
-      <Signin />
+        <SignIn />
     </Container>
 
   );
