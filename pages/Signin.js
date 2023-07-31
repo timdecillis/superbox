@@ -126,11 +126,11 @@ const SignIn = () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       console.log(response);
-      alert('Sign In Success')
+      alert('Sign Up Success')
 
     } catch (error) {
       console.log(error);
-      alert('Sign in failed: ' + error.message)
+      alert('Sign up failed: ' + error.message)
     }
   }
 
