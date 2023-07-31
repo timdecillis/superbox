@@ -2,7 +2,8 @@
 import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth'
-import firebaseConfig from '../Superbox/config'
+import {firebaseConfig} from './config'
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
