@@ -1,4 +1,3 @@
-
 import React, {useState} from "react";
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
@@ -20,10 +19,12 @@ const SignIn = () => {
   const signInFunc = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
+
       setProfile({...profile, 'email': email})
       setSignUp(false);
       setLogin(false);
       setProfilePage(false);
+
       console.log(response);
       alert('Sign In Success')
 
@@ -54,6 +55,7 @@ const SignIn = () => {
     } catch (error) {
       console.log(error);
       alert('Sign up failed: ' + error.message)
+
     }
   }
 
@@ -72,6 +74,7 @@ const SignIn = () => {
   const handlePassword = (text) => {
     setPassword(text);
   };
+
 
   if (logIn === false && signUp === false && profilePage === false) {
      return (
@@ -173,6 +176,7 @@ const SignIn = () => {
 
       </Container>
     )
+
   }
 
 }
