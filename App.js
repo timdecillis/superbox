@@ -11,7 +11,7 @@ export default function App() {
       <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeMarket} />
-      <Tab.Screen name="Settings" component={SignIn} />
+      <Tab.Screen name="Settings" component={Signin} />
     </Tab.Navigator>
       </NavigationContainer>
   );
