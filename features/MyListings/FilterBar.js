@@ -40,18 +40,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#EOFDF5',
     paddingVertical: 10,
   },
   button: {
     padding: 10,
   },
   activeButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#E4B363',
     borderRadius: 5,
   },
   buttonText: {
-    color: '#fff',
+    color: '#313638',
     fontSize: 16,
   },
 });

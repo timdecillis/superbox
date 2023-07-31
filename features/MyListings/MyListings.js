@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { Text, View, FlatList, StyleSheet, Button } from 'react-native';
 import FilterBar from './FilterBar';
+import AddEditListingModal from './AddEditModal.js';
 
 const MyListings = () => {
   const [activeFilter, setActiveFilter] = useState('active');
@@ -19,13 +20,22 @@ const MyListings = () => {
     setActiveFilter(filter);
   };
 
-  const handleAddListing = () => {
-    setShowModal({type:'add', visible:true});
+  const handleOpenModal = (type, data) => {
+    setShowModal({type:type, visible:true, data:data});
   };
 
-  const handleEditListing = () => {
+  const handleCloseModal = () => {
+    setShowModal({type:null, visible:false});
+  };
 
-  }
+  const handleSubmitListing = () => {
+    //axios.post to add new listing
+    //or axios.put to edit
+    // or axios.delete to remove listing
+    console.log('clicked');
+  };
+
+
 
 
   return (
@@ -34,17 +44,17 @@ const MyListings = () => {
       <FlatList
         data={filteredListings}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <Listing title={item.title} status={item.status} />}
+        renderItem={({ item }) => <Listing data={item} />}
       />
-      <Button title="Add New Listing" onPress={handleAddNewListing} />
-      <NewListingModal visible={showModal} onClose={handleCloseModal} onSave={handleSaveListing} />
+      <Button title="Add New Listing" onPress={()=>handleOpenModal('add', {})} />
+      <AddEditListingModal visible={showModal} onClose={handleCloseModal} onSubmit={handleSubmitListing} />
     </View>
   );
 };
 
-const Listing = ({ title, status }) => {
+const Listing = ({ title, status, handleEditListing }) => {
   return (
-    <View style={styles.listingItem} onClick={(e)=>{handleEditListing(e)}}>
+    <View style={styles.listingItem} onClick={(e)=>{handleOpenModal(e)}}>
       <Text>{title}</Text>
       <Text>Status: {status}</Text>
     </View>
@@ -54,7 +64,7 @@ const Listing = ({ title, status }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'silver',
   },
   listingItem: {
     padding: 10,
