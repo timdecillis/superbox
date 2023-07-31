@@ -1,24 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import SignIn from './pages/SignIn';
-import styled from 'styled-components/native'
-
-const Container = styled.View`
-display:flex;
-flex-direction: column;
-height:100%;
-  background-color:#E4B363;
-  align-items: center;
-  justify-content: center;
-`;
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native'
+import HomeMarket from "./pages/HomeMarket.js";
+import Signin from "./pages/Signin.js";
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-
-    <Container>
-        <SignIn />
-    </Container>
-
+      <NavigationContainer>
+      <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen name="Home" component={HomeMarket} />
+      <Tab.Screen name="Settings" component={Signin} />
+    </Tab.Navigator>
+      </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
