@@ -3,17 +3,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native'
 import HomeMarket from "./features/Marketplace/HomeMarket.js";
-import SignIn from "./features/LoginSignup/Signin.js";
+import Signin from "./features/LoginSignup/Signin.js";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-      <NavigationContainer>
+    <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="Home" component={HomeMarket} />
-      <Tab.Screen name="Settings" component={Signin} />
-    </Tab.Navigator>
-      </NavigationContainer>
+        <Tab.Screen name="Home" component={HomeMarket} />
+        <Tab.Screen name="Settings" component={Signin} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
