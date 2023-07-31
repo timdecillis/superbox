@@ -20,7 +20,6 @@ const Search = () => {
           color="black"
           style={{ marginLeft: 1 }}
         />
-        {/* Input field */}
         <TextInput
           style={    {fontSize: 20,
             marginLeft: 10,
