@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
 import Logo from '../assets/logo.png'
 import { Firebase_Auth} from '../FirebaseConfig'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 const Container = styled.View`
@@ -195,6 +195,33 @@ const SignIn = () => {
         </NoAccountContainer>
 
       </Container>
+    )
+  } else if (signUp === true) {
+    return (
+      <Container>
+
+        <LogoImage source={Logo} />
+        <Title>Create your account</Title>
+
+        <InputBarContainer>
+            <InputField onChangeText={(text) => setEmail(text)} value={email} placeholder="Email address" autocapitalize="none"/>
+        </InputBarContainer>
+        <InputBarContainer>
+            <InputField onChangeText={(text) => setPassword(text)} value={password} placeholder="Password" secureTextEntry={true}/>
+        </InputBarContainer>
+
+        <ButtonContainer>
+            <ContinueBtn onPress={signUpFunc} ><ButtonText>Continue</ButtonText></ContinueBtn>
+        </ButtonContainer>
+
+        <NoAccountContainer>
+          <NoAccountText>Already have an account? </NoAccountText>
+          <TouchableOpacity onPress={() => {handleClick('logIn')}}>
+            <SignUpText> Log in</SignUpText>
+          </TouchableOpacity>
+        </NoAccountContainer>
+
+    </Container>
     )
   }
 
