@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
-import Logo from '../assets/logo.png'
+import Logo from '../assets/Logo.png'
 import { Firebase_Auth} from '../FirebaseConfig'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
@@ -22,9 +22,9 @@ const NoAccountContainer = styled.View`
 `
 
 const LogoImage = styled.Image`
-  width: 75px;
-  height: 75px;
   margin-bottom: 20px;
+  width:92px;
+  height:65px;
 `;
 
 const Title = styled.Text`
