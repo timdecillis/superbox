@@ -6,11 +6,10 @@ import Logo from '../assets/Logo.png'
 import { Firebase_Auth} from '../FirebaseConfig'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
-
-
-
 const Container = styled.View`
   flex: 1;
+  height: 100%;
+  background-color: #E4B363;
   justify-content: center;
   align-items: center;
   padding: 20px;
