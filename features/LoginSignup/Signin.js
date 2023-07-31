@@ -106,13 +106,20 @@ const NoAccountText = styled.Text`
 const SignIn = () => {
   const [logIn, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false)
+  const [profilePage, setProfilePage] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [profile, setProfile] = useState({});
+
   const auth = Firebase_Auth;
 
   const signInFunc = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
+      setProfile({...profile, 'email': email})
+      setSignUp(false);
+      setLogin(false);
+      setProfilePage(false);
       console.log(response);
       alert('Sign In Success')
 
@@ -125,6 +132,10 @@ const SignIn = () => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
+      setProfile({...profile, 'email': email})
+      setSignUp(false);
+      setLogin(false);
+      setProfilePage(true);
       console.log(response);
       alert('Sign Up Success')
 
@@ -150,7 +161,7 @@ const SignIn = () => {
     setPassword(text);
   };
 
-  if (logIn === false && signUp === false) {
+  if (logIn === false && signUp === false && profilePage === false) {
      return (
       <Container>
 
@@ -224,6 +235,25 @@ const SignIn = () => {
         </NoAccountContainer>
 
     </Container>
+    )
+  } else if (profilePage === true) {
+    return (
+      <Container>
+
+        <LogoImage source={Logo} />
+        <Title>Profile</Title>
+
+        <InputBarContainer>
+            <InputField onChangeText={(text) => setProfile({...profile, 'Name': text})} placeholder="Name"/>
+        </InputBarContainer>
+        <InputBarContainer>
+            <InputField onChangeText={(text) => setProfile({...profile, 'Address': text})} placeholder="Address" autocapitalize="none"/>
+        </InputBarContainer>
+        <InputBarContainer>
+            <InputField onChangeText={(text) => setProfile({...profile, 'Number': text})} placeholder="Number"/>
+        </InputBarContainer>
+
+      </Container>
     )
   }
 
