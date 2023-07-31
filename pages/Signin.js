@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
-import Logo from '../assets/Logo.png'
+import Logo from '../assets/logo.png';
 import { Firebase_Auth} from '../FirebaseConfig'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
