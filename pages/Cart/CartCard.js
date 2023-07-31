@@ -7,8 +7,8 @@ const CartCard = ({product}) => {
       <Image
       source={{uri: product.product_image}} />
       <Text>{product.product_name}</Text>
-      <Text>{product.product_description}</Text>
-      <Text>{product.product_price}</Text>
+      <Text>Description: {product.product_description}</Text>
+      <Text>Price: ${product.product_price}</Text>
     </View>
   )
 }
