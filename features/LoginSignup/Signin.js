@@ -5,103 +5,7 @@ import styled from 'styled-components/native'
 import Logo from '../../assets/Logo.png'
 import { Firebase_Auth} from '../../FirebaseConfig.js'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
-
-const Container = styled.View`
-  flex: 1;
-  height: 100%;
-  background-color: #E4B363;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-`;
-
-const NoAccountContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3px;
-`
-
-const LogoImage = styled.Image`
-  margin-bottom: 20px;
-  width:92px;
-  height:65px;
-`;
-
-const Title = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: #EF6461;
-`;
-
-const BoldText = styled.Text`
-  font-weight: bold;
-`;
-
-
-const SubHeader = styled.Text`
-  font-size: 18px;
-  margin-bottom: 20px;
-`;
-
-const ButtonContainer = styled.View`
-  flex-direction: row;
-`;
-
-const Button = styled.TouchableOpacity`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #2196F3;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 10px;
-  height:50px;
-`;
-
-const ContinueBtn = styled.TouchableOpacity`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #2196F3;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-bottom: 6px;
-  height:50px;
-  width: 84%;
-`;
-
-const ButtonText = styled.Text`
-  color: #ffffff;
-  font-size: 16px;
-`;
-
-const InputBarContainer = styled.View`
-  background-color: #f0f0f0;
-  width: 325px;
-`;
-
-const InputField = styled.TextInput`
-  height: 50px;
-  border: 1px solid #ccc;
-  padding: 5px;
-  width:100%;
-`;
-
-const SignUpText = styled.Text`
-  color: #2196F3;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-`;
-const NoAccountText = styled.Text`
-  color: #ffffff;
-  text-align: center;
-  font-size: 14px;
-`;
+import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles'
 
 const SignIn = () => {
   const [logIn, setLogin] = useState(false);
@@ -132,11 +36,19 @@ const SignIn = () => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-      setProfile({...profile, 'email': email})
+      console.log(response.user.uid)
+      console.log(response.user.email)
+
+      setProfile({
+        ...profile,
+        'uID': response.user.uid,
+        'email': email,
+        'password': response.user.email,
+      });
+
       setSignUp(false);
       setLogin(false);
       setProfilePage(true);
-      console.log(response);
       alert('Sign Up Success')
 
     } catch (error) {
@@ -250,8 +162,14 @@ const SignIn = () => {
             <InputField onChangeText={(text) => setProfile({...profile, 'Address': text})} placeholder="Address" autocapitalize="none"/>
         </InputBarContainer>
         <InputBarContainer>
+            <InputField onChangeText={(text) => setProfile({...profile, 'Interests': text})} placeholder="Interests"/>
+        </InputBarContainer>
+        <InputBarContainer>
             <InputField onChangeText={(text) => setProfile({...profile, 'Number': text})} placeholder="Number"/>
         </InputBarContainer>
+
+
+        <ContinueBtn onPress={() => {console.log(profile)}}><ButtonText>Continue</ButtonText></ContinueBtn>
 
       </Container>
     )
