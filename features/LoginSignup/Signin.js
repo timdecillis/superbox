@@ -2,8 +2,8 @@
 import React, {useState} from "react";
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
-import Logo from '../../assets/logo.png'
-import { Firebase_Auth} from '../../FirebaseConfig'
+import Logo from '../../assets/Logo.png'
+import { Firebase_Auth} from '../../FirebaseConfig.js'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 const Container = styled.View`
