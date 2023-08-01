@@ -36,7 +36,7 @@ export default PersonalBlock = ({data}) => {
                 </TouchableOpacity>
               </View>
 
-              <View style={styles.infoBlock}>
+              {/* <View style={styles.infoBlock}>
                 <View style={styles.infoLeft}>
                   <Text style={styles.infoType}>Password:</Text>
                   <Text style={styles.info}>{obscurePass(data.password)}</Text>
@@ -44,7 +44,7 @@ export default PersonalBlock = ({data}) => {
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={styles.editButton}>Edit</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
 
 
               <View style={styles.infoBlock}>
