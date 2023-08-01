@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import { View, Modal, TextInput, Button, StyleSheet } from 'react-native';
 
-const AddEditListingModal = ({ visible, onClose, onSave }) => {
-  const [title, setTitle] = useState('');
-  const [status, setStatus] = useState('active'); // Default status set to 'active'
+const AddEditListingModal = ({ modalInfo, onClose, onSave }) => {
+  const [listingInfo, setListingInfo] = useState({status:'inactive'});
 
   const handleSave = () => {
-    // You can add validation logic here before saving the new listing
+    //TODO: add validation logic here before saving the new listing
     onSave({ title, status });
-    setTitle('');
-    setStatus('active');
+
     onClose();
   };
 
   return (
-    <Modal visible={visible} animationType="slide">
+    <Modal visible={modalInfo.visible} animationType="slide">
       <View style={styles.container}>
         <TextInput
-          placeholder="Title"
-          value={title}
-          onChangeText={text => setTitle(text)}
+          placeholder="Product Name"
+          value={modalInfo.title}
+          onChangeText={name => setListingInfo({...listingInfo, text:name})}
           style={styles.input}
         />
         <TextInput
-          placeholder="Status (e.g., active, inactive, fulfilled, unfulfilled)"
-          value={status}
-          onChangeText={text => setStatus(text)}
+          placeholder="Product Description"
+          value={modalInfo.status}
+          onChangeText={text => setDescription(text)}
           style={styles.input}
         />
         <View style={styles.buttonContainer}>
