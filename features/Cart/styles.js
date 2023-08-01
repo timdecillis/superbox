@@ -23,6 +23,6 @@ export const CardContainer = styled.View`
     flexDirection: row;
     justifyContent: space-between;
     alignItems: center;
-    margin: 10px;
+    margin: 15px;
 
 `;

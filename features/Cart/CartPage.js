@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
 import styled from 'styled-components/native'
 import CartCard from './CartCard.js';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
+import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalButton} from '../../globalComponents/globalStyles.js';
+
 const CartPage = () => {
 
   const[products, setProducts] = useState([
@@ -19,24 +21,27 @@ const CartPage = () => {
   }
 
   return (
-    <Container>
+    <GlobalView>
 
-      <ItemNumberContainer>
-        <Text>
-          Your Cart has {products.length} {products.length === 1 ? 'Item': 'Items'}
-        </Text>
-      </ItemNumberContainer>
-      <CartInfoContainer>
-        {products.map(product => <CartCard key={product.product_id} product={product}/>)}
-      </CartInfoContainer>
-      <SubTotalContainer>
-        <Text>Subtotal: ${calculateTotal()}</Text>
-        <Button
-        title="Checkout"
-        onPress={() => Alert.alert('Payment confirmed! Your items are on their way!')}
-      />
-      </SubTotalContainer>
-    </Container>
+      <Container>
+
+        <ItemNumberContainer>
+          <GlobalTitle>
+            Your Cart has {products.length} {products.length === 1 ? 'Item': 'Items'}
+          </GlobalTitle>
+        </ItemNumberContainer>
+        <CartInfoContainer>
+          {products.map(product => <CartCard key={product.product_id} product={product}/>)}
+        </CartInfoContainer>
+        <SubTotalContainer>
+          <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice>
+          <GlobalButton
+          title="Checkout"
+          onPress={() => Alert.alert('Payment confirmed! Your items are on their way!')}
+        />
+        </SubTotalContainer>
+      </Container>
+    </GlobalView>
   )
 }
 export default CartPage;
