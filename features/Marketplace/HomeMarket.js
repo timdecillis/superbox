@@ -1,3 +1,4 @@
+
 import React, { Component,useState, useRef } from "react";
 import { StyleSheet, Text, View, Button, Animated, ScrollView } from 'react-native';
 import Search from "../../globalComponents/Search.js";
