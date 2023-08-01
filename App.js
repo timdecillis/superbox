@@ -7,6 +7,7 @@ import Signin from "./features/LoginSignup/Signin.js";
 import UserProfile from './features/UserProfile/UserProfile.js';
 import SignIn from "./features/LoginSignup/Signin.js";
 import MyListings from './features/MyListings/MyListings.js';
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Tab.Screen name="My Listings" component={MyListings} />
       </Tab.Navigator>
     </NavigationContainer>
+
   );
 }
 
