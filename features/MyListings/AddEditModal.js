@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Modal, TextInput, Button, StyleSheet, ScrollView, Text, Switch } from 'react-native';
 
 
-const AddEditListingModal = ({ modalInfo, onClose, onSave }) => {
+const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const [listingInfo, setListingInfo] = useState({...modalInfo});
   const [productsList, setProductsList] = useState([{name:'batman 31', id: 1}, {name:'spiderman 20', id: 2}, {name:'superman poster', id: 1}]);
   //axios.get ( all products {productName, product_Id})
