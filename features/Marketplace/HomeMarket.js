@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from 'react-native';
 
-const HomeMarket = () => {
+import React, { Component,useState, useRef } from "react";
+import { StyleSheet, Text, View, Button, Animated, ScrollView } from 'react-native';
+import Search from "../../globalComponents/Search.js";
+
+const HomeMarket = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Home</Text>
+      <View style={{alignItems: "center", padding: "5%"}}>
+        <Search />
+      </View>
     </View>
   )
 }
