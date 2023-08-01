@@ -3,6 +3,7 @@ export const userData = {
   lastName: 'Kent',
   userName: 'superman367',
   email: 'super@krypton.com',
+  password: 'loislane',
   phone: '4530394857',
   address1: '4324 Main St.',
   address2: '',
