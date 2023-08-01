@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { SafeAreaView, ScrollView, Text, Animated, StyleSheet } from 'react-native';
 
-
-// You can import from local files
 import DynamicHeader from '../../globalComponents/Search.js';
 
 export default function App() {
