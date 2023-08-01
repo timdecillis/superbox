@@ -19,12 +19,10 @@ const SignIn = () => {
   const signInFunc = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-
       setProfile({...profile, 'email': email})
       setSignUp(false);
       setLogin(false);
       setProfilePage(false);
-
       console.log(response);
       alert('Sign In Success')
 
@@ -37,14 +35,13 @@ const SignIn = () => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(response.user.uid)
-      console.log(response.user.email)
+      console.log('RESPONSE',response)
 
       setProfile({
         ...profile,
         'uID': response.user.uid,
         'email': email,
-        'password': response.user.email,
+        'tokenID': response.tokenID
       });
 
       setSignUp(false);
