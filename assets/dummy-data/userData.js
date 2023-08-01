@@ -1,6 +1,7 @@
 export const userData = {
   firstName: 'Clark',
   lastName: 'Kent',
+  userName: 'superman367',
   email: 'super@krypton.com',
   phone: '4530394857',
   address1: '4324 Main St.',
@@ -8,6 +9,7 @@ export const userData = {
   city: 'Metropolis',
   state: 'California',
   zip: '90210',
+  interests: ['flying', 'Lois Lane', 'journalism'],
   messages: [
     { user: 'lexluthor487', date: '12:06:2023', text: 'sup' },
     { user: 'batman46', date: '09:27:2023', text: 'hey dude!' },
@@ -28,5 +30,6 @@ export const userData = {
     { product: 'Kryptonite', date: '12:06:2023', info: 'more info' },
     { product: 'Red Boots', date: '05:20:2023', info: 'more info' },
     { product: 'Justice', date: '09:27:2023', info: 'more info' },
-  ]
+  ],
+  rating: 3.8
 };

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-nati
 
 import {userData} from '../../assets/dummy-data/userData.js'
 
-export default function App() {
+export default function UserProfile() {
 
   const [data, setData] = useState(userData);
 
@@ -119,16 +119,14 @@ const styles = StyleSheet.create({
 
   },
   body: {
-    borderTopWidth: '5%',
+    borderTopWidth: '3%',
     borderTopColor: '#ef6461',
-    borderBottomWidth: '5%',
+    borderBottomWidth: '3%',
     borderBottomColor: '#ef6461',
     flex: .75,
     backgroundColor: '#e8e9eb',
   },
   button: {
-
-    borderWidthTop: '20%',
     color: '#ef6461',
     fontSize: '25em',
   },
