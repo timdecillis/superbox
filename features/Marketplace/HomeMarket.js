@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, ScrollView, Text, Animated, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, Text, Animated, StyleSheet, View } from 'react-native';
 
 import DynamicHeader from '../../globalComponents/Search.js';
+import ProductCard from '../../globalComponents/ProductCard.js';
 
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
@@ -16,46 +17,15 @@ export default function App() {
           {useNativeDriver: false}
         )}
       >
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
-      <Text>Hi</Text>
+        <View style={{height: 400}}>
+          <ProductCard />
+        </View>
+        <View style={{height: 400}}>
+          <ProductCard />
+        </View>
+        <View style={{height: 400}}>
+          <ProductCard />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
