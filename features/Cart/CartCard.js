@@ -1,16 +1,19 @@
 import {View, Image, Text} from 'react-native';
-
+import {CardContainer} from './styles.js';
 const CartCard = ({product}) => {
 
   return (
-    <View>
+    <CardContainer >
       <Image
       source={{uri: product.product_image}}
       style={{width: 50, height: 50}} />
-      <Text>{product.product_name}</Text>
-      <Text>Description: {product.product_description}</Text>
-      <Text>Price: ${product.product_price}</Text>
-    </View>
+      <View>
+        <Text>{product.product_name}</Text>
+        <Text>Description: {product.product_description}</Text>
+        <Text>Price: ${product.product_price}</Text>
+      </View>
+
+    </CardContainer>
   )
 }
 

@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, Alert, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -9,11 +9,15 @@ export const Container = styled.View`
     padding: 20px;`;
 
 export const ItemNumberContainer = styled.View`
-    flex: 0.20;
+    flex: 0.15;
     `
-export const CartInfoContainer = styled.View`
-    flex: 0.60;
+export const CartInfoContainer = styled.ScrollView`
+    flex: 0.70;
     `
 export const SubTotalContainer = styled.View`
-    flex: 0.20;
+    flex: 0.15;
     `
+export const CardContainer = styled.View`
+        flexDirection: 'row';
+
+    `;

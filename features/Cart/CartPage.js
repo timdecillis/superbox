@@ -6,11 +6,11 @@ import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} fr
 const CartPage = () => {
 
   const[products, setProducts] = useState([
-    {product_id: 1, product_name: "Spiderman Version 2.0", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 2, product_name: "Spiderman Version 2.0", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 3, product_name: "Spiderman Version 2.0", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 4, product_name: "Spiderman Version 2.0", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 5, product_name: "Spiderman Version 2.0", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"}
+    {product_id: 1, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
+    {product_id: 2, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
+    {product_id: 3, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
+    {product_id: 4, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
+    {product_id: 5, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"}
 
   ]);
 
