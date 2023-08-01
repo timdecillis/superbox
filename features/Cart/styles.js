@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
     flex: 1;
     justify-content: center;
-    align-items: center;
+    alignItems: center;
     padding:20px
 `;
 
@@ -14,11 +14,15 @@ export const ItemNumberContainer = styled.View`
 `
 export const CartInfoContainer = styled.ScrollView`
     flex: 0.70;
-
+    width: 100%;
 `
 export const SubTotalContainer = styled.View`
     flex: 0.15;
 `
 export const CardContainer = styled.View`
-    flexDirection: 'row';
+    flexDirection: row;
+    justifyContent: space-between;
+    alignItems: center;
+    margin: 10px;
+
 `;
