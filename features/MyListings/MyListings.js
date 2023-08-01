@@ -21,6 +21,7 @@ const MyListings = () => {
   };
 
   const handleOpenModal = (type, data) => {
+    console.log(type, 'data: ', data)
     setShowModal({type:type, visible:true, data:data});
   };
 
@@ -47,14 +48,14 @@ const MyListings = () => {
         renderItem={({ item }) => <Listing data={item} />}
       />
       <Button title="Add New Listing" onPress={()=>handleOpenModal('add', {})} />
-      <AddEditListingModal visible={showModal} onClose={handleCloseModal} onSubmit={handleSubmitListing} />
+      <AddEditListingModal modalInfo={showModal} onClose={handleCloseModal} onSubmit={handleSubmitListing} />
     </View>
   );
 };
 
 const Listing = ({ title, status, handleEditListing }) => {
   return (
-    <View style={styles.listingItem} onClick={(e)=>{handleOpenModal(e)}}>
+    <View style={styles.listingItem} onClick={(e)=>{handleOpenModal('edit',e)}}>
       <Text>{title}</Text>
       <Text>Status: {status}</Text>
     </View>
