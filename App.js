@@ -20,6 +20,8 @@ export default function App() {
       <Tab.Navigator initialRouteName="Home">
 
       <Tab.Screen name="Home" component={HomeMarket} />
+      <Tab.Screen name="Public Profile" component={PublicProfile} />
+      <Tab.Screen name="Purchases" component={Purchases} />
       <Tab.Screen
           name="Settings"
           options={{
@@ -28,6 +30,7 @@ export default function App() {
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
       <Tab.Screen name="My Listings" component={MyListings} />
+
 
       </Tab.Navigator>
     </NavigationContainer>
