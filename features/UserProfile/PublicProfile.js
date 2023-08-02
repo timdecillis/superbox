@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
+import DynamicHeader from '../../globalComponents/Search.js';
 import Search from '../../globalComponents/Search.js';
 
 export default function PublicProfile() {
@@ -55,6 +56,12 @@ export default function PublicProfile() {
           <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeading}>Find a different user</Text>
           <Search/>
+          </View>
+
+
+          <View style={styles.sectionContainer}>
+          <Text style={styles.sectionHeading}>Find a different user</Text>
+          <Search />
           </View>
 
 

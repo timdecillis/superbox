@@ -11,11 +11,12 @@ import SignIn from "./features/LoginSignup/Signin.js";
 import MyListings from './features/MyListings/MyListings.js';
 import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
-
+import {userData} from './assets/dummy-data/userData.js';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [profile, setProfile] = useState({});
+
+  const [profile, setProfile] = useState(userData);
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
@@ -29,7 +30,13 @@ export default function App() {
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
         <Tab.Screen name="Cart" component={Cart} />
-        <Tab.Screen name="UserProfile" component={UserProfile} />
+        <Tab.Screen
+          name="User Profile"
+          options={{
+            tabBarLabel: 'User Profile',
+          }}
+          children={() => <UserProfile profile={profile} setProfile={setProfile} />}
+        />
         <Tab.Screen name="My Listings" component={MyListings} />
         <Tab.Screen name="Public Profile" component={PublicProfile} />
         <Tab.Screen name="Purchases" component={Purchases} />
