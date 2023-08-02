@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
-import {userData} from '../../assets/dummy-data/userData.js'
+import logo from '../../assets/LogoTitle.png';
+import { userData } from '../../assets/dummy-data/userData.js';
+import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile() {
 
@@ -10,168 +11,128 @@ export default function UserProfile() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.body}>
+      <ImageBackground
+        source={logo}
+        style={styles.backgroundImage}
+        resizeMode='contain'>
+
         <ScrollView style={styles.main}>
 
           <Text style={styles.mainHeading}>Hi, {data.firstName}!</Text>
 
-          <View style={[styles.sectionContainer, {flexDirection: 'row', justifyContent: 'space-between'}]}>
-            <View style={styles.personal}>
-              <Text style={styles.sectionHeading}>Personal Information</Text>
-              <Text style={styles.line}>{data.firstName} {data.lastName}</Text>
-              <Text style={styles.line}>{data.email}</Text>
-              <Text style={styles.line}>{data.phone.slice(0, 3)}-{data.phone.slice(3, 6)}-{data.phone.slice(6, 10)} </Text>
-              <View style={styles.address}>
-                <Text style={[styles.line, styles.text]}>{data.address1}</Text>
-                {data.address2 && <Text style={[styles.line, styles.text]}>{data.address2}</Text>}
-                <Text style={[styles.line, styles.text]}>{data.city}, {data.state}</Text>
-                <Text style={[styles.line, styles.text]}>{data.zip}</Text>
-              </View>
+          <View style={styles.sectionContainer}>
+            <View style={styles.buttonHeading}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Your Profile</Text>
+              </TouchableOpacity>
             </View>
+          </View>
 
+          <PersonalBlock data={data} />
+
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionHeading}>Settings</Text>
+            <View style={styles.infoBlock}>
+              <Text style={styles.setting}>Dark Mode</Text>
+              <Switch style={styles.settingSwitch} />
+            </View>
+          </View>
+
+          <View style={styles.sectionContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>View Profile</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={styles.button}>Edit</Text>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
             </TouchableOpacity>
           </View>
 
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.messages}>
-              <Text style={styles.sectionHeading}>Inbox</Text>
-              {data.messages.map((message, i) => {
-                return (
-                  <View style={styles.message}key={i}>
-                    <View style={styles.messageHeading}>
-                      <Text style={{fontWeight: 'bold'}}>{message.user}</Text>
-                      <Text>{message.date}</Text>
-                    </View>
-                      <Text>{message.text}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.messages}>
-              <Text style={styles.sectionHeading}>Current Listings</Text>
-              {data.listings.map((listing, i) => {
-                return (
-                  <View style={styles.message}key={i}>
-                    <View style={styles.messageHeading}>
-                      <Text style={{fontWeight: 'bold'}}>{listing.product}</Text>
-                      <Text>{listing.date}</Text>
-                    </View>
-                      <Text>{listing.info}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.messages}>
-              <Text style={styles.sectionHeading}>Purchase History</Text>
-              {data.purchases.map((listing, i) => {
-                return (
-                  <View style={styles.message}key={i}>
-                    <View style={styles.messageHeading}>
-                      <Text style={{fontWeight: 'bold'}}>{listing.product}</Text>
-                      <Text>{listing.date}</Text>
-                    </View>
-                      <Text>{listing.info}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.messages}>
-              <Text style={styles.sectionHeading}>Sell History</Text>
-              {data.sold.map((listing, i) => {
-                return (
-                  <View style={styles.message}key={i}>
-                    <View style={styles.messageHeading}>
-                      <Text style={{fontWeight: 'bold'}}>{listing.product}</Text>
-                      <Text>{listing.date}</Text>
-                    </View>
-                      <Text>{listing.info}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
         </ScrollView>
-      </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  address: {
-    fontSize: '20em'
-  },
-  banner: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-
-  },
-  body: {
-    borderTopWidth: '3%',
-    borderTopColor: '#ef6461',
-    borderBottomWidth: '3%',
-    borderBottomColor: '#ef6461',
-    flex: .75,
-    backgroundColor: '#e8e9eb',
-  },
-  button: {
-    color: '#ef6461',
-    fontSize: '25em',
+  backgroundImage: {
+    flex: 1,
+    width: '95%',
+    justifyContent: 'center'
   },
   buttonContainer: {
-    top: '3.5%',
-    maxHeight: '20%'
+    width: '45%',
+  },
+  buttonHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    left: '180%'
   },
   container: {
     flex: 1,
     backgroundColor: '#e4b363',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  main: {
-    padding: '5%',
+  editButton: {
+    color: '#ef6461',
+    fontSize: 20,
   },
-  mainHeading: {
-    fontSize: '45em',
-    color: '#313638'
+  infoLeft: {
+    padding: '.5%'
   },
-  message: {
+  infoBlock: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: '#e0dfd5',
     borderWidth: '.5%',
-    borderRadius: 3,
+    borderRadius: 2,
+    marginBottom: '2%',
+    alignItems: 'center',
     padding: '2%'
   },
-  messageHeading: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  infoType: {
+    fontWeight: 'bold'
   },
-  personal: {
-    paddingTop: '3%'
+  main: {
+    padding: '3%',
+  },
+  mainHeading: {
+    fontSize: 45,
+    color: '#313638',
+    marginBottom: 15
+  },
+  option: {
+    textDecorationLine: 'underline',
+    width: 80,
+    textAlign: 'center'
+
   },
   sectionContainer: {
-    marginBottom: '3%'
-  },
-  line: {
+    borderRadius: '5',
+    padding: '3%',
     marginBottom: '3%',
-    fontSize: '15em'
+    backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: 20,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
-  text: {
-    marginBottom: 0
-  }
+  setting: {
+    fontWeight: 'bold',
+    fontSize: 17
+  },
 });
