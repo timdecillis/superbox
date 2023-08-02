@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,7 +14,6 @@ import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
 import {userData} from './assets/dummy-data/userData.js';
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
