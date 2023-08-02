@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
-import { userData } from '../../assets/dummy-data/userData.js';
 import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile({profile, setProfile, navigation}) {
-  console.log('profile:', profile)
-  const [data, setData] = useState(userData);
+
+
 
   return (
     <View style={styles.container}>
@@ -18,7 +17,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
 
         <ScrollView style={styles.main}>
 
-          <Text style={styles.mainHeading}>Hi, {data.firstName}!</Text>
+          <Text style={styles.mainHeading}>Hi, {profile.firstName}!</Text>
 
           <View style={styles.sectionContainer}>
             <View style={styles.buttonHeading}>
@@ -37,7 +36,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
             </View>
           </View>
 
-          <PersonalBlock data={data} />
+          <PersonalBlock profile={profile} />
 
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionHeading}>Settings</Text>
