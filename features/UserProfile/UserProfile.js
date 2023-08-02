@@ -21,18 +21,25 @@ export default function UserProfile({profile, setProfile, navigation}) {
 
           <View style={styles.sectionContainer}>
             <View style={styles.buttonHeading}>
-              <TouchableOpacity style={styles.buttonContainer}>
+
+              <TouchableOpacity onPress={() => navigation.navigate('Inbox')}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
               </TouchableOpacity>
+
               <TouchableOpacity onPress={() => navigation.navigate('Listings')}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
+
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text onPress={() => navigation.navigate('Purchases')}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
               </TouchableOpacity>
+
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Public Profile')}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
+                <Text onPress={() => navigation.navigate('Public Profile', {
+                  user_id: 1
+                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
               </TouchableOpacity>
+
             </View>
           </View>
 
