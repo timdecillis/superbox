@@ -206,6 +206,10 @@ const SignIn = ({profile, setProfile}) => {
       </InputBarContainer>
 
       <InputBarContainer>
+        <InputField onChangeText={(text) => setProfile({ ...profile, username: text })} placeholder="Username" />
+      </InputBarContainer>
+
+      <InputBarContainer>
         <InputField onChangeText={(text) => setProfile({ ...profile, address_line_1: text })} placeholder="Address 1" autocapitalize="none" />
       </InputBarContainer>
 
