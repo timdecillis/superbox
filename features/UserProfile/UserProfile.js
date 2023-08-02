@@ -23,13 +23,16 @@ export default function UserProfile() {
           <View style={styles.sectionContainer}>
             <View style={styles.buttonHeading}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Inbox</Text>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Listings</Text>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Purchases</Text>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={[styles.option, { color: '#ef6461' }]}>Your Profile</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -45,6 +48,9 @@ export default function UserProfile() {
           </View>
 
           <View style={styles.sectionContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>View Profile</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    left: '110%'
+    left: '260%'
   },
   container: {
     flex: 1,
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '20em',
+    fontSize: 20,
   },
   infoLeft: {
     padding: '.5%'
@@ -101,9 +107,12 @@ const styles = StyleSheet.create({
     padding: '3%',
   },
   mainHeading: {
-    fontSize: '45em',
+    fontSize: 45,
     color: '#313638',
     marginBottom: 15
+  },
+  option: {
+    textDecorationLine: 'underline'
   },
   sectionContainer: {
     borderRadius: '5',
@@ -112,12 +121,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: 20,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
   setting: {
     fontWeight: 'bold',
-    fontSize: '17em'
+    fontSize: 17
   },
 });
