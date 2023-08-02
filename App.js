@@ -14,10 +14,6 @@ import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
 import {userData} from './assets/dummy-data/userData.js';
-<<<<<<< HEAD
-
-=======
->>>>>>> 417bf430438ec354906d4d392a7d024d614048bd
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -41,8 +37,23 @@ export default function App() {
       <Tab.Navigator initialRouteName="Home">
 
         <Tab.Screen name="Home" component={HomeStack} />
+        <>
+        <Tab.Screen
+          name="User Profile"
+          options={{
+            tabBarLabel: 'User Profile',
+          }}
+        >
+          {({ navigation }) => (
+            <UserProfile
+              profile={profile}
+              setProfile={setProfile}
+              navigation={navigation} // Pass the navigation prop here
+            />
+          )}
+        </Tab.Screen>
+        </>
         <Tab.Screen name="Cart" component={Cart} />
-        <Tab.Screen name="Account" component={UserProfile} />
         <Tab.Screen
           name="SignIn"
           options={{
@@ -56,13 +67,4 @@ export default function App() {
 
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#E4B363',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
