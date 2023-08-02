@@ -29,6 +29,13 @@ export default function App() {
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
         <Tab.Screen name="Cart" component={Cart} />
+        <Tab.Screen
+          name="User Profile"
+          options={{
+            tabBarLabel: 'User Profile',
+          }}
+          children={() => <UserProfile profile={profile} setProfile={setProfile} />}
+        />
         <Tab.Screen name="UserProfile" component={UserProfile} />
         <Tab.Screen name="My Listings" component={MyListings} />
         <Tab.Screen name="Public Profile" component={PublicProfile} />
