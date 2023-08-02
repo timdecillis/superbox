@@ -1,120 +1,100 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
+import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
+import Search from '../../globalComponents/Search.js';
 
-const obscurePass = (password) => {
-  let result = '';
-  for (let index = 0; index < password.length; index++) {
-    result += '*';
-  }
-  return result;
-};
+export default function UserProfile() {
 
-export default PersonalBlock = ({ data }) => {
+  const [data, setData] = useState(userData);
+
   return (
-    <View style={styles.sectionContainer}>
+    <View style={styles.container}>
+      <ImageBackground
+        source={logo}
+        style={styles.backgroundImage}
+        resizeMode='contain'>
 
-      <Text style={styles.sectionHeading}>Personal Information</Text>
+        <ScrollView style={styles.main}>
 
-      <View style={styles.infoBlock}>
-        <View style={styles.infoLeft}>
-          <Text style={styles.infoType}>Name: </Text>
-          <Text style={styles.info}>{data.firstName} {data.lastName}</Text>
-        </View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionHeading}>Your Purchases</Text>
+            {data.purchases.map((purchase, i) => {
+              return (
+                <View key={i} style={styles.listing}>
+                  <View style={styles.listingLeft}>
+                    <Text style={styles.product}>{purchase.product}</Text>
+                    <Text style={styles.product}>{purchase.price}</Text>
+                    <Text style={styles.info}>{purchase.info}</Text>
+                  </View>
+                  <View style={styles.listingLeft}>
 
-      <View style={styles.infoBlock}>
-        <View style={styles.infoLeft}>
-          <Text style={styles.infoType}>Email:</Text>
-          <Text style={styles.info}>{data.email}</Text>
-        </View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* <View style={styles.infoBlock}>
-                <View style={styles.infoLeft}>
-                  <Text style={styles.infoType}>Password:</Text>
-                  <Text style={styles.info}>{obscurePass(data.password)}</Text>
+                    <Text style={styles.product}>{purchase.date}</Text>
+                  </View>
                 </View>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.editButton}>Edit</Text>
-                </TouchableOpacity>
-              </View> */}
+              );
+            })}
+            <TouchableOpacity style={styles.seeAll}>
+              <Text style={styles.seeAllButton}>see all</Text>
 
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.infoBlock}>
-        <View style={styles.infoLeft}>
-          <Text style={styles.infoType}>Primary phone number:</Text>
-          <Text style={styles.info}>{data.phone.slice(0, 3)}-{data.phone.slice(3, 6)}-{data.phone.slice(6, 10)}</Text>
-        </View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
-      </View>
+          {/* <View style={styles.sectionContainer}>
+            <Text style={styles.sectionHeading}>Find a purchase</Text>
+            <Search />
+          </View> */}
 
-      <View style={styles.infoBlock}>
-        <View style={styles.infoLeft}>
-          <Text style={styles.infoType}>Address:</Text>
-          <Text style={[styles.line, styles.text]}>{data.address1}</Text>
-          {data.address2 && <Text style={[styles.line, styles.text]}>{data.address2}</Text>}
-          <Text style={[styles.line, styles.text]}>{data.city}, {data.state}</Text>
-          <Text style={[styles.line, styles.text]}>{data.zip}</Text>
-        </View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
-      </View>
+        </ScrollView>
+      </ImageBackground>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    paddingTop: '1%',
-    alignItems: 'center',
-    minWidth: '15%'
+  backgroundImage: {
+    flex: 1,
+    width: '95%',
+    justifyContent: 'center'
   },
-  editButton: {
-    color: '#ef6461',
-    fontSize: '20em',
+  container: {
+    flex: 1,
+    backgroundColor: '#e4b363',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  line: {
-    marginBottom: '3%',
-    fontSize: '15em'
-  },
-  infoLeft: {
-    padding: '.5%'
-  },
-  infoBlock: {
+  listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#e0dfd5',
-    borderWidth: '.5%',
-    borderRadius: 2,
-    marginBottom: '2%'
-
+    padding: '1%',
+    borderBottomWidth: '1%'
   },
-  infoType: {
+  main: {
+    padding: '3%',
+  },
+  product: {
     fontWeight: 'bold'
   },
   sectionContainer: {
     borderRadius: '5',
     padding: '3%',
     marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .92)'
+    backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: 22,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
-  text: {
-    marginBottom: 0
+  seeAll: {
+    marginTop: '2%',
+    maxWidth: '13%'
+  },
+  seeAllButton: {
+    fontSize: 15,
+    color: '#ef6461',
+    textDecorationLine: 'underline',
   }
 });

@@ -5,7 +5,7 @@ import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import Search from '../../globalComponents/Search.js';
 
-export default function UserProfile() {
+export default function PublicProfile() {
 
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
@@ -22,6 +22,12 @@ export default function UserProfile() {
 
           <Text style={styles.mainHeading}>{data.userName}</Text>
 
+
+          <View style={styles.sectionContainer}>
+          <Text style={[styles.sectionHeading, {textDecorationLine: 'none'}]}>Average rating: {data.rating}</Text>
+
+
+          </View>
           <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeading}>Listings</Text>
             {data.listings.map((listing, i) => {
@@ -38,7 +44,6 @@ export default function UserProfile() {
             })}
             <TouchableOpacity style={styles.seeAll}>
             <Text style={styles.seeAllButton}>see all</Text>
-
             </TouchableOpacity>
           </View>
 
@@ -49,7 +54,7 @@ export default function UserProfile() {
 
           <View style={styles.sectionContainer}>
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Message</Text>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Message User</Text>
             </TouchableOpacity>
           </View>
 
@@ -119,7 +124,6 @@ const styles = StyleSheet.create({
   mainHeading: {
     fontSize: 45,
     color: '#313638',
-    marginBottom: 15
   },
   sectionContainer: {
     borderRadius: '5',
@@ -141,5 +145,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#ef6461',
     textDecorationLine: 'underline',
+  },
+  subHeading: {
+    fontSize: 24
   }
 });
