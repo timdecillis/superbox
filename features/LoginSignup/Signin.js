@@ -18,7 +18,7 @@ const SignIn = ({profile, setProfile}) => {
 
   const sendProfileData = async () => {
     try {
-      const endpoint = '/ENDPOINT';
+      const endpoint = '/api/';
 
       const config = {
         headers: {
@@ -57,7 +57,7 @@ const SignIn = ({profile, setProfile}) => {
       },
     };
 
-    const backendResponse = await axios.get('/ENDPOINT', config);
+    const backendResponse = await axios.get('/api/', config);
 
     setProfile({
       ...profile,
