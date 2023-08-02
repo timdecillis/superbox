@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch} from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import Search from '../../globalComponents/Search.js';
 
 export default function PublicProfile() {
 
+  let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
-  const [banned, setBanned] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -55,19 +54,18 @@ export default function PublicProfile() {
 
           <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeading}>Find a different user</Text>
-          <Search />
+          <DynamicHeader animHeaderValue={scrollOffsetY} />
           </View>
 
-
           {isAdmin && <View style={styles.sectionContainer}>
-            {banned ? <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Unban User</Text>
-            </TouchableOpacity>
-              :
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Ban User</Text>
-              </TouchableOpacity>}
+            <Text style={styles.sectionHeading}>Settings</Text>
+            <View style={styles.infoBlock}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Ban User</Text>
+              <Switch style={styles.settingSwitch} />
+            </View>
           </View>}
+
+
 
         </ScrollView>
       </ImageBackground>
