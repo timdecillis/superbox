@@ -30,7 +30,7 @@ const SignIn = ({profile, setProfile}) => {
 
       console.log('Response:', response.data);
 
-    } catch (error)
+    } catch (error) {
       console.error('Error:', error);
     }
   };
