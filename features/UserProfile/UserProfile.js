@@ -6,7 +6,7 @@ import { userData } from '../../assets/dummy-data/userData.js';
 import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile({profile, setProfile, navigation}) {
-  console.log('profile:', {profile})
+  console.log('profile:', profile)
   const [data, setData] = useState(userData);
 
   return (
@@ -25,7 +25,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Listings')}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>

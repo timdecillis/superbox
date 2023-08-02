@@ -37,7 +37,6 @@ export default function App() {
           }}
           children={() => <UserProfile profile={profile} setProfile={setProfile} />}
         />
-        <Tab.Screen name="UserProfile" component={UserProfile} />
         <Tab.Screen name="My Listings" component={MyListings} />
         <Tab.Screen name="Public Profile" component={PublicProfile} />
         <Tab.Screen name="Purchases" component={Purchases} />
