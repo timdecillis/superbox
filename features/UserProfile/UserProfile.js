@@ -68,12 +68,12 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {
+            {/* <TouchableOpacity onPress={() => {
               setProfile({});
               navigation.navigate('Settings');
               }}style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
         </ScrollView>

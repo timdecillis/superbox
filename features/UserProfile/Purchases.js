@@ -35,7 +35,6 @@ export default function UserProfile() {
                 </View>
               );
             })}
-
           </View>
 
           {/* <View style={styles.sectionContainer}>
