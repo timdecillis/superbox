@@ -13,6 +13,7 @@ import MyListings from './features/MyListings/MyListings.js';
 import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
+import {userData} from './assets/dummy-data/userData.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,9 +30,9 @@ function HomeStack() {
   );
 }
 
-
 export default function App() {
-  const [profile, setProfile] = useState({});
+
+  const [profile, setProfile] = useState(userData);
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
