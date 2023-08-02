@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Picker, View, Modal, TextInput, Button, StyleSheet, ScrollView, Text, Switch } from 'react-native';
+import { View, Modal, TextInput, Button, StyleSheet, ScrollView, Text, Switch } from 'react-native';
 
 
 const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
@@ -19,7 +19,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const handleWriteName = (name) => {
     let regex = new RegExp(name, 'ig');
     setFilteredProducts(productsList.filter((product)=>regex.test(product.name)));
-  }
+  };
 
   const handleProductSelection = (product)=>{
     setIsNewProduct(false);
