@@ -22,7 +22,7 @@ const SignIn = ({profile, setProfile}) => {
 
       const config = {
         headers: {
-          Authorization: `Bearer ${profile.idToken}`,
+          authorization: `${profile.idToken}`,
         },
       };
 
@@ -53,7 +53,7 @@ const SignIn = ({profile, setProfile}) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${response._tokenResponse.idToken}`,
+        authorization: `${response._tokenResponse.idToken}`,
       },
     };
 
