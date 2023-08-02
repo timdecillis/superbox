@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+const axios = require('axios');
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch, Modal } from 'react-native';
+
+// import {handleProfileUpdate} from '../../lib/requestHelpers.js';
 
 const obscurePass = (password) => {
   let result = '';
@@ -9,7 +12,18 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({ profile }) => {
+export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
+
+  // const handleUpdate = (field, newData) => {
+  //   return axios.put(`/api/u/users/${profile.user_id}/profile`, {[field]: newData})
+  //   .then(() => {
+  //     handleProfileUpdate()
+  //   })
+  // };
+
+
+
+
   return (
     <View style={styles.sectionContainer}>
 
@@ -20,7 +34,8 @@ export default PersonalBlock = ({ profile }) => {
           <Text style={styles.infoType}>Name: </Text>
           <Text style={styles.info}>{profile.firstName} {profile.lastName}</Text>
         </View>
-        <TouchableOpacity style={styles.buttonContainer}>
+
+        <TouchableOpacity onPress={handleProfileUpdate}style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>
         </TouchableOpacity>
       </View>
@@ -30,6 +45,7 @@ export default PersonalBlock = ({ profile }) => {
           <Text style={styles.infoType}>Email:</Text>
           <Text style={styles.info}>{profile.email}</Text>
         </View>
+
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.editButton}>Edit</Text>
         </TouchableOpacity>
@@ -80,12 +96,12 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '15',
+    fontSize: 15,
     textDecorationLine: 'underline'
   },
   line: {
     marginBottom: '3%',
-    fontSize: '15',
+    fontSize: 15,
   },
   infoLeft: {
     padding: '.5%'
@@ -109,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, .92)'
   },
   sectionHeading: {
-    fontSize: '20',
+    fontSize: 20,
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
