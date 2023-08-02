@@ -18,7 +18,7 @@ const SignIn = ({profile, setProfile}) => {
 
   const sendProfileData = async () => {
     try {
-      const endpoint = '/https://3.141.17.132/u/users/';
+      const endpoint = '/http://3.141.17.132/u/users/';
 
       const config = {
         headers: {
@@ -57,7 +57,7 @@ const SignIn = ({profile, setProfile}) => {
       },
     };
 
-    const backendResponse = await axios.get('/https://3.141.17.132/u/users/:user_id', config);
+    const backendResponse = await axios.get('/http://3.141.17.132/u/users/:user_id', config);
 
     setProfile({
       ...profile,
