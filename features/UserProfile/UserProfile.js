@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    left: '260%'
+    left: '180%'
   },
   container: {
     flex: 1,
@@ -112,7 +112,10 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   option: {
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    width: 80,
+    textAlign: 'center'
+
   },
   sectionContainer: {
     borderRadius: '5',
