@@ -5,7 +5,7 @@ import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile() {
+export default function UserProfile({navigation}) {
 
   const [data, setData] = useState(userData);
 
@@ -29,10 +29,10 @@ export default function UserProfile() {
                 <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+                <Text onPress={() => navigation.navigate('Purchases')}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Your Profile</Text>
+                <Text onPress={() => navigation.navigate('Public Profile')}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -48,9 +48,6 @@ export default function UserProfile() {
           </View>
 
           <View style={styles.sectionContainer}>
-          <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>View Profile</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
