@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,16 +15,25 @@ import Purchases from './features/UserProfile/Purchases.js';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [profile, setProfile] = useState({});
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
+
         <Tab.Screen name="Home" component={HomeMarket} />
-        <Tab.Screen name="Settings" component={Signin} />
+        <Tab.Screen
+          name="Settings"
+          options={{
+            tabBarLabel: 'Settings',
+          }}
+          children={() => <SignIn profile={profile} setProfile={setProfile} />}
+        />
         <Tab.Screen name="Cart" component={Cart} />
         <Tab.Screen name="UserProfile" component={UserProfile} />
         <Tab.Screen name="My Listings" component={MyListings} />
         <Tab.Screen name="Public Profile" component={PublicProfile} />
         <Tab.Screen name="Purchases" component={Purchases} />
+
       </Tab.Navigator>
     </NavigationContainer>
 
