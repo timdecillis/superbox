@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Modal, TextInput, Button, StyleSheet, ScrollView, Text, Switch } from 'react-native';
+import { Picker, View, Modal, TextInput, Button, StyleSheet, ScrollView, Text, Switch } from 'react-native';
 
 
 const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {

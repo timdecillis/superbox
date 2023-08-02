@@ -21,7 +21,6 @@ const MyListings = () => {
   };
 
   const handleOpenModal = (type, data) => {
-    console.log(type, 'data: ', data)
     setShowModal({type:type, visible:true, data:data});
   };
 
@@ -30,10 +29,7 @@ const MyListings = () => {
   };
 
   const handleSubmitListing = () => {
-    //axios.post to add new listing
-    //or axios.put to edit
-    // or axios.delete to remove listing
-    console.log('clicked');
+    // axios.post('')
   };
 
 
