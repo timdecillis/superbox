@@ -5,8 +5,8 @@ import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile({navigation}) {
-
+export default function UserProfile({profile, setProfile, navigation}) {
+  console.log('profile:', {profile})
   const [data, setData] = useState(userData);
 
   return (
