@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native'
 import HomeMarket from "./features/Marketplace/HomeMarket.js";
+import Signin from "./features/LoginSignup/Signin.js";
+import UserProfile from './features/UserProfile/UserProfile.js';
 import SignIn from "./features/LoginSignup/Signin.js";
 import MyListings from './features/MyListings/MyListings.js';
+import PublicProfile from './features/UserProfile/PublicProfile.js';
+import Purchases from './features/UserProfile/Purchases.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,8 +28,9 @@ export default function App() {
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
       <Tab.Screen name="My Listings" component={MyListings} />
+
       </Tab.Navigator>
-      </NavigationContainer>
+    </NavigationContainer>
 
   );
 }
