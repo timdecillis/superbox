@@ -5,7 +5,7 @@ import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile({profile, setProfile, navigation}) {
-
+  console.log('navigatiion:', navigation)
 
 
   return (
@@ -22,11 +22,14 @@ export default function UserProfile({profile, setProfile, navigation}) {
           <View style={styles.sectionContainer}>
             <View style={styles.buttonHeading}>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Inbox')}style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
+                user_id: 1,
+                authorization: 1
+              })}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Listings')}style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('My Listings')}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
 
@@ -35,9 +38,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Public Profile', {
-                  user_id: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
+                <Text onPress={() => navigation.navigate('Public Profile')}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
               </TouchableOpacity>
 
             </View>
@@ -54,10 +55,15 @@ export default function UserProfile({profile, setProfile, navigation}) {
           </View>
 
           <View style={styles.sectionContainer}>
+
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
+
+            <TouchableOpacity onPress={() => {
+              setProfile({});
+              navigation.navigate('Settings');
+              }}style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
             </TouchableOpacity>
           </View>
