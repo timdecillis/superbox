@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import Logo from '../../assets/logo.png';
 import { Firebase_Auth} from '../../FirebaseConfig.js';
@@ -18,6 +18,7 @@ const SignIn = ({profile, setProfile}) => {
 
   const sendProfileData = async () => {
     try {
+      alert('Profile Saved')
       const endpoint = '/http://3.141.17.132/u/users/';
 
       const config = {
@@ -197,10 +198,10 @@ const SignIn = ({profile, setProfile}) => {
     )
   } else if (profilePage === true) {
     return (
-    <Container>
+      <Container>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
       <LogoImage source={Logo} />
       <Title>Profile</Title>
-
       <InputBarContainer>
         <InputField onChangeText={(text) => setProfile({ ...profile, full_name: text })} placeholder="Name" />
       </InputBarContainer>
@@ -244,7 +245,8 @@ const SignIn = ({profile, setProfile}) => {
         />
       </InputBarContainer>
 
-      <ContinueBtn onPress={sendProfileData}><ButtonText>Continue</ButtonText></ContinueBtn>
+        <ContinueBtn onPress={sendProfileData}><ButtonText>Save</ButtonText></ContinueBtn>
+      </ScrollView>
     </Container>
     )
 
