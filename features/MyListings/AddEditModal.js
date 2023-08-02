@@ -10,7 +10,6 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
 
-
   const handleSave = () => {
     //TODO: add validation logic here before saving the new listing
     // onSave(listingInfo);
@@ -25,8 +24,16 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const handleProductSelection = (product)=>{
     setIsNewProduct(false);
     setListingInfo({...listingInfo, name: product.name});
-  }
+  };
+  const handlePriceInput = (text) => {
+    // Ensure that the input only contains numbers and a single decimal point
+    const cleanText = text.replace(/[^0-9.]/g, '');
+    setListingInfo({ ...listingInfo, price: cleanText });
+  };
 
+  const handleConditionInput = (value) => {
+    setListingInfo({ ...listingInfo, condition: value });
+  };
 
 
   return (
@@ -56,6 +63,30 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
           onChangeText={text => setListingInfo({...listingInfo, description:text})}
           style={styles.input}
         />
+
+        <TextInput
+          placeholder="Price"
+          value={listingInfo.price}
+          onChangeText={handlePriceInput}
+          keyboardType="numeric"
+          style={styles.input}
+        />
+
+        <View style={styles.dropdownContainer}>
+          <Text>Condition:</Text>
+          <Picker
+            selectedValue={condition}
+            onValueChange={(itemValue) => handleConditionInput(itemValue)}
+            style={styles.dropdown}
+          >
+            <Picker.Item label="Select Condition" value="" />
+            <Picker.Item label="Near Mint" value="near mint" />
+            <Picker.Item label="Mint" value="mint" />
+            <Picker.Item label="Moderately Used" value="moderately used" />
+            <Picker.Item label="Well Used" value="well used" />
+            <Picker.Item label="Damaged" value="damaged" />
+          </Picker>
+        </View>
         <View style={styles.buttonContainer}>
           <Button title="Save" onPress={handleSave} />
           <Button title="Cancel" onPress={onClose} color="red" />
@@ -94,7 +125,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginBottom: 10,
-  }
+  },
+  dropdownContainer: {
+    width: '100%',
+    marginBottom: 10,
+  },
 });
 
 export default AddEditListingModal;
