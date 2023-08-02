@@ -46,17 +46,17 @@ export default function PublicProfile() {
             <Text style={styles.seeAllButton}>see all</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.sectionContainer}>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Message User</Text>
+            </TouchableOpacity>
+          </View>
 
           <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeading}>Find a different user</Text>
           <Search/>
           </View>
 
-          <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Message User</Text>
-            </TouchableOpacity>
-          </View>
 
           {isAdmin && <View style={styles.sectionContainer}>
             {banned ? <TouchableOpacity style={styles.buttonContainer}>

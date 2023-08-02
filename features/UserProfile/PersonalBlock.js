@@ -82,11 +82,12 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: '20em',
+    fontSize: '15',
+    textDecorationLine: 'underline'
   },
   line: {
     marginBottom: '3%',
-    fontSize: '15em'
+    fontSize: '15',
   },
   infoLeft: {
     padding: '.5%'
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0dfd5',
     borderWidth: '.5%',
     borderRadius: 2,
-    marginBottom: '2%'
+    marginBottom: '2%',
 
   },
   infoType: {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, .92)'
   },
   sectionHeading: {
-    fontSize: '20em',
+    fontSize: '20',
     marginBottom: 8,
     textDecorationLine: 'underline'
   },
