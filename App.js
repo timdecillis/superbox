@@ -37,8 +37,23 @@ export default function App() {
       <Tab.Navigator initialRouteName="Home">
 
         <Tab.Screen name="Home" component={HomeStack} />
+        <>
+        <Tab.Screen
+          name="User Profile"
+          options={{
+            tabBarLabel: 'User Profile',
+          }}
+        >
+          {({ navigation }) => (
+            <UserProfile
+              profile={profile}
+              setProfile={setProfile}
+              navigation={navigation} // Pass the navigation prop here
+            />
+          )}
+        </Tab.Screen>
+        </>
         <Tab.Screen name="Cart" component={Cart} />
-        <Tab.Screen name="Account" component={UserProfile} />
         <Tab.Screen
           name="SignIn"
           options={{
@@ -52,13 +67,4 @@ export default function App() {
 
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#E4B363',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
