@@ -54,6 +54,9 @@ export default function UserProfile() {
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
+            </TouchableOpacity>
           </View>
 
         </ScrollView>
