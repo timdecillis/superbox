@@ -5,7 +5,7 @@ import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import Search from '../../globalComponents/Search.js';
 
-export default function UserProfile() {
+export default function PublicProfile() {
 
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
