@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
 import HomeMarket from "./features/Marketplace/HomeMarket.js";
 import Signin from "./features/LoginSignup/Signin.js";
@@ -11,8 +12,22 @@ import SignIn from "./features/LoginSignup/Signin.js";
 import MyListings from './features/MyListings/MyListings.js';
 import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
-import { userData } from './assets/dummy-data/userData.js';
+import Product from './features/Listing/ProductPage.js';
+import {userData} from './assets/dummy-data/userData.js';
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeMarket} />
+      <Stack.Screen name="Product" component={Product} />
+      <Stack.Screen name="My Listings" component={MyListings} />
+      <Stack.Screen name="Public Profile" component={PublicProfile} />
+      <Stack.Screen name="Purchases" component={Purchases} />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
 
@@ -21,32 +36,16 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
 
-        <Tab.Screen name="Home" component={HomeMarket} />
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Cart" component={Cart} />
+        <Tab.Screen name="Account" component={UserProfile} />
         <Tab.Screen
-          name="Settings"
+          name="SignIn"
           options={{
-            tabBarLabel: 'Settings',
+            tabBarLabel: 'Sign In',
           }}
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
-        <Tab.Screen name="Cart" component={Cart} />
-        <Tab.Screen
-          name="User Profile"
-          options={{
-            tabBarLabel: 'User Profile',
-          }}
-        >
-          {({ navigation }) => (
-            <UserProfile
-              profile={profile}
-              setProfile={setProfile}
-              navigation={navigation} // Pass the navigation prop here
-            />
-          )}
-        </Tab.Screen>
-        <Tab.Screen name="My Listings" component={MyListings} />
-        <Tab.Screen name="Public Profile" component={PublicProfile} />
-        <Tab.Screen name="Purchases" component={Purchases} />
 
       </Tab.Navigator>
     </NavigationContainer>
