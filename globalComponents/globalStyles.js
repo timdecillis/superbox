@@ -17,6 +17,7 @@ height: 100%;
 `;
 export const GlobalTitle = styled.Text`
 font-family: Impact;
+font-size: 24px;
 font-weight: bold;
 color: #EF6461;
 `;
