@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Modal,
@@ -20,6 +20,9 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
     { name: "spiderman 20", id: 2 },
     { name: "superman poster", id: 1 },
   ]);
+
+  useEffect(()=>{}, [])
+
   //axios.get ( all products {productName, product_Id})
   const [isNewProduct, setIsNewProduct] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
