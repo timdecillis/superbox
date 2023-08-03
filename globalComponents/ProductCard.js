@@ -4,7 +4,7 @@ import { Text, View, Image, Button, ScrollView, Pressable} from 'react-native';
 import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 import { useNavigation } from '@react-navigation/native';
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
 
   const navigation = useNavigation();
 
@@ -67,8 +67,8 @@ const ProductCard = () => {
         />
         </ImgContainer>
 
-        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', marginBottom: 30}}>The Amazing Spiderman</GlobalTitle>
-        <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10}} >50th Issue of The Amazing Spiderman</GlobalParagraph >
+        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', marginBottom: 30}}>{product.product_name}</GlobalTitle>
+        <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10}} >{product.description}</GlobalParagraph >
         <GlobalPrice style={{marginBottom: 40}}>$29.99</GlobalPrice>
         <GlobalRating style={{ fontWeight: 'bold', textDecorationLine: 'underline'}} >★★★★★</GlobalRating>
       </Card>
