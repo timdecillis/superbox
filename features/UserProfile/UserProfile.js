@@ -5,7 +5,7 @@ import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, 
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile({ profile, setProfile, navigation, handleProfileUpdate }) {
+export default function UserProfile({ navigation, handleProfileUpdate }) {
 
   const { profile, setProfile } = useContext(UserProfileContext);
 
