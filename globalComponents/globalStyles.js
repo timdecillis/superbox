@@ -4,10 +4,6 @@ export const GlobalViewFlat = styled.View`
 background-color: #FDFAF4;
 `;
 
-export const GlobalText = styled.Text`
-color: #313638;
-`;
-
 export const GlobalView = styled.View`
 justify-content: center;
 align-items: center;
