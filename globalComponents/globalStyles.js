@@ -17,12 +17,14 @@ height: 100%;
 `;
 export const GlobalTitle = styled.Text`
 font-family: Impact;
+font-size: 24px;
 font-weight: bold;
 color: #EF6461;
 `;
 
 export const  GlobalParagraph = styled.Text`
 color: #313638;
+font-size: 16px;
 `;
 
 export const GlobalPrice = styled.Text`
