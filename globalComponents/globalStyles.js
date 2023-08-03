@@ -4,10 +4,6 @@ export const GlobalViewFlat = styled.View`
 background-color: #FDFAF4;
 `;
 
-export const GlobalText = styled.Text`
-color: #313638;
-`;
-
 export const GlobalView = styled.View`
 justify-content: center;
 align-items: center;
@@ -15,6 +11,7 @@ background-color: #FDFAF4;
 display: flex;
 height: 100%;
 `;
+
 export const GlobalTitle = styled.Text`
 font-family: Impact;
 font-size: 24px;
@@ -32,6 +29,10 @@ font-size: 14px;
 font-weight: bold;
 color: #636E72;
 text-decoration-line: underline;
+`;
+
+export const GlobalText = styled.Text`
+color: #313638;
 `;
 
 export const GlobalRating = styled.Text`
