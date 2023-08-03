@@ -12,6 +12,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import requestHelpers from '../../lib/requestHelpers.js';
 
 const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const [listingInfo, setListingInfo] = useState({ ...modalInfo });
@@ -21,7 +22,19 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
     { name: "superman poster", id: 1 },
   ]);
 
-  useEffect(()=>{}, [])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await requestHelpers.getProductNamesIds();
+        setProductsList(products);
+        console.log(products); // Optional: Log the products fetched from the server
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   //axios.get ( all products {productName, product_Id})
   const [isNewProduct, setIsNewProduct] = useState(false);
