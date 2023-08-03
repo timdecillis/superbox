@@ -5,7 +5,13 @@ import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, 
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
-export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
+export default function UserProfile({ profile, setProfile, navigation, handleProfileUpdate }) {
+
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const onToggleSwitch = () => {
+      setSwitchValue(!switchValue);
+  }
 
   if (profile === null) {
     return null;
@@ -13,67 +19,71 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
 
   return (
     <GlobalViewFlat style={styles.container}>
-        <ScrollView>
-          <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
+      <ScrollView>
+        <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
 
-            <GlobalViewFlat style={styles.buttonHeading}>
+        <GlobalViewFlat style={styles.buttonHeading}>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
-                user_id: 1,
-                authorization: 1
-              })}style={styles.buttonContainer}>
-                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
-              </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
+            user_id: 1,
+            authorization: 1
+          })} style={styles.buttonContainer}>
+            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
+          </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
-                user_id: 1,
-                authorization: 1
-              })}style={styles.buttonContainer}>
-                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Listings</GlobalText>
-              </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
+            user_id: 1,
+            authorization: 1
+          })} style={styles.buttonContainer}>
+            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Listings</GlobalText>
+          </TouchableOpacity>
 
-              <TouchableOpacity style={styles.buttonContainer}>
-                <GlobalText onPress={() => navigation.navigate('Purchases', {
-                  user_id: 1,
-                  authorization: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</GlobalText>
-              </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <GlobalText onPress={() => navigation.navigate('Purchases', {
+              user_id: 1,
+              authorization: 1
+            })} style={[styles.option, { color: '#ef6461' }]}>Purchases</GlobalText>
+          </TouchableOpacity>
 
-              <TouchableOpacity style={styles.buttonContainer}>
-                <GlobalText onPress={() => navigation.navigate('Public Profile', {
-                  user_id: 1
-                })}style={[styles.option, { color: '#ef6461', textAlign: 'center'}]}>View Profile</GlobalText>
-              </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <GlobalText onPress={() => navigation.navigate('Public Profile', {
+              user_id: 1
+            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>View Profile</GlobalText>
+          </TouchableOpacity>
 
-            </GlobalViewFlat>
+        </GlobalViewFlat>
 
 
-          <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
+        <PersonalBlock handleProfileUpdate={handleProfileUpdate} profile={profile} />
 
-          <GlobalViewFlat style={styles.sectionContainer}>
-            <GlobalText style={styles.sectionHeading}>Settings</GlobalText>
-            <GlobalViewFlat style={styles.infoBlock}>
-              <GlobalText style={styles.setting}>Dark Mode</GlobalText>
-              <Switch style={styles.settingSwitch} />
-            </GlobalViewFlat>
+        <GlobalViewFlat style={styles.sectionContainer}>
+          <GlobalText style={styles.sectionHeading}>Settings</GlobalText>
+          <GlobalViewFlat style={styles.infoBlock}>
+            <GlobalText style={styles.setting}>Dark Mode</GlobalText>
+            <Switch
+              style={styles.settingSwitch}
+              value={switchValue}
+              onValueChange={onToggleSwitch}
+            />
           </GlobalViewFlat>
+        </GlobalViewFlat>
 
-          <GlobalViewFlat style={styles.sectionContainer}>
+        <GlobalViewFlat style={styles.sectionContainer}>
 
-            <TouchableOpacity style={styles.buttonContainer}>
-              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
+          </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {
-              setProfile(null);
-              navigation.navigate('SignIn');
-              }}style={styles.buttonContainer}>
-              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</GlobalText>
-            </TouchableOpacity>
-          </GlobalViewFlat>
+          <TouchableOpacity onPress={() => {
+            setProfile(null);
+            navigation.navigate('SignIn');
+          }} style={styles.buttonContainer}>
+            <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</GlobalText>
+          </TouchableOpacity>
+        </GlobalViewFlat>
 
-        </ScrollView>
+      </ScrollView>
     </GlobalViewFlat>
   );
 }

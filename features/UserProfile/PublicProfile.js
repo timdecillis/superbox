@@ -12,6 +12,12 @@ export default function PublicProfile() {
 
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const onToggleSwitch = () => {
+      setSwitchValue(!switchValue);
+  }
+
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -49,7 +55,11 @@ export default function PublicProfile() {
         {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, {  borderTopWidth: .5,
     borderBottomWidth: .5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
           <GlobalText style={styles.sectionHeading}>Ban User</GlobalText>
-          <Switch style={styles.settingSwitch} />
+          <Switch
+              style={styles.settingSwitch}
+              value={switchValue}
+              onValueChange={onToggleSwitch}
+            />
 
         </GlobalViewFlat>}
       </ScrollView>
