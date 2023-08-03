@@ -14,6 +14,7 @@ export default function PublicProfile() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
+
     <GlobalViewFlat>
       <TextInput autoFocus={true} style={styles.findUser} placeholder="find another user" />
       <ScrollView>

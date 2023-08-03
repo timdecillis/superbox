@@ -5,9 +5,8 @@ import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, 
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
+
 export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
-
-
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -39,7 +38,9 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
+
                 <GlobalText onPress={() => navigation.navigate('Public Profile', {
+
                   user_id: 1
                 })}style={[styles.option, { color: '#ef6461' }]}>GlobalViewFlat Profile</GlobalText>
               </TouchableOpacity>

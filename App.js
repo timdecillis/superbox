@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeMarket} />
+      <Stack.Screen name="Marketplace" component={HomeMarket} />
       <Stack.Screen name="Product" component={Product} />
       <Stack.Screen name="My Listings" component={MyListings} />
       <Stack.Screen name="Public Profile" component={PublicProfile} />
@@ -36,7 +36,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
 
-        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Home" component={HomeStack}  options={{ headerShown: false }}/>
         <>
         <Tab.Screen
           name="User Profile"
