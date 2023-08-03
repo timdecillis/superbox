@@ -8,10 +8,6 @@ import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
 
-
-export default function UserProfile({profile, setProfile, navigation}) {
-
-
   return (
     <GlobalViewFlat style={styles.container}>
         <ScrollView>
