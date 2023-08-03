@@ -12,7 +12,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
-import requestHelpers from '../../lib/requestHelpers.js';
+import requestHelpers from '../../lib/productRequestHelpers.js';
 
 const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const [listingInfo, setListingInfo] = useState({ ...modalInfo });

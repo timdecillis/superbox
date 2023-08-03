@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, FlatList, StyleSheet, Button } from 'react-native';
 import FilterBar from './FilterBar';
 import AddEditListingModal from './AddEditModal.js';
@@ -6,6 +6,7 @@ import AddEditListingModal from './AddEditModal.js';
 const MyListings = () => {
   const [activeFilter, setActiveFilter] = useState('active');
   const [showModal, setShowModal] = useState({type: null, visible:false, data:{}});
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const dummylistingsData = [
     { id: '1', title: 'Listing 1', status: 'active' },
