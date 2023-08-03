@@ -7,7 +7,9 @@ import PersonalBlock from './PersonalBlock.js';
 
 export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
 
-
+  if (profile === null) {
+    return null;
+  }
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -64,8 +66,8 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
-              setProfile({});
-              navigation.navigate('Settings');
+              setProfile(null);
+              navigation.navigate('SignIn');
               }}style={styles.buttonContainer}>
               <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</GlobalText>
             </TouchableOpacity>
