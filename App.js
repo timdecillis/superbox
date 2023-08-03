@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -16,6 +16,7 @@ import Product from './features/Listing/ProductPage.js';
 import Messages from './features/Messages/Messages.js';
 import Conversations from './features/Messages/Conversations.js';
 import {userData} from './assets/dummy-data/userData.js';
+export const UserProfileContext = React.createContext();
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -33,28 +34,32 @@ function HomeStack() {
   );
 }
 
+function ProfileStack() {
+  return (
+  <Stack.Navigator>
+  <Stack.Screen name="User Profile" component={UserProfile}/>
+  </Stack.Navigator>
+  );
+}
+
 export default function App() {
 
   const [profile, setProfile] = useState(userData);
   return (
+    <UserProfileContext.Provider value={{ profile, setProfile}}>
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Home">
 
-        <Tab.Screen name="Home" component={HomeStack}  options={{ headerShown: false }}/>
+        <Tab.Screen name="Marketplace" component={HomeStack}  options={{ headerShown: false }}/>
         <>
         <Tab.Screen
           name="User Profile"
+          component={ProfileStack}
+          initialParams={{ profile, setProfile }}
           options={{
             tabBarLabel: 'User Profile',
           }}
         >
-          {({ navigation }) => (
-            <UserProfile
-              profile={profile}
-              setProfile={setProfile}
-              navigation={navigation} // Pass the navigation prop here
-            />
-          )}
         </Tab.Screen>
         </>
         <Tab.Screen name="Cart" component={Cart} />
@@ -68,7 +73,7 @@ export default function App() {
 
       </Tab.Navigator>
     </NavigationContainer>
+    </UserProfileContext.Provider>
 
   );
 }
-
