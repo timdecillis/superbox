@@ -1,8 +1,11 @@
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
-  height: 100%;
+  height: ${height}px;
   background-color: #E4B363;
   justify-content: center;
   align-items: center;
@@ -14,26 +17,25 @@ export const NoAccountContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 3px;
+  margin-top: ${height > 600 ? '10px' : '3px'};
 `
 
 export const LogoImage = styled.Image`
-  margin-bottom: 20px;
-  width:92px;
-  height:65px;
+  margin-bottom: ${height > 600 ? '20px' : '10px'};
+  width: ${width > 350 ? '92px' : '80px'};
+  height: ${width > 350 ? '65px' : '55px'};
 `;
 
 export const Title = styled.Text`
-  font-size: 24px;
+  font-size: ${width > 350 ? '28px' : '24px'};
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: ${height > 600 ? '30px' : '20px'};
   color: #EF6461;
 `;
 
 export const BoldText = styled.Text`
   font-weight: bold;
 `;
-
 
 export const SubHeader = styled.Text`
   font-size: 18px;
@@ -52,7 +54,7 @@ export const Button = styled.TouchableOpacity`
   padding: 10px 20px;
   border-radius: 5px;
   margin: 10px;
-  height:50px;
+  height: 50px;
 `;
 
 export const ContinueBtn = styled.TouchableOpacity`
@@ -64,8 +66,8 @@ export const ContinueBtn = styled.TouchableOpacity`
   border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 6px;
-  height:50px;
-  width: 84%;
+  height: 50px;
+  width: ${width > 350 ? '84%' : '80%'};
 `;
 
 export const ButtonText = styled.Text`
@@ -75,14 +77,15 @@ export const ButtonText = styled.Text`
 
 export const InputBarContainer = styled.View`
   background-color: #f0f0f0;
-  width: 325px;
+  width: ${width > 350 ? '325px' : '300px'};
+  margin-bottom: 15px;
 `;
 
 export const InputField = styled.TextInput`
   height: 50px;
   border: 1px solid #ccc;
   padding: 5px;
-  width:100%;
+  width: 100%;
 `;
 
 export const SignUpText = styled.Text`
@@ -91,6 +94,7 @@ export const SignUpText = styled.Text`
   font-size: 14px;
   font-weight: 500;
 `;
+
 export const NoAccountText = styled.Text`
   color: #ffffff;
   text-align: center;

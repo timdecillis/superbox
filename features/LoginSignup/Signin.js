@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import Logo from '../../assets/logo.png';
 import { Firebase_Auth} from '../../FirebaseConfig.js';
@@ -18,15 +18,16 @@ const SignIn = ({profile, setProfile}) => {
 
   const sendProfileData = async () => {
     try {
-      const endpoint = '/ENDPOINT';
+      alert('Profile Saved')
+      const endpoint = 'http://3.141.17.132/api/u/users';
 
-      const config = {
-        headers: {
-          authorization: `${profile.idToken}`,
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     authorization: `${profile.idToken}`,
+      //   },
+      // };
 
-      const response = await axios.post(endpoint, profile, config);
+      const response = await axios.post(endpoint, profile);
 
       console.log('Response:', response.data);
 
@@ -51,13 +52,16 @@ const SignIn = ({profile, setProfile}) => {
       setProfilePage(false);
       alert('Sign In Success')
 
-    const config = {
-      headers: {
-        authorization: `${response._tokenResponse.idToken}`,
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     // authorization: `${response._tokenResponse.idToken}`,
+    //   },
+    //   body: {
 
-    const backendResponse = await axios.get('/ENDPOINT', config);
+    //   }
+    // };
+
+    const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
 
     setProfile({
       ...profile,
@@ -75,7 +79,7 @@ const SignIn = ({profile, setProfile}) => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-
+console.log('RESPONSE',response)
       setProfile({
         ...profile,
         'firebase_uid': response.user.uid,
@@ -197,10 +201,10 @@ const SignIn = ({profile, setProfile}) => {
     )
   } else if (profilePage === true) {
     return (
-    <Container>
+      <Container>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
       <LogoImage source={Logo} />
       <Title>Profile</Title>
-
       <InputBarContainer>
         <InputField onChangeText={(text) => setProfile({ ...profile, full_name: text })} placeholder="Name" />
       </InputBarContainer>
@@ -244,7 +248,8 @@ const SignIn = ({profile, setProfile}) => {
         />
       </InputBarContainer>
 
-      <ContinueBtn onPress={sendProfileData}><ButtonText>Continue</ButtonText></ContinueBtn>
+        <ContinueBtn onPress={sendProfileData}><ButtonText>Save</ButtonText></ContinueBtn>
+      </ScrollView>
     </Container>
     )
 
