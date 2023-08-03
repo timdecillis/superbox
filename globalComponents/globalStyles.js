@@ -24,6 +24,7 @@ color: #EF6461;
 
 export const  GlobalParagraph = styled.Text`
 color: #313638;
+font-size: 16px;
 `;
 
 export const GlobalPrice = styled.Text`
