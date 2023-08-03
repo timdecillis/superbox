@@ -46,24 +46,24 @@ const SignIn = ({profile, setProfile}) => {
         'email': email,
         'idToken': response._tokenResponse.idToken
       });
-
+      console.log('idTOKEN', response._tokenResponse.idToken)
       setSignUp(false);
       setLogin(false);
       setProfilePage(false);
       alert('Sign In Success')
 
-    const config = {
-      headers: {
-        authorization: `${response._tokenResponse.idToken}`,
-      }
-    };
+    // const config = {
+    //   headers: {
+    //     // authorization: `${response._tokenResponse.idToken}`,
+    //   },
+    //   body: {
+
+    //   }
+    // };
 
     const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
 
-    setProfile({
-      ...profile,
-      ...backendResponse.data,
-    });
+    setProfile({...profile, ...backendResponse.data});
 
     console.log('Profile Data from Backend:', backendResponse.data);
 
