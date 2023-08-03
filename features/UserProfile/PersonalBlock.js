@@ -95,9 +95,8 @@ const styles = StyleSheet.create({
   infoBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderWidth: '.5%',
+    borderTopWidth: '.5%',
     borderRadius: 2,
-    marginBottom: '2%',
 
   },
   infoType: {
@@ -107,7 +106,6 @@ const styles = StyleSheet.create({
   sectionContainer: {
     borderRadius: '5',
     marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .92)'
   },
   sectionHeading: {
     fontSize: 20,

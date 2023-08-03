@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: '1%'
   },
   product: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
   },
   sectionHeading: {
     fontSize: 22,

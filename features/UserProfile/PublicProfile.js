@@ -14,7 +14,7 @@ export default function PublicProfile() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
-    <GlobalViewFlat>
+    <GlobalViewFlat style={styles.container}>
       <TextInput autoFocus={true} style={styles.findUser} placeholder="find another user" />
       <ScrollView>
 
@@ -46,7 +46,8 @@ export default function PublicProfile() {
         </GlobalViewFlat>
 
 
-        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, {  borderTopWidth: .5,
+    borderBottomWidth: .5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
           <GlobalText style={styles.sectionHeading}>Ban User</GlobalText>
           <Switch style={styles.settingSwitch} />
 
@@ -73,9 +74,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#e4b363',
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 10
   },
   findUser: {
     alignSelf: 'center',
@@ -106,10 +105,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '1%',
-    borderBottomWidth: '1%'
+    borderTopWidth: '1%'
   },
   product: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
   },
   main: {
     padding: '3%',
@@ -119,13 +119,14 @@ const styles = StyleSheet.create({
     color: '#313638',
   },
   sectionContainer: {
-    borderWidth: .5,
-    padding: '3%',
-    marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .9)'
+    padding: 5,
+    marginBottom: 5,
+
   },
   sectionHeading: {
     fontSize: 22,
+    borderBottomWidth: .5,
+    borderTopWidth: .5,
     marginBottom: 8,
     color: '#313638',
   },
