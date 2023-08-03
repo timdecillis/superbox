@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components/native'
 import { Text, View, Image, Pressable } from 'react-native';
-import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalButton, GlobalButtonText } from  '../../globalComponents/globalStyles.js';
+import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalCartButton, GlobalCartButtonText } from  '../../globalComponents/globalStyles.js';
 import ProductCard from "../../globalComponents/ProductCard.js"
 
 const Product = () => {
@@ -19,9 +19,9 @@ width: 95%;
 
       <CardSizer>
         <ProductCard />
-         <GlobalButton>
-          <GlobalButtonText>Add to Cart</GlobalButtonText>
-         </GlobalButton>
+         <GlobalCartButton>
+          <GlobalCartButtonText>Add to Cart</GlobalCartButtonText>
+         </GlobalCartButton>
       </CardSizer>
 
     </GlobalView>

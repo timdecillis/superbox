@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
+import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
@@ -12,100 +13,83 @@ export default function UserProfile({profile, setProfile, navigation}) {
 
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={logo}
-        style={styles.backgroundImage}
-        resizeMode='contain'>
+    <GlobalViewFlat style={styles.container}>
+        <ScrollView>
+          <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
-        <ScrollView style={styles.main}>
-
-          <Text style={styles.mainHeading}>Hi, {profile.firstName}!</Text>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.buttonHeading}>
+          <GlobalViewFlat style={styles.sectionContainer}>
+            <GlobalViewFlat style={styles.buttonHeading}>
 
               <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
                 user_id: 1,
                 authorization: 1
               })}style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
+                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
                 user_id: 1,
                 authorization: 1
               })}style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
+                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Listings</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Purchases', {
+                <GlobalText onPress={() => navigation.navigate('Purchases', {
                   user_id: 1,
                   authorization: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
 
-                <Text onPress={() => navigation.navigate('Public Profile', {
+                <GlobalText onPress={() => navigation.navigate('Public Profile', {
+
                   user_id: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
+                })}style={[styles.option, { color: '#ef6461' }]}>GlobalViewFlat Profile</GlobalText>
               </TouchableOpacity>
 
-            </View>
-          </View>
+            </GlobalViewFlat>
+          </GlobalViewFlat>
 
           <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Settings</Text>
-            <View style={styles.infoBlock}>
-              <Text style={styles.setting}>Dark Mode</Text>
+          <GlobalViewFlat style={styles.sectionContainer}>
+            <GlobalText style={styles.sectionHeading}>Settings</GlobalText>
+            <GlobalViewFlat style={styles.infoBlock}>
+              <GlobalText style={styles.setting}>Dark Mode</GlobalText>
               <Switch style={styles.settingSwitch} />
-            </View>
-          </View>
+            </GlobalViewFlat>
+          </GlobalViewFlat>
 
-          <View style={styles.sectionContainer}>
+          <GlobalViewFlat style={styles.sectionContainer}>
 
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
+              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity onPress={() => {
+            <TouchableOpacity onPress={() => {
               setProfile({});
               navigation.navigate('Settings');
               }}style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
-            </TouchableOpacity> */}
-          </View>
+              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</GlobalText>
+            </TouchableOpacity>
+          </GlobalViewFlat>
 
         </ScrollView>
-      </ImageBackground>
-    </View>
+    </GlobalViewFlat>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '95%',
-    justifyContent: 'center'
-  },
-  buttonContainer: {
-    width: '45%',
-  },
   buttonHeading: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    left: '180%'
+    padding: 10
   },
   container: {
     flex: 1,
-    backgroundColor: '#e4b363',
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 10
   },
   editButton: {
     color: '#ef6461',
@@ -117,7 +101,6 @@ const styles = StyleSheet.create({
   infoBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#e0dfd5',
     borderWidth: '.5%',
     borderRadius: 2,
     marginBottom: '2%',
@@ -137,23 +120,18 @@ const styles = StyleSheet.create({
   },
   option: {
     textDecorationLine: 'underline',
+    fontSize: 15,
     width: 80,
-    textAlign: 'center'
-
-  },
-  sectionContainer: {
-    borderRadius: '5',
-    padding: '3%',
-    marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
     fontSize: 20,
     marginBottom: 8,
-    textDecorationLine: 'underline'
+    color: '#313638'
   },
   setting: {
     fontWeight: 'bold',
-    fontSize: 17
+    fontSize: 17,
+    color: '#313638'
+
   },
 });

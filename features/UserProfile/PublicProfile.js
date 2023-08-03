@@ -1,85 +1,59 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch, TextInput } from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating, GlobalButton, GlobalButtonText } from '../../globalComponents/globalStyles.js';
 
 export default function PublicProfile() {
 
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
+
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={logo}
-        style={styles.backgroundImage}
-        resizeMode='contain'>
 
-        <ScrollView style={styles.main}>
+    <GlobalViewFlat>
+      <TextInput autoFocus={true} style={styles.findUser} placeholder="find another user" />
+      <ScrollView>
 
-          <Text style={styles.mainHeading}>{data.userName}</Text>
-
-
-          <View style={styles.sectionContainer}>
-          <Text style={[styles.sectionHeading, {textDecorationLine: 'none'}]}>Average rating: {data.rating}</Text>
+        <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{data.userName}</GlobalTitle>
+          <GlobalRating style={{ marginRight: 10}}>average rating: {data.rating}</GlobalRating>
+        </GlobalViewFlat>
 
 
-          </View>
-          <View style={styles.sectionContainer}>
-          <Text style={styles.sectionHeading}>Listings</Text>
-            {data.listings.map((listing, i) => {
-              return (
-                <View key={i} style={styles.listing}>
-                  <View style={styles.listingLeft}>
-                    <Text style={styles.product}>{listing.product}</Text>
-                    <Text style={styles.info}>{listing.info}</Text>
-                  </View>
+        <GlobalViewFlat style={styles.sectionContainer}>
+          <GlobalText style={styles.sectionHeading}>Listings</GlobalText>
+          {data.listings.map((listing, i) => {
+            return (
+              <GlobalViewFlat key={i} style={styles.listing}>
+                <GlobalViewFlat style={styles.listingLeft}>
+                  <GlobalText style={styles.product}>{listing.product}</GlobalText>
+                  <GlobalText style={styles.info}>{listing.info}</GlobalText>
+                </GlobalViewFlat>
+                <GlobalText>{listing.price}</GlobalText>
+              </GlobalViewFlat>
+            );
+          })}
+        </GlobalViewFlat>
 
-                  <Text>{listing.price}</Text>
-                </View>
-              );
-            })}
-            <TouchableOpacity style={styles.seeAll}>
-            <Text style={styles.seeAllButton}>see all</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Message User</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.sectionContainer}>
-          <Text style={styles.sectionHeading}>Find a different user</Text>
-
-          <Search/>
-          </View>
+        <GlobalViewFlat style={styles.sectionContainer}>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
+          </TouchableOpacity>
+        </GlobalViewFlat>
 
 
-          <View style={styles.sectionContainer}>
-          <Text style={styles.sectionHeading}>Find a different user</Text>
-          <Search />
+        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+          <GlobalText style={styles.sectionHeading}>Ban User</GlobalText>
+          <Switch style={styles.settingSwitch} />
 
-          <DynamicHeader animHeaderValue={scrollOffsetY} />
-
-          </View>
-
-          {isAdmin && <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Settings</Text>
-            <View style={styles.infoBlock}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Ban User</Text>
-              <Switch style={styles.settingSwitch} />
-            </View>
-          </View>}
-
-
-
-        </ScrollView>
-      </ImageBackground>
-    </View>
+        </GlobalViewFlat>}
+      </ScrollView>
+    </GlobalViewFlat>
   );
 }
 
@@ -104,23 +78,34 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  findUser: {
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    height: 26,
+    borderRadius: 20,
+    borderWidth: 1,
+    width: 300,
+    padding: 5
+
+  },
   infoBlock: {
     flexDirection: 'row',
+    borderWidth: 3,
+    borderColor: 'black',
     justifyContent: 'space-between',
-    backgroundColor: '#e0dfd5',
-    borderWidth: '.5%',
     borderRadius: 2,
     marginBottom: '2%',
     alignItems: 'center',
     padding: '2%'
   },
   infoType: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+
+    color: '#313638',
   },
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#e0dfd5',
     padding: '1%',
     borderBottomWidth: '1%'
   },
@@ -135,7 +120,7 @@ const styles = StyleSheet.create({
     color: '#313638',
   },
   sectionContainer: {
-    borderRadius: '5',
+    borderWidth: .5,
     padding: '3%',
     marginBottom: '3%',
     backgroundColor: 'rgba(255, 255, 255, .9)'
@@ -143,12 +128,7 @@ const styles = StyleSheet.create({
   sectionHeading: {
     fontSize: 22,
     marginBottom: 8,
-    textDecorationLine: 'underline'
-  },
-  seeAll: {
-
-    marginTop: '2%',
-    maxWidth: '13%'
+    color: '#313638',
   },
   seeAllButton: {
     fontSize: 15,
