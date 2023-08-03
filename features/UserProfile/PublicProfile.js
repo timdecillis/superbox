@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch, TextInput } from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating, GlobalButton, GlobalButtonText } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
+import {messageUser} from '../../lib/messagesRequestHelpers.js';
+import {retrievePublic} from '../../lib/userRequestHelpers.js';
 
 export default function PublicProfile() {
-
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   const [data, setData] = useState(userData);
@@ -17,6 +18,10 @@ export default function PublicProfile() {
   const onToggleSwitch = () => {
       setSwitchValue(!switchValue);
   }
+
+  useEffect(() => {
+    retrievePublic();
+  }, [])
 
 
   return (
@@ -46,7 +51,9 @@ export default function PublicProfile() {
         </GlobalViewFlat>
 
         <GlobalViewFlat style={styles.sectionContainer}>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+          onPress={messageUser}
+          style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
           </TouchableOpacity>
         </GlobalViewFlat>

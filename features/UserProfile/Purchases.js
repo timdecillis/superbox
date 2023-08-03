@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
+import {getPurchases} from '../../lib/orderRequestHelpers.js';
 
-export default function UserProfile() {
+export default function Purchases() {
 
   const [data, setData] = useState(userData);
+
+  useEffect(() => {
+    getPurchases();
+  }, []);
 
   return (
     <GlobalViewFlat style={styles.container}>
