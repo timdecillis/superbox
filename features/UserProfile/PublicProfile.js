@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import { GlobalV, GlobalText, GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating, GlobalButton, GlobalButtonText } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating, GlobalButton, GlobalButtonText } from '../../globalComponents/globalStyles.js';
 
 export default function PublicProfile() {
 
@@ -14,45 +14,45 @@ export default function PublicProfile() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
-    <GlobalV>
+    <GlobalViewFlat>
       <TextInput autoFocus={true} style={styles.findUser} placeholder="find another user" />
       <ScrollView>
 
-        <GlobalV style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+        <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
           <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{data.userName}</GlobalTitle>
           <GlobalRating style={{ marginRight: 10}}>average rating: {data.rating}</GlobalRating>
-        </GlobalV>
+        </GlobalViewFlat>
 
 
-        <GlobalV style={styles.sectionContainer}>
+        <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Listings</GlobalText>
           {data.listings.map((listing, i) => {
             return (
-              <GlobalV key={i} style={styles.listing}>
-                <GlobalV style={styles.listingLeft}>
+              <GlobalViewFlat key={i} style={styles.listing}>
+                <GlobalViewFlat style={styles.listingLeft}>
                   <GlobalText style={styles.product}>{listing.product}</GlobalText>
                   <GlobalText style={styles.info}>{listing.info}</GlobalText>
-                </GlobalV>
+                </GlobalViewFlat>
                 <GlobalText>{listing.price}</GlobalText>
-              </GlobalV>
+              </GlobalViewFlat>
             );
           })}
-        </GlobalV>
+        </GlobalViewFlat>
 
-        <GlobalV style={styles.sectionContainer}>
+        <GlobalViewFlat style={styles.sectionContainer}>
           <TouchableOpacity style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
           </TouchableOpacity>
-        </GlobalV>
+        </GlobalViewFlat>
 
 
-        {isAdmin && <GlobalV style={[styles.sectionContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
           <GlobalText style={styles.sectionHeading}>Ban User</GlobalText>
           <Switch style={styles.settingSwitch} />
 
-        </GlobalV>}
+        </GlobalViewFlat>}
       </ScrollView>
-    </GlobalV>
+    </GlobalViewFlat>
   );
 }
 

@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import CartCard from './CartCard.js';
 import { useNavigation } from '@react-navigation/native';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
-import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalButton} from '../../globalComponents/globalStyles.js';
+import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalCartButton} from '../../globalComponents/globalStyles.js';
 
 const CartPage = () => {
 
@@ -37,7 +37,7 @@ const CartPage = () => {
         </CartInfoContainer>
         <SubTotalContainer>
           <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice>
-          <GlobalButton
+          <GlobalCartButton
           title="Checkout"
           onPress={() => {Alert.alert('Payment confirmed! Your items are on their way!'); navigation.navigate('Home')}}
         />

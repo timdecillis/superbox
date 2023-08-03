@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
-import { GlobalV, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
@@ -10,12 +10,12 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
 
 
   return (
-    <GlobalV style={styles.container}>
+    <GlobalViewFlat style={styles.container}>
         <ScrollView>
           <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
-          <GlobalV style={styles.sectionContainer}>
-            <GlobalV style={styles.buttonHeading}>
+          <GlobalViewFlat style={styles.sectionContainer}>
+            <GlobalViewFlat style={styles.buttonHeading}>
 
               <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
                 user_id: 1,
@@ -41,38 +41,38 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
               <TouchableOpacity style={styles.buttonContainer}>
                 <GlobalText onPress={() => navigation.navigate('Public Profile', {
                   user_id: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</GlobalText>
+                })}style={[styles.option, { color: '#ef6461' }]}>GlobalViewFlat Profile</GlobalText>
               </TouchableOpacity>
 
-            </GlobalV>
-          </GlobalV>
+            </GlobalViewFlat>
+          </GlobalViewFlat>
 
           <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Settings</Text>
-            <View style={styles.infoBlock}>
-              <Text style={styles.setting}>Dark Mode</Text>
+          <GlobalViewFlat style={styles.sectionContainer}>
+            <GlobalText style={styles.sectionHeading}>Settings</GlobalText>
+            <GlobalViewFlat style={styles.infoBlock}>
+              <GlobalText style={styles.setting}>Dark Mode</GlobalText>
               <Switch style={styles.settingSwitch} />
-            </View>
-          </View>
+            </GlobalViewFlat>
+          </GlobalViewFlat>
 
-          <View style={styles.sectionContainer}>
+          <GlobalViewFlat style={styles.sectionContainer}>
 
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</Text>
+              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
               setProfile({});
               navigation.navigate('Settings');
               }}style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</Text>
+              <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</GlobalText>
             </TouchableOpacity>
-          </View>
+          </GlobalViewFlat>
 
         </ScrollView>
-    </GlobalV>
+    </GlobalViewFlat>
   );
 }
 

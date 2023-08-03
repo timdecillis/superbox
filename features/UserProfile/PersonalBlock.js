@@ -2,7 +2,7 @@ import React from 'react';
 const axios = require('axios');
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch, Modal } from 'react-native';
 
-import { GlobalV, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalTitle } from '../../globalComponents/globalStyles.js';
 // import {handleProfileUpdate} from '../../lib/requestHelpers.js';
 
 const obscurePass = (password) => {
@@ -21,63 +21,63 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
   //   })
   // };
   return (
-    <GlobalV style={styles.sectionContainer}>
+    <GlobalViewFlat style={styles.sectionContainer}>
 
       <GlobalText style={styles.sectionHeading}>Personal Information</GlobalText>
 
-      <GlobalV style={styles.infoBlock}>
-        <GlobalV style={styles.infoLeft}>
+      <GlobalViewFlat style={styles.infoBlock}>
+        <GlobalViewFlat style={styles.infoLeft}>
           <GlobalText style={styles.infoType}>Name: </GlobalText>
           <GlobalText style={styles.info}>{profile.firstName} {profile.lastName}</GlobalText>
-        </GlobalV>
+        </GlobalViewFlat>
 
         <TouchableOpacity onPress={handleProfileUpdate}style={styles.buttonContainer}>
           <GlobalText style={styles.editButton}>Edit</GlobalText>
         </TouchableOpacity>
-      </GlobalV>
+      </GlobalViewFlat>
 
-      <GlobalV style={styles.infoBlock}>
-        <GlobalV style={styles.infoLeft}>
+      <GlobalViewFlat style={styles.infoBlock}>
+        <GlobalViewFlat style={styles.infoLeft}>
           <GlobalText style={styles.infoType}>Email:</GlobalText>
           <GlobalText style={styles.info}>{profile.email}</GlobalText>
-        </GlobalV>
+        </GlobalViewFlat>
 
         <TouchableOpacity style={styles.buttonContainer}>
           <GlobalText style={styles.editButton}>Edit</GlobalText>
         </TouchableOpacity>
-      </GlobalV>
-      {/* <GlobalV style={styles.infoBlock}>
-                <GlobalV style={styles.infoLeft}>
+      </GlobalViewFlat>
+      {/* <GlobalViewFlat style={styles.infoBlock}>
+                <GlobalViewFlat style={styles.infoLeft}>
                   <GlobalText style={styles.infoType}>Password:</GlobalText>
                   <GlobalText style={styles.info}>{obscurePass(profile.password)}</GlobalText>
-                </GlobalV>
+                </GlobalViewFlat>
                 <TouchableOpacity style={styles.buttonContainer}>
                   <GlobalText style={styles.editButton}>Edit</GlobalText>
                 </TouchableOpacity>
-              </GlobalV> */}
-      <GlobalV style={styles.infoBlock}>
-        <GlobalV style={styles.infoLeft}>
+              </GlobalViewFlat> */}
+      <GlobalViewFlat style={styles.infoBlock}>
+        <GlobalViewFlat style={styles.infoLeft}>
           <GlobalText style={styles.infoType}>Primary phone number:</GlobalText>
           <GlobalText style={styles.info}>{profile.phone.slice(0, 3)}-{profile.phone.slice(3, 6)}-{profile.phone.slice(6, 10)}</GlobalText>
-        </GlobalV>
+        </GlobalViewFlat>
         <TouchableOpacity style={styles.buttonContainer}>
           <GlobalText style={styles.editButton}>Edit</GlobalText>
         </TouchableOpacity>
-      </GlobalV>
+      </GlobalViewFlat>
 
-      <GlobalV style={styles.infoBlock}>
-        <GlobalV style={styles.infoLeft}>
+      <GlobalViewFlat style={styles.infoBlock}>
+        <GlobalViewFlat style={styles.infoLeft}>
           <GlobalText style={styles.infoType}>Address:</GlobalText>
           <GlobalText style={[styles.line, styles.text]}>{profile.address1}</GlobalText>
           {profile.address2 && <GlobalText style={[styles.line, styles.text]}>{profile.address2}</GlobalText>}
           <GlobalText style={[styles.line, styles.text]}>{profile.city}, {profile.state}</GlobalText>
           <GlobalText style={[styles.line, styles.text]}>{profile.zip}</GlobalText>
-        </GlobalV>
+        </GlobalViewFlat>
         <TouchableOpacity style={styles.buttonContainer}>
           <GlobalText style={styles.editButton}>Edit</GlobalText>
         </TouchableOpacity>
-      </GlobalV>
-    </GlobalV>
+      </GlobalViewFlat>
+    </GlobalViewFlat>
   );
 };
 
