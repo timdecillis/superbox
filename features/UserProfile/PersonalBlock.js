@@ -92,13 +92,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textDecorationLine: 'underline'
   },
-  line: {
-    marginBottom: '3%',
-    fontSize: 15,
-  },
-  infoLeft: {
-    padding: '.5%'
-  },
   infoBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -113,7 +106,6 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     borderRadius: '5',
-    padding: '3%',
     marginBottom: '3%',
     backgroundColor: 'rgba(255, 255, 255, .92)'
   },
@@ -121,7 +113,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 8,
   },
-  text: {
-    marginBottom: 0
-  }
+
 });

@@ -10,7 +10,7 @@ export default function UserProfile() {
   const [data, setData] = useState(userData);
 
   return (
-    <GlobalV>
+    <GlobalV style={styles.container}>
       <ScrollView>
 
         <GlobalV>
@@ -41,40 +41,18 @@ export default function UserProfile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 10
   },
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#e0dfd5',
-    padding: '1%',
     borderBottomWidth: '1%'
-  },
-  main: {
-    padding: '3%',
   },
   product: {
     fontWeight: 'bold'
   },
-  sectionContainer: {
-    borderRadius: '5',
-    padding: '3%',
-    marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .9)'
-  },
   sectionHeading: {
     fontSize: 22,
     marginBottom: 8,
-    textDecorationLine: 'underline'
   },
-  seeAll: {
-    marginTop: '2%',
-    maxWidth: '13%'
-  },
-  seeAllButton: {
-    fontSize: 15,
-    color: '#ef6461',
-    textDecorationLine: 'underline',
-  }
 });

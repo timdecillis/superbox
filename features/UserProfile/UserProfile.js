@@ -10,7 +10,7 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
 
 
   return (
-    <GlobalV>
+    <GlobalV style={styles.container}>
         <ScrollView>
           <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 10
   },
   editButton: {
     color: '#ef6461',
