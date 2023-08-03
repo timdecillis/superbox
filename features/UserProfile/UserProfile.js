@@ -14,7 +14,7 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
         <ScrollView>
           <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
-          <GlobalViewFlat style={styles.sectionContainer}>
+
             <GlobalViewFlat style={styles.buttonHeading}>
 
               <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
@@ -41,11 +41,11 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
               <TouchableOpacity style={styles.buttonContainer}>
                 <GlobalText onPress={() => navigation.navigate('Public Profile', {
                   user_id: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>GlobalViewFlat Profile</GlobalText>
+                })}style={[styles.option, { color: '#ef6461', textAlign: 'center'}]}>View Profile</GlobalText>
               </TouchableOpacity>
 
             </GlobalViewFlat>
-          </GlobalViewFlat>
+
 
           <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   buttonHeading: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10
+    padding: 10,
+    alignItems: 'center'
   },
   container: {
     flex: 1,
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
   infoBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderWidth: '.5%',
+    borderTopWidth: '.5%',
+    borderBottomWidth: '.5%',
     borderRadius: 2,
     marginBottom: '2%',
     alignItems: 'center',
