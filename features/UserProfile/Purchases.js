@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10
   },
+  info: {
+    fontSize: 13
+  },
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -56,13 +59,14 @@ const styles = StyleSheet.create({
   },
   product: {
     fontWeight: 'bold',
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    fontSize: 13
   },
   sectionContainer: {
     padding: 5
   },
   sectionHeading: {
-    fontSize: 22,
+    fontSize: 20,
     marginBottom: 8,
   },
 });

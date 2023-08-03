@@ -22,9 +22,9 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
   // };
   return (
     <GlobalViewFlat style={styles.sectionContainer}>
-
       <GlobalText style={styles.sectionHeading}>Personal Information</GlobalText>
 
+      <GlobalViewFlat style={{padding: 5}}>
       <GlobalViewFlat style={styles.infoBlock}>
         <GlobalViewFlat style={styles.infoLeft}>
           <GlobalText style={styles.infoType}>Name: </GlobalText>
@@ -76,6 +76,7 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
         <TouchableOpacity style={styles.buttonContainer}>
           <GlobalText style={styles.editButton}>Edit</GlobalText>
         </TouchableOpacity>
+        </GlobalViewFlat>
       </GlobalViewFlat>
     </GlobalViewFlat>
   );
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: 15,
+    fontSize: 13,
     textDecorationLine: 'underline'
   },
   infoBlock: {
@@ -101,12 +102,12 @@ const styles = StyleSheet.create({
   },
   infoType: {
     fontWeight: 'bold',
-    color: '#313638'
+    color: '#313638',
+    fontSize: 13
   },
   sectionContainer: {
     borderRadius: '5',
     marginBottom: '3%',
-    padding: 5
   },
   sectionHeading: {
     fontSize: 20,

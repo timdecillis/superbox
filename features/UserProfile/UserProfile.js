@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: 20,
+    fontSize: 10,
   },
   infoLeft: {
     padding: '.5%'
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   option: {
     textDecorationLine: 'underline',
-    fontSize: 15,
+    fontSize: 17,
     width: 80,
   },
   sectionHeading: {
