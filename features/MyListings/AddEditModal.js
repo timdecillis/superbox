@@ -7,7 +7,9 @@ import {
   StyleSheet,
   ScrollView,
   Text,
+  Image,
   Switch,
+  TouchableOpacity
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
@@ -21,39 +23,66 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   //axios.get ( all products {productName, product_Id})
   const [isNewProduct, setIsNewProduct] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [prodName, setProdName] = useState('');
+  const [prodName, setProdName] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
+  const [photos, setPhotos] = useState(listingInfo.photos || []);
 
   const handleSave = () => {
     //TODO: add validation logic here before saving the new listing
     // onSave(listingInfo);
-    console.log("saved!");
+
+    setListingInfo({ ...listingInfo, name: product.name });
+    setListingInfo({ ...listingInfo, photos });
     onClose();
   };
+
   const handleWriteName = (name) => {
     let regex = new RegExp(name, "ig");
     setFilteredProducts(
       productsList.filter((product) => regex.test(product.name))
     );
+    setProdName(name);
   };
 
   const handleProductSelection = (product) => {
     setIsNewProduct(false);
-    setListingInfo({ ...listingInfo, name: product.name });
+    setProdName(product);
+    setFilteredProducts([]);
   };
+
+  const handleNewProduct = () => {
+    setIsNewProduct(true);
+    setFilteredProducts([]);
+  };
+
   const handlePriceInput = (text) => {
-    // Ensure that the input only contains numbers and a single decimal point
     const cleanText = text.replace(/[^0-9.]/g, "");
     setListingInfo({ ...listingInfo, price: cleanText });
   };
 
-  const handleConditionInput = (value) => {
-    setListingInfo({ ...listingInfo, condition: value });
+  const handleAddPhoto = () => {
+    if (photoUrl) {
+      setPhotos([...photos, photoUrl]);
+      setPhotoUrl("");
+    }
   };
 
-  const handleNewProduct = () => {
-
+  const handleRemovePhoto = (index) => {
+    const updatedPhotos = [...photos];
+    updatedPhotos.splice(index, 1);
+    setPhotos(updatedPhotos);
   };
 
+  const handleSelects = (value, type) => {
+    switch (type) {
+      case "condition":
+        setListingInfo({ ...listingInfo, condition: value });
+        break;
+      case 'category':
+        setListingInfo({ ...listingInfo, category: value });
+        break;
+    }
+  };
 
 
   return (
@@ -61,14 +90,14 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
       <View style={styles.container}>
         <TextInput
           placeholder="Product Name"
-          value={listingInfo.name}
+          value={prodName}
           onChangeText={handleWriteName}
           style={styles.input}
         />
         {filteredProducts.length > 0 && (
           <ScrollView style={styles.dropdown}>
             {filteredProducts.map((product, index) => (
-              <Text key={index} onPress={() => handleProductSelection(product)}>
+              <Text key={index} onPress={() => handleProductSelection(product.name)}>
                 {product.name}
               </Text>
             ))}
@@ -108,7 +137,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
           <Text>Condition:</Text>
           <RNPickerSelect
             value={listingInfo.condition}
-            onValueChange={(itemValue) => handleConditionInput(itemValue)}
+            onValueChange={(itemValue) => handleSelects(itemValue, 'condition')}
             items={[
               { label: "Mint", value: "mint" },
               { label: "Near Mint", value: "near mint" },
@@ -118,6 +147,40 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
             ]}
           />
         </View>
+
+        <View style={styles.dropdownContainer}>
+          <Text>Category:</Text>
+          <RNPickerSelect
+            value={listingInfo.category}
+            onValueChange={(itemValue) => handleSelects(itemValue, 'condition')}
+            items={[
+              { label: "Comic Books", value: "Comic Books" },
+              { label: "Funko Pops", value: "Funko Pops" },
+              { label: "Action Figures", value: "Action Figures" },
+              { label: "Decor", value: "Decor" },
+              { label: "Apparel", value: "Apparel" },
+            ]}
+          />
+        </View>
+
+        <TextInput
+          placeholder="Photo URL"
+          value={photoUrl}
+          onChangeText={setPhotoUrl}
+          style={styles.input}
+        />
+        <Button title="Add Photo" onPress={handleAddPhoto} />
+        {photos.map((photo, index) => (
+          <View key={index} style={styles.photoContainer}>
+            <Image source={{ uri: photo }} style={styles.thumbnail} />
+            <TouchableOpacity
+              style={styles.removeButton}
+              onPress={() => handleRemovePhoto(index)}
+            >
+              <Text style={styles.removeButtonText}>Remove</Text>
+            </TouchableOpacity>
+          </View>
+        ))}
 
         <View style={styles.buttonContainer}>
           <Button title="Save" onPress={handleSave} />
@@ -161,6 +224,25 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     width: "100%",
     marginBottom: 10,
+  },
+  photoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  thumbnail: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+  },
+  removeButton: {
+    backgroundColor: "red",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  removeButtonText: {
+    color: "#fff",
   },
 });
 
