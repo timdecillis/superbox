@@ -7,6 +7,13 @@ height: 100%;
   align-items: center;
   justify-content: center;
 `;
+export const GlobalV = styled.View`
+background-color: #FDFAF4;
+`;
+
+export const GlobalText = styled.Text`
+color: #313638;
+`;
 
 export const GlobalTitle = styled.Text`
 text-align: center;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
 
+import { GlobalV, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
@@ -9,48 +10,42 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
 
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={logo}
-        style={styles.backgroundImage}
-        resizeMode='contain'>
+    <GlobalV>
+        <ScrollView>
+          <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
-        <ScrollView style={styles.main}>
-
-          <Text style={styles.mainHeading}>Hi, {profile.firstName}!</Text>
-
-          <View style={styles.sectionContainer}>
-            <View style={styles.buttonHeading}>
+          <GlobalV style={styles.sectionContainer}>
+            <GlobalV style={styles.buttonHeading}>
 
               <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
                 user_id: 1,
                 authorization: 1
               })}style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
+                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
                 user_id: 1,
                 authorization: 1
               })}style={styles.buttonContainer}>
-                <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
+                <GlobalText style={[styles.option, { color: '#ef6461' }]}>Listings</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Purchases', {
+                <GlobalText onPress={() => navigation.navigate('Purchases', {
                   user_id: 1,
                   authorization: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</GlobalText>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Public Profile', {
+                <GlobalText onPress={() => navigation.navigate('Public Profile', {
                   user_id: 1
-                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</Text>
+                })}style={[styles.option, { color: '#ef6461' }]}>View Profile</GlobalText>
               </TouchableOpacity>
 
-            </View>
-          </View>
+            </GlobalV>
+          </GlobalV>
 
           <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
@@ -77,20 +72,11 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
           </View>
 
         </ScrollView>
-      </ImageBackground>
-    </View>
+    </GlobalV>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '95%',
-    justifyContent: 'center'
-  },
-  buttonContainer: {
-    width: '45%',
-  },
   buttonHeading: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -99,7 +85,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#e4b363',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -113,7 +98,6 @@ const styles = StyleSheet.create({
   infoBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#e0dfd5',
     borderWidth: '.5%',
     borderRadius: 2,
     marginBottom: '2%',
@@ -134,14 +118,11 @@ const styles = StyleSheet.create({
   option: {
     textDecorationLine: 'underline',
     width: 80,
-    textAlign: 'center'
-
   },
   sectionContainer: {
     borderRadius: '5',
     padding: '3%',
     marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .9)'
   },
   sectionHeading: {
     fontSize: 20,

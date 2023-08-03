@@ -1,62 +1,46 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
+import { GlobalV, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
-import Search from '../../globalComponents/Search.js';
 
 export default function UserProfile() {
 
   const [data, setData] = useState(userData);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={logo}
-        style={styles.backgroundImage}
-        resizeMode='contain'>
+    <GlobalV>
+      <ScrollView>
 
-        <ScrollView style={styles.main}>
+        <GlobalV>
+          <GlobalText style={styles.sectionHeading}>Your Purchases</GlobalText>
+          {data.purchases.map((purchase, i) => {
+            return (
+              <GlobalV key={i} style={styles.listing}>
+                <GlobalV style={styles.listingLeft}>
+                  <GlobalText style={styles.product}>{purchase.product}</GlobalText>
+                  <GlobalText style={styles.product}>{purchase.price}</GlobalText>
+                  <GlobalText style={styles.info}>{purchase.info}</GlobalText>
+                </GlobalV>
+                <GlobalV style={styles.listingLeft}>
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Your Purchases</Text>
-            {data.purchases.map((purchase, i) => {
-              return (
-                <View key={i} style={styles.listing}>
-                  <View style={styles.listingLeft}>
-                    <Text style={styles.product}>{purchase.product}</Text>
-                    <Text style={styles.product}>{purchase.price}</Text>
-                    <Text style={styles.info}>{purchase.info}</Text>
-                  </View>
-                  <View style={styles.listingLeft}>
+                  <GlobalText style={styles.product}>{purchase.date}</GlobalText>
+                </GlobalV>
+              </GlobalV>
+            );
+          })}
+        </GlobalV>
 
-                    <Text style={styles.product}>{purchase.date}</Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
+      </ScrollView>
 
-          {/* <View style={styles.sectionContainer}>
-            <Text style={styles.sectionHeading}>Find a purchase</Text>
-            <Search />
-          </View> */}
-
-        </ScrollView>
-      </ImageBackground>
-    </View>
+    </GlobalV>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '95%',
-    justifyContent: 'center'
-  },
   container: {
     flex: 1,
-    backgroundColor: '#e4b363',
     justifyContent: 'center',
     alignItems: 'center'
   },
