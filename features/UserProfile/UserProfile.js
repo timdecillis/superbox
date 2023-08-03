@@ -60,15 +60,15 @@ export default function UserProfile({profile, setProfile, navigation, handleProf
           <View style={styles.sectionContainer}>
 
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
+              <Text style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</Text>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity onPress={() => {
+            <TouchableOpacity onPress={() => {
               setProfile({});
               navigation.navigate('Settings');
               }}style={styles.buttonContainer}>
-              <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
-            </TouchableOpacity> */}
+              <Text style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Log Out</Text>
+            </TouchableOpacity>
           </View>
 
         </ScrollView>
@@ -80,8 +80,7 @@ const styles = StyleSheet.create({
   buttonHeading: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    left: '180%'
+    padding: 10
   },
   container: {
     flex: 1,
@@ -117,20 +116,18 @@ const styles = StyleSheet.create({
   },
   option: {
     textDecorationLine: 'underline',
+    fontSize: 15,
     width: 80,
-  },
-  sectionContainer: {
-    borderRadius: '5',
-    padding: '3%',
-    marginBottom: '3%',
   },
   sectionHeading: {
     fontSize: 20,
     marginBottom: 8,
-    textDecorationLine: 'underline'
+    color: '#313638'
   },
   setting: {
     fontWeight: 'bold',
-    fontSize: 17
+    fontSize: 17,
+    color: '#313638'
+
   },
 });
