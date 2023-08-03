@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   infoBlock: {
     flexDirection: 'row',
-    borderWidth: 3,
+    borderWidth: .5,
     borderColor: 'black',
     justifyContent: 'space-between',
     borderRadius: 2,
@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '1%',
-    borderTopWidth: '1%'
+    padding: 4,
+    borderTopWidth: .5
   },
   product: {
     fontWeight: 'bold',

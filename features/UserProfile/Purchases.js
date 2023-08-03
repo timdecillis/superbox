@@ -13,7 +13,7 @@ export default function UserProfile() {
     <GlobalViewFlat style={styles.container}>
       <ScrollView>
 
-        <GlobalViewFlat>
+        <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Your Purchases</GlobalText>
           {data.purchases.map((purchase, i) => {
             return (
@@ -46,11 +46,15 @@ const styles = StyleSheet.create({
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: '1%'
+    borderTopWidth: .5,
+    padding: 4
   },
   product: {
     fontWeight: 'bold',
     textDecorationLine: 'underline'
+  },
+  sectionContainer: {
+    padding: 5
   },
   sectionHeading: {
     fontSize: 22,

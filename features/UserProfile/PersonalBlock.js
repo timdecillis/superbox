@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderTopWidth: '.5%',
     borderRadius: 2,
-
+    padding: 2
   },
   infoType: {
     fontWeight: 'bold',
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     borderRadius: '5',
     marginBottom: '3%',
+    padding: 5
   },
   sectionHeading: {
     fontSize: 20,
