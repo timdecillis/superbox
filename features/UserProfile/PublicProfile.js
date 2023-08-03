@@ -1,21 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch, TextInput } from 'react-native';
 
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating, GlobalButton, GlobalButtonText } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
+import {messageUser} from '../../lib/messagesRequestHelpers.js';
+import {retrievePublic} from '../../lib/userRequestHelpers.js';
 
 export default function PublicProfile() {
-
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   const [data, setData] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const onToggleSwitch = () => {
+      setSwitchValue(!switchValue);
+  }
+
+  useEffect(() => {
+    retrievePublic();
+  }, [])
+
 
   return (
-
-    <GlobalViewFlat>
+    <GlobalViewFlat style={styles.container}>
       <TextInput autoFocus={true} style={styles.findUser} placeholder="find another user" />
       <ScrollView>
 
@@ -41,15 +51,22 @@ export default function PublicProfile() {
         </GlobalViewFlat>
 
         <GlobalViewFlat style={styles.sectionContainer}>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+          onPress={messageUser}
+          style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
           </TouchableOpacity>
         </GlobalViewFlat>
 
 
-        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+        {isAdmin && <GlobalViewFlat style={[styles.sectionContainer, {  borderTopWidth: .5,
+    borderBottomWidth: .5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
           <GlobalText style={styles.sectionHeading}>Ban User</GlobalText>
-          <Switch style={styles.settingSwitch} />
+          <Switch
+              style={styles.settingSwitch}
+              value={switchValue}
+              onValueChange={onToggleSwitch}
+            />
 
         </GlobalViewFlat>}
       </ScrollView>
@@ -74,9 +91,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#e4b363',
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 10
   },
   findUser: {
     alignSelf: 'center',
@@ -90,7 +105,7 @@ const styles = StyleSheet.create({
   },
   infoBlock: {
     flexDirection: 'row',
-    borderWidth: 3,
+    borderWidth: .5,
     borderColor: 'black',
     justifyContent: 'space-between',
     borderRadius: 2,
@@ -106,11 +121,12 @@ const styles = StyleSheet.create({
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '1%',
-    borderBottomWidth: '1%'
+    padding: 4,
+    borderTopWidth: .5
   },
   product: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
   },
   main: {
     padding: '3%',
@@ -120,13 +136,14 @@ const styles = StyleSheet.create({
     color: '#313638',
   },
   sectionContainer: {
-    borderWidth: .5,
-    padding: '3%',
-    marginBottom: '3%',
-    backgroundColor: 'rgba(255, 255, 255, .9)'
+    padding: 5,
+    marginBottom: 5,
+
   },
   sectionHeading: {
     fontSize: 22,
+    borderBottomWidth: .5,
+    borderTopWidth: .5,
     marginBottom: 8,
     color: '#313638',
   },

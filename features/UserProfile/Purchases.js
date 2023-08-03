@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
+import {getPurchases} from '../../lib/orderRequestHelpers.js';
 
-export default function UserProfile() {
+export default function Purchases() {
 
   const [data, setData] = useState(userData);
+
+  useEffect(() => {
+    getPurchases();
+  }, []);
 
   return (
     <GlobalViewFlat style={styles.container}>
       <ScrollView>
 
-        <GlobalViewFlat>
+        <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Your Purchases</GlobalText>
           {data.purchases.map((purchase, i) => {
             return (
@@ -46,10 +51,15 @@ const styles = StyleSheet.create({
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: '1%'
+    borderTopWidth: .5,
+    padding: 4
   },
   product: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
+  },
+  sectionContainer: {
+    padding: 5
   },
   sectionHeading: {
     fontSize: 22,
