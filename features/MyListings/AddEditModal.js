@@ -25,7 +25,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await requestHelpers.getProductNamesIds();
+        const products = await requestHelpers.getProductNamesIdsCats();
         setProductsList(products);
         console.log(products); // Optional: Log the products fetched from the server
       } catch (error) {
