@@ -13,6 +13,8 @@ import MyListings from './features/MyListings/MyListings.js';
 import PublicProfile from './features/UserProfile/PublicProfile.js';
 import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
+import Messages from './features/Messages/Messages.js';
+import Conversations from './features/Messages/Conversations.js';
 import {userData} from './assets/dummy-data/userData.js';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -25,6 +27,8 @@ function HomeStack() {
       <Stack.Screen name="My Listings" component={MyListings} />
       <Stack.Screen name="Public Profile" component={PublicProfile} />
       <Stack.Screen name="Purchases" component={Purchases} />
+      <Stack.Screen name="Conversations" component={Conversations} />
+      <Stack.Screen name="Messages" component={Messages} />
     </Stack.Navigator>
   );
 }
