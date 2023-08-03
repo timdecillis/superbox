@@ -5,6 +5,9 @@ import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 
 
+export default function UserProfile({profile, setProfile, navigation, handleProfileUpdate}) {
+
+
 export default function UserProfile({profile, setProfile, navigation}) {
 
 
@@ -22,16 +25,25 @@ export default function UserProfile({profile, setProfile, navigation}) {
           <View style={styles.sectionContainer}>
             <View style={styles.buttonHeading}>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Inbox')}style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
+                user_id: 1,
+                authorization: 1
+              })}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Inbox</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Listings')}style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
+                user_id: 1,
+                authorization: 1
+              })}style={styles.buttonContainer}>
                 <Text style={[styles.option, { color: '#ef6461' }]}>Listings</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text onPress={() => navigation.navigate('Purchases')}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
+                <Text onPress={() => navigation.navigate('Purchases', {
+                  user_id: 1,
+                  authorization: 1
+                })}style={[styles.option, { color: '#ef6461' }]}>Purchases</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonContainer}>
@@ -44,7 +56,7 @@ export default function UserProfile({profile, setProfile, navigation}) {
             </View>
           </View>
 
-          <PersonalBlock profile={profile} />
+          <PersonalBlock handleProfileUpdate={handleProfileUpdate}profile={profile} />
 
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionHeading}>Settings</Text>
@@ -55,12 +67,17 @@ export default function UserProfile({profile, setProfile, navigation}) {
           </View>
 
           <View style={styles.sectionContainer}>
+
             <TouchableOpacity style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Contact Us</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
+
+            {/* <TouchableOpacity onPress={() => {
+              setProfile({});
+              navigation.navigate('Settings');
+              }}style={styles.buttonContainer}>
               <Text style={[styles.sectionHeading, { color: '#ef6461' }]}>Log Out</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
         </ScrollView>

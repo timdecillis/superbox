@@ -35,10 +35,6 @@ export default function UserProfile() {
                 </View>
               );
             })}
-            <TouchableOpacity style={styles.seeAll}>
-              <Text style={styles.seeAllButton}>see all</Text>
-
-            </TouchableOpacity>
           </View>
 
           {/* <View style={styles.sectionContainer}>
