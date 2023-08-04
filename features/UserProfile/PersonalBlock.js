@@ -48,7 +48,7 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
         <GlobalViewFlat style={styles.infoBlock}>
           <GlobalViewFlat style={styles.infoLeft}>
             <GlobalText style={styles.infoType}>Name: </GlobalText>
-            <GlobalText style={styles.info}>{profile.firstName} {profile.lastName}</GlobalText>
+            <GlobalText style={styles.info}>{profile.full_name}</GlobalText>
           </GlobalViewFlat>
 
           <TouchableOpacity onPress={() => {
@@ -82,7 +82,7 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
         <GlobalViewFlat style={styles.infoBlock}>
           <GlobalViewFlat style={styles.infoLeft}>
             <GlobalText style={styles.infoType}>Primary phone number:</GlobalText>
-            <GlobalText style={styles.info}>{profile.phone.slice(0, 3)}-{profile.phone.slice(3, 6)}-{profile.phone.slice(6, 10)}</GlobalText>
+            <GlobalText style={styles.info}>{profile.phone_number}</GlobalText>
           </GlobalViewFlat>
           <TouchableOpacity onPress={() => {
             setPhoneModalOpen(true);
@@ -94,9 +94,9 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
         <GlobalViewFlat style={styles.infoBlock}>
           <GlobalViewFlat style={styles.infoLeft}>
             <GlobalText style={styles.infoType}>Address:</GlobalText>
-            <GlobalText style={[styles.line, styles.text]}>{profile.address1}</GlobalText>
-            {profile.address2 && <GlobalText style={[styles.line, styles.text]}>{profile.address2}</GlobalText>}
-            <GlobalText style={[styles.line, styles.text]}>{profile.city}, {profile.state}</GlobalText>
+            <GlobalText style={[styles.line, styles.text]}>{profile.address_line_1}</GlobalText>
+            {profile.address_line_2 && <GlobalText style={[styles.line, styles.text]}>{profile.address_line_2}</GlobalText>}
+            <GlobalText style={[styles.line, styles.text]}>{profile.city}, {profile.state_abbr}</GlobalText>
             <GlobalText style={[styles.line, styles.text]}>{profile.zip}</GlobalText>
           </GlobalViewFlat>
           <TouchableOpacity onPress={() => {

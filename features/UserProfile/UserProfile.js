@@ -1,18 +1,26 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch, Linking } from 'react-native';
+
 import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
+import {updatePersonal} from '../../lib/userRequestHelpers.js';
 
-export default function UserProfile({ profile, setProfile, navigation, handleProfileUpdate }) {
+export default function UserProfile({navigation, handleProfileUpdate }) {
+
 
   const [dark, setDark] = useState(false);
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const onToggleSwitch = () => {
       setDark(!dark);
       updatePersonal('dark', !dark);
   }
+
+  const handleContactUs = () => {
+    Linking.openURL('mailto:clarkkent@superbox.com');
+  };
 
   if (profile === null) {
     return null;
@@ -23,14 +31,12 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
 
 
       <ScrollView>
-        <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
+        <GlobalText style={styles.mainHeading}>Hi, {profile.username}!</GlobalText>
 
 
         <GlobalViewFlat style={styles.buttonHeading}>
 
-          <TouchableOpacity onPress={() => navigation.navigate('Conversations', {
-            currentUser: profile
-          })} style={styles.buttonContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Conversations')} style={styles.buttonContainer}>
             <GlobalText style={[styles.option, { color: '#ef6461' }]}>Messages</GlobalText>
           </TouchableOpacity>
 
@@ -73,7 +79,7 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
 
         <GlobalViewFlat style={styles.sectionContainer}>
 
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleContactUs}style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
           </TouchableOpacity>
 

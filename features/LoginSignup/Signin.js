@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
@@ -6,28 +6,30 @@ import Logo from '../../assets/logo.png';
 import { Firebase_Auth} from '../../FirebaseConfig.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles';
+import { UserProfileContext } from '../../App.js'
 
-const SignIn = ({profile, setProfile}) => {
+const SignIn = () => {
   const [logIn, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false)
   const [profilePage, setProfilePage] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const auth = Firebase_Auth;
+
+  // useEffect(() => {
+  //   setProfile({});
+  // }, [])
 
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
+      console.log('profile',profile);
+
       const endpoint = 'http://3.141.17.132/api/u/users';
 
-      const config = {
-        headers: {
-          authorization: `${profile.idToken}`,
-        },
-      };
-
-      const response = await axios.post(endpoint, profile, config);
+      const response = await axios.post(endpoint, profile);
 
       console.log('Response:', response.data);
 
@@ -36,47 +38,56 @@ const SignIn = ({profile, setProfile}) => {
     }
   };
 
-  const signInFunc = async () => {
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-
-      setProfile({
-        ...profile,
-        'firebase_uid': response.user.uid,
-        'email': email,
-        'idToken': response._tokenResponse.idToken
+  const signInFunc = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('This is the user credential:', userCredential);
+        console.log('This is the user :', userCredential.user);
+        console.log('This is the token response:', userCredential._tokenResponse);
+        setProfile({
+          ...profile,
+          'firebase_uid': userCredential.user.uid,
+          'email': email,
+          'idToken': userCredential._tokenResponse.idToken
+        });
+        setSignUp(false);
+        setLogin(false);
+        setProfilePage(false);
+        return userCredential;
+      })
+      .then((userCredential) => {
+        alert('Sign In Success')
+        console.log('idToken:', userCredential._tokenResponse.idToken);
+        return userCredential;
+      })
+      .then((userCredential) => {
+        const config = {
+          headers: {
+            authorization: `${userCredential._tokenResponse.idToken}`,
+          },
+        };
+        return config
+      })
+      .then((config) => {
+        return axios.get(`http://3.141.17.132/api/u/users/${profile.uid}`, config);
+      })
+      .then((backendResponse) => {
+        console.log('Profile Data from Backend:', backendResponse.data[0]);
+        setProfile({...profile, ...backendResponse.data[0]});
+      })
+      .then(() => {
+        console.log(profile);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Sign in failed: ' + error.message)
       });
-
-      setSignUp(false);
-      setLogin(false);
-      setProfilePage(false);
-      alert('Sign In Success')
-
-    const config = {
-      headers: {
-        authorization: `${response._tokenResponse.idToken}`,
-      }
-    };
-
-    const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
-
-    setProfile({
-      ...profile,
-      ...backendResponse.data,
-    });
-
-    console.log('Profile Data from Backend:', backendResponse.data);
-
-    } catch (error) {
-      console.log(error);
-      alert('Sign in failed: ' + error.message)
-    }
   }
 
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-console.log('RESPONSE',response)
+// console.log('IDTOKEN',response._tokenResponse.idToken)
       setProfile({
         ...profile,
         'firebase_uid': response.user.uid,
@@ -236,9 +247,7 @@ console.log('RESPONSE',response)
 
       <InputBarContainer>
         <InputField
-          onChangeText={(text) => {
-            const formattedNumber = handlePhoneNumber(text);
-            setProfile({ ...profile, phone_number: formattedNumber });
+          onChangeText={(text) => {setProfile({ ...profile, phone_number: text });
           }}
           placeholder="Number"
           keyboardType="phone-pad"

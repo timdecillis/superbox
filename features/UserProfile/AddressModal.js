@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, 
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalCartButton, GlobalCartButtonText } from '../../globalComponents/globalStyles.js';
 import { updatePersonal } from '../../lib/userRequestHelpers.js';
 
-export default AddressModal = ({address, setAddress, addressModalOpen, setAddressModalOpen}) => {
+export default AddressModal = ({ address, setAddress, addressModalOpen, setAddressModalOpen }) => {
 
   const [address1, setAddress1] = useState('');
   const [address2, setAddress2] = useState('');
@@ -19,37 +19,74 @@ export default AddressModal = ({address, setAddress, addressModalOpen, setAddres
 
   return (
     <Modal
-        visible={addressModalOpen}
-        onRequestClose={closeModal}
-      >
-        <GlobalViewFlat style={styles.modalContainer}>
-          <GlobalViewFlat style={styles.modalContent}>
-            <GlobalText style={styles.sectionHeading}>Update address</GlobalText>
+      visible={addressModalOpen}
+      onRequestClose={closeModal}
+    >
+      <GlobalViewFlat style={styles.modalContainer}>
+        <GlobalViewFlat style={styles.modalContent}>
+          <GlobalText style={styles.sectionHeading}>Update address</GlobalText>
 
-            <TextInput onChangeText={(text) => setAddress1(text)} autoFocus={true} style={styles.findUser}></TextInput>
-            <TextInput onChangeText={(text) => setAddress2(text)} autoFocus={true} style={styles.findUser}></TextInput>
-            <TextInput onChangeText={(text) => setCity(text)} autoFocus={true} style={styles.findUser}></TextInput>
-            <TextInput onChangeText={(text) => setState(text)} autoFocus={true} style={styles.findUser}></TextInput>
-            <TextInput onChangeText={(text) => setZip(text)} autoFocus={true} style={styles.findUser}></TextInput>
+          <GlobalViewFlat style={styles.addressContainer}>
 
-            <GlobalViewFlat style={styles.buttons}>
-              <GlobalCartButton style={styles.button}>
-                <GlobalCartButtonText onPress={closeModal}>Cancel</GlobalCartButtonText>
-              </GlobalCartButton>
-              <GlobalCartButton onPress={() => {
-                updatePersonal();
-                closeModal();
-              }} style={[styles.button, { backgroundColor: '#e4b363' }]}>
-                <GlobalCartButtonText>Continue</GlobalCartButtonText>
-              </GlobalCartButton>
+            <GlobalViewFlat style={styles.addressLine}>
+              <TextInput onChangeText={(text) => setAddress1(text)} autoFocus={true} style={styles.findUser}></TextInput>
+              <GlobalText style={styles.addressText}>Address Line 1</GlobalText>
             </GlobalViewFlat>
+
+            <GlobalViewFlat style={styles.addressLine}>
+              <TextInput onChangeText={(text) => setAddress2(text)} autoFocus={true} style={styles.findUser}></TextInput>
+              <GlobalText style={styles.addressText}>Address Line 2</GlobalText>
+            </GlobalViewFlat>
+
+            <GlobalViewFlat style={styles.addressLine}>
+              <TextInput onChangeText={(text) => setCity(text)} autoFocus={true} style={styles.findUser}></TextInput>
+              <GlobalText style={styles.addressText}>City</GlobalText>
+            </GlobalViewFlat>
+
+            <GlobalViewFlat style={styles.addressLine}>
+              <TextInput maxLength={2} onChangeText={(text) => setState(text)} autoFocus={true} style={[styles.findUser, { width: 30 }]}></TextInput>
+              <GlobalText style={styles.addressText}>State</GlobalText>
+            </GlobalViewFlat>
+
+            <GlobalViewFlat style={styles.addressLine}>
+              <TextInput maxLength={10} onChangeText={(text) => setZip(text)} autoFocus={true} style={[styles.findUser, { width: 91 }]}></TextInput>
+              <GlobalText style={styles.addressText}>Zip</GlobalText>
+            </GlobalViewFlat>
+
+            <GlobalViewFlat style={styles.modalRight}>
+            </GlobalViewFlat>
+
+          </GlobalViewFlat>
+
+
+          <GlobalViewFlat style={styles.buttons}>
+            <GlobalCartButton style={styles.button}>
+              <GlobalCartButtonText onPress={closeModal}>Cancel</GlobalCartButtonText>
+            </GlobalCartButton>
+            <GlobalCartButton onPress={() => {
+              updatePersonal();
+              closeModal();
+            }} style={[styles.button, { backgroundColor: '#e4b363' }]}>
+              <GlobalCartButtonText>Continue</GlobalCartButtonText>
+            </GlobalCartButton>
           </GlobalViewFlat>
         </GlobalViewFlat>
-      </Modal>
+      </GlobalViewFlat>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  addressContainer: {
+    alignItems: 'left',
+
+  },
+  addressLine: {
+    marginBottom: 6
+  },
+  addressText: {
+    fontSize: 10
+  },
   button: {
     height: 40,
     width: 90,
@@ -66,10 +103,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     height: 26,
-    borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: .5,
     width: 300,
-    padding: 5
+    padding: 5,
+    height: 30,
+    fontSize: 13
   },
   modalContainer: {
     position: 'absolute',
@@ -88,7 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '100%',
     maxHeight: '90%',
-    height: 200,
+    height: 360,
   },
   sectionHeading: {
     fontSize: 20,
