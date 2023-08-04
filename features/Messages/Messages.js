@@ -16,7 +16,7 @@ const Messages = ({ profile, activeConversation, setActiveConversation, setConve
     if (!!profile && !!activeConversation.id) {
       getMessages(activeConversation.id)
         .then((result) => {
-          setMessagesArray(result);
+          setMessagesArray(result.data);
         })
         .catch((err) => {
           console.error('Error retrieving messages:', err);

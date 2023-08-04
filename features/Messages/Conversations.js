@@ -15,17 +15,13 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   const { profile, setProfile } = useContext(UserProfileContext);
 
   useEffect(() => {
-    console.log('Profile when arriving to conversations:', profile);
-  }, [])
-
-  useEffect(() => {
     if (!!profile) {
       console.log(profile.idToken);
       console.log('Retrieving conversations...')
       getConversations(profile.idToken)
-        .then((conversations) => {
-          console.log('Retrieving conversations:', conversations)
-          setConversationsArray(conversations);
+        .then((result) => {
+          console.log('Retrieving conversations:', result.data)
+          setConversationsArray(result.data);
         })
         .catch((err) => {
           console.error('Error retrieving conversations:', err);
