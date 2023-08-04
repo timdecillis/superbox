@@ -61,6 +61,8 @@ const InfoContainer = styled.View`
     return <Text>Loading...</Text>;
   }
 
+  console.log(product);
+
   return (
 
     <GlobalView>
@@ -71,18 +73,18 @@ const InfoContainer = styled.View`
         <ImgContainer>
         <ProductImg
           source={{
-            uri: 'https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto',
+            uri: product.id === 1 ? 'https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto' : product.photo_url,
         }}
         />
         </ImgContainer>
         <InfoContainer>
-        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', fontSize: 35, textShadowColor: 'rgba(0, 0, 0, 0.25)',
+        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', fontSize: 29, textShadowColor: 'rgba(0, 0, 0, 0.25)',
   textShadowOffset: { width: .75, height: 1.25 },
-  textShadowRadius: 1}}>{product?.product_name ? 'THE AMAZING SPIDERMAN' : ''}</GlobalTitle>
+  textShadowRadius: 1}}>{product.id === 1 ? 'THE AMAZING SPIDERMAN' : product.product_name.toUpperCase()}</GlobalTitle>
         <DescPrice>
         <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10, fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.15)',
   textShadowOffset: { width: .75, height: 1.25 },
-  textShadowRadius: 1}} >{product?.description ? product?.description : ''}</GlobalParagraph >
+  textShadowRadius: 1}} >{product.id === 1 ? 'Peter Parker gets his 50th comic book' : product.description}</GlobalParagraph >
         <GlobalPrice style={{fontSize: 18, marginBottom: 10, fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.05)',
   textShadowOffset: { width: .75, height: 1.25 },
   textShadowRadius: 1}} >$29.99</GlobalPrice>
