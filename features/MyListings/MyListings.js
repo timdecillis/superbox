@@ -6,6 +6,8 @@ import { UserProfileContext } from '../../App.js'
 import requestHelpers from '../../lib/productRequestHelpers.js'
 import SwipableList from './SwipableList';
 import exampleListings from './exampleListings.js'
+import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
+
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);
@@ -27,13 +29,9 @@ const MyListings = () => {
     // fetchProducts();
     setListings(exampleListings); //just example listings for now
   }, []);
-
-
   useEffect(()=>{
     setFilteredListings(listings.filter(item => item.status === activeFilter));
   },[activeFilter, listings])
-
-
   const handleFilterChange = filter => {
     setActiveFilter(filter);
   };
@@ -62,12 +60,17 @@ const MyListings = () => {
     });
     setListings(updatedListings);
   };
+  const handleEdit= (obj) => {
+    setShowModal({visible:true, type:'edit', data:obj})
+  }
 
   return (
-    <View style={styles.container}>
+    <GlobalViewFlat style={styles.container}>
       <FilterBar activeFilter={activeFilter} onChangeFilter={handleFilterChange} />
       <SwipableList
         data={filteredListings}
+        handleEdit={handleEdit}
+        activeFilter={activeFilter}
         renderItem={({ item }) => (
           <View style={styles.listingItem}>
             <Text>{item.title}</Text>
@@ -79,14 +82,13 @@ const MyListings = () => {
       />
       <Button title="Add New Listing" onPress={()=>handleOpenModal('add', {})} />
       <AddEditListingModal modalInfo={showModal} onClose={handleCloseModal} onSubmit={handleSubmitListing} />
-    </View>
+    </GlobalViewFlat>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'silver',
   },
   listingItem: {
     padding: 10,
