@@ -14,27 +14,70 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   const [conversationSelected, setConversationSelected] = useState(false);
   const { profile, setProfile } = useContext(UserProfileContext);
 
+  const conversations = [{
+    id: 1,
+    user_1_id: 1,
+    user_2_id: 2,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Batman123',
+    last_message_content: 'Hello?',
+    last_mesage_date_created:'2023-08-04T20:07:43Z'
+  }, {
+    id: 2,
+    user_1_id: 1,
+    user_2_id: 3,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'FunkoPopper',
+    last_message_content: 'I don\'t like Funko Pops.',
+    last_mesage_date_created: '2023-08-04T19:07:43Z',
+  }, {
+    id: 3,
+    user_1_id: 1,
+    user_2_id: 4,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Spiderman16',
+    last_message_content: '$1200 seems like a bad price.',
+    last_mesage_date_created:'2023-08-03T20:07:43Z',
+  }, {
+    id: 4,
+    user_1_id: 1,
+    user_2_id: 5,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'ComicMans',
+    last_message_content: 'You on Myspace?',
+    last_mesage_date_created: '2023-08-02T20:07:43Z',
+  }, {
+    id: 5,
+    user_1_id: 1,
+    user_2_id: 6,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Joker',
+    last_message_content: 'Where is Clark Kent?',
+    last_mesage_date_created: '2023-07-04T20:07:43Z',
+  }];
+
   useEffect(() => {
-    if (!!profile) {
-      console.log(profile.idToken);
-      console.log('Retrieving conversations...')
-      getConversations(profile.idToken)
-        .then((result) => {
-          console.log('Retrieving conversations:', result.data)
-          setConversationsArray(result.data);
-        })
-        .catch((err) => {
-          console.error('Error retrieving conversations:', err);
-          setConversationsArray([]);
-        })
-    } else {
-      console.log('profile is undefined')
-    }
+    setConversationsArray(conversations);
+    // if (!!profile) {
+    //   console.log(profile.idToken);
+    //   console.log('Retrieving conversations...')
+    //   getConversations(profile.idToken)
+    //     .then((result) => {
+    //       console.log('Retrieving conversations:', result.data)
+    //       setConversationsArray(result.data);
+    //     })
+    //     .catch((err) => {
+    //       console.error('Error retrieving conversations:', err);
+    //       setConversationsArray([]);
+    //     })
+    // } else {
+    //   console.log('profile is undefined')
+    // }
   }, []);
 
   const renderConversation = ({item}) => {
 
-    const dateTimeAgo = moment(item.created_at).fromNow();
+    const dateTimeAgo = moment(item.last_mesage_date_created).fromNow();
 
     return (
       <TouchableOpacity onPress={() => {
@@ -44,13 +87,13 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
         <View style={listStyles.container}>
           <View style={listStyles.icon}>
             <Text style={listStyles.iconText}>
-              P
+              {item.user_2_username.slice(0, 1)}
             </Text>
           </View>
           <View style={listStyles.textContainer}>
             <View style={listStyles.messageContainer}>
               <GlobalText numberOfLines={1} style={listStyles.messageText}>
-                Hello how are you? I would like to buy a comic.
+                {item.last_message_content}
               </GlobalText>
             </View>
             <View style={listStyles.timeContainer}>
@@ -67,10 +110,9 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   if (!conversationSelected) {
     return (
       <SafeAreaView style={bodyStyles.safeView} >
-        <GlobalViewFlat>
           <GlobalViewFlat style={headerStyles.headerContainer}>
             <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Profile', {
-                  handleProfileUpdate: handleProfileUpdate
+              handleProfileUpdate: handleProfileUpdate
                 })}>
               <GlobalText>
                 Back
@@ -86,9 +128,10 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 name="shopping-cart"
                 size={24}
                 color="#000"
-              />
+                />
             </TouchableOpacity>
           </GlobalViewFlat>
+        <GlobalView>
           <View style={bodyStyles.bodyContainer}>
             <FlatList
                 data={conversationsArray}
@@ -97,7 +140,7 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 showsVerticalScrollIndicator={false}
               />
           </View>
-        </GlobalViewFlat>
+        </GlobalView>
       </SafeAreaView>
     );
   } else {
