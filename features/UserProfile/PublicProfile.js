@@ -49,7 +49,7 @@ export default function PublicProfile({navigation}) {
 
         <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
           <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.username}</GlobalTitle>
-          <GlobalRating style={{ marginRight: 10}}>average rating: {profile.interests}</GlobalRating>
+          {/* <GlobalRating style={{ marginRight: 10}}>average rating: {profile.rating}</GlobalRating> */}
         </GlobalViewFlat>
 
 

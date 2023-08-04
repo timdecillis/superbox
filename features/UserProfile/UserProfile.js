@@ -15,7 +15,7 @@ export default function UserProfile({navigation}) {
 
   const onToggleSwitch = () => {
       setDark(!dark);
-      updatePersonal('dark', !dark);
+      updatePersonal(profile.firebase_uid, profile.idToken, 'dark', !dark);
   }
 
   const handleContactUs = () => {
