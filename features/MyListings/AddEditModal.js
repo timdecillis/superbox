@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
 import {
   View,
   Modal,
@@ -47,6 +48,9 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
 
     setListingInfo({ ...listingInfo, name: product.name });
     setListingInfo({ ...listingInfo, photos });
+    if (isNewProduct) {
+      requestHelpers.addNewProduct({})
+    }
     onClose();
   };
 
@@ -87,6 +91,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
     setPhotos(updatedPhotos);
   };
 
+
   const handleSelects = (value, type) => {
     switch (type) {
       case "condition":
@@ -97,6 +102,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
         break;
     }
   };
+
 
 
   return (
@@ -153,11 +159,12 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
             value={listingInfo.condition}
             onValueChange={(itemValue) => handleSelects(itemValue, 'condition')}
             items={[
-              { label: "Mint", value: "mint" },
-              { label: "Near Mint", value: "near mint" },
-              { label: "Moderately Used", value: "moderately used" },
-              { label: "Heavily Used", value: "heavily used" },
-              { label: "Damaged", value: "damaged" },
+              { label: "Mint", value: "Mint" },
+              { label: "Near Mint", value: "Near Mint" },
+              { label: "Lightly Used", value: "Lightly Used" },
+              { label: "Moderately Used", value: "Moderately Used" },
+              { label: "Heavily Used", value: "Heavily Used" },
+              { label: "Damaged", value: "Damaged" },
             ]}
           />
         </View>
@@ -210,7 +217,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
     padding: 20,
   },
   input: {
