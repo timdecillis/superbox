@@ -9,6 +9,7 @@ import {updatePersonal} from '../../lib/userRequestHelpers.js';
 
 export default function UserProfile({navigation, handleProfileUpdate }) {
 
+
   const [dark, setDark] = useState(false);
   const { profile, setProfile } = useContext(UserProfileContext);
 
@@ -30,7 +31,7 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
 
 
       <ScrollView>
-        <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
+        <GlobalText style={styles.mainHeading}>Hi, {profile.username}!</GlobalText>
 
 
         <GlobalViewFlat style={styles.buttonHeading}>

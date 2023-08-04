@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
@@ -6,19 +6,21 @@ import Logo from '../../assets/logo.png';
 import { Firebase_Auth} from '../../FirebaseConfig.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles';
+import { UserProfileContext } from '../../App.js'
 
-const SignIn = ({profile, setProfile}) => {
+const SignIn = () => {
   const [logIn, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false)
   const [profilePage, setProfilePage] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const auth = Firebase_Auth;
 
-  useEffect(() => {
-    setProfile({});
-  }, [])
+  // useEffect(() => {
+  //   setProfile({});
+  // }, [])
 
   const sendProfileData = async () => {
     try {
@@ -61,9 +63,9 @@ const SignIn = ({profile, setProfile}) => {
 
     const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`, config);
 
-    setProfile({...profile, ...backendResponse.data});
+    setProfile({...profile, ...backendResponse.data[0]});
 
-    console.log('Profile Data from Backend:', backendResponse.data);
+    console.log('Profile Data from Backend:', backendResponse.data[0]);
 
     } catch (error) {
       console.log(error);
