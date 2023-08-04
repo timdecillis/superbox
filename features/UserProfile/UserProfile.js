@@ -18,8 +18,12 @@ export default function UserProfile({navigation}) {
       updatePersonal(profile.firebase_uid, profile.idToken, 'dark', !dark);
   }
 
-  const handleContactUs = () => {
-    Linking.openURL('mailto:clarkkent@superbox.com');
+  const handleContactUs = async () => {
+    try {
+      await Linking.openURL('mailto:clarkkent@superbox.com');
+    } catch (error) {
+      console.error("Error opening email client:", error);
+    }
   };
 
   if (profile === null) {

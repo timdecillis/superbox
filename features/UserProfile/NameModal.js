@@ -28,7 +28,7 @@ export default NameModal = ({name, setName, nameModalOpen, setNameModalOpen}) =>
                 <GlobalCartButtonText onPress={closeModal}>Cancel</GlobalCartButtonText>
               </GlobalCartButton>
               <GlobalCartButton onPress={() => {
-                updatePersonal(profile.firebase_uid, profile.idToken, 'full_name', name);
+                updatePersonal(profile.id, profile.idToken, 'full_name', name);
                 closeModal();
               }} style={[styles.button, { backgroundColor: '#e4b363' }]}>
                 <GlobalCartButtonText>Continue</GlobalCartButtonText>
