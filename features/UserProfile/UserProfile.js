@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, ScrollView, ImageBackground, Switch, Modal} from 'react-native';
 
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
+import { updatePersonal } from '../../lib/userRequestHelpers.js';
 
 export default function UserProfile({ profile, setProfile, navigation, handleProfileUpdate }) {
 
-  const [switchValue, setSwitchValue] = useState(false);
+  const [dark, setDark] = useState(false);
 
   const onToggleSwitch = () => {
-      setSwitchValue(!switchValue);
+      setDark(!dark);
+      updatePersonal('dark', !dark);
   }
 
   if (profile === null) {
@@ -19,12 +21,13 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
 
   return (
     <GlobalViewFlat style={styles.container}>
+
+
       <ScrollView>
         <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
 
         <GlobalViewFlat style={styles.buttonHeading}>
-
           <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
             user_id: 1,
             authorization: 1
@@ -49,7 +52,7 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
           <TouchableOpacity style={styles.buttonContainer}>
             <GlobalText onPress={() => navigation.navigate('Public Profile', {
               user_id: 1
-            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>View Profile</GlobalText>
+            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>Profile</GlobalText>
           </TouchableOpacity>
 
         </GlobalViewFlat>
@@ -63,7 +66,7 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
             <GlobalText style={styles.setting}>Dark Mode</GlobalText>
             <Switch
               style={styles.settingSwitch}
-              value={switchValue}
+              value={dark}
               onValueChange={onToggleSwitch}
             />
           </GlobalViewFlat>

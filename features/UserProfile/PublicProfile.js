@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 300,
     padding: 5
-
   },
   infoBlock: {
     flexDirection: 'row',
