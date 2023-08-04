@@ -107,7 +107,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
 
   return (
     <Modal visible={modalInfo.visible} animationType="slide">
-      <View style={styles.container}>
+      <GlobalViewFlat style={styles.container}>
         <TextInput
           placeholder="Product Name"
           value={prodName}
@@ -207,7 +207,7 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
           <Button title="Save" onPress={handleSave} />
           <Button title="Cancel" onPress={onClose} color="red" />
         </View>
-      </View>
+      </GlobalViewFlat>
     </Modal>
   );
 };
