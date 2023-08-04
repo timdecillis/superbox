@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+
 import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
+import {updatePersonal} from '../../lib/userRequestHelpers.js';
 
 export default function UserProfile({navigation, handleProfileUpdate }) {
 
