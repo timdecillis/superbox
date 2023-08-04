@@ -27,11 +27,10 @@ export default function UserProfile({ navigation, handleProfileUpdate }) {
 
         <GlobalViewFlat style={styles.buttonHeading}>
 
-          <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
-            user_id: 1,
-            authorization: 1
+          <TouchableOpacity onPress={() => navigation.navigate('Conversations', {
+            currentUser: profile
           })} style={styles.buttonContainer}>
-            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
+            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Messages</GlobalText>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
