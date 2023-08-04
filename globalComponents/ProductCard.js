@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components/native'
 import { Text, View, Image, Button, ScrollView, Pressable} from 'react-native';
-import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
+import { GlobalView, GlobalPrice, ProductTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const ProductCard = ( {product}) => {
@@ -30,6 +30,7 @@ const Card = styled.View`
 const ImgContainer = styled.View`
   width: 100%;
   height: 350px;
+  background-color:  #FDFAF4;
   border: 1px solid black;
   margin-bottom: 26px;
   margin-top: 50px;
@@ -61,8 +62,6 @@ const InfoContainer = styled.View`
     return <Text>Loading...</Text>;
   }
 
-  console.log(product);
-
   return (
 
     <GlobalView>
@@ -78,9 +77,9 @@ const InfoContainer = styled.View`
         />
         </ImgContainer>
         <InfoContainer>
-        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', fontSize: 29, textShadowColor: 'rgba(0, 0, 0, 0.25)',
+        <ProductTitle style={{ textDecorationLine: 'underline', textAlign: 'center', fontSize: 29, textShadowColor: 'rgba(0, 0, 0, 0.25)',
   textShadowOffset: { width: .75, height: 1.25 },
-  textShadowRadius: 1}}>{product.id === 1 ? 'THE AMAZING SPIDERMAN' : product.product_name.toUpperCase()}</GlobalTitle>
+  textShadowRadius: 1}}>{product.id === 1 ? 'THE AMAZING SPIDERMAN' : product.product_name.toUpperCase()}</ProductTitle>
         <DescPrice>
         <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10, fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.15)',
   textShadowOffset: { width: .75, height: 1.25 },

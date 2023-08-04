@@ -61,7 +61,7 @@ function ProfileStack() {
 function CartIcon() {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{marginRight: 50}}>
+    <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{marginRight: 48}}>
       <Icon
         name="shopping-cart"
         size={38}

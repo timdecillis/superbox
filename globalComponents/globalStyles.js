@@ -13,6 +13,13 @@ height: 100%;
 `;
 
 export const GlobalTitle = styled.Text`
+font-family: Verdana;
+font-size: 26px;
+font-weight: bold;
+color: #EF6461;
+`;
+
+export const ProductTitle = styled.Text`
 font-family: Impact;
 font-size: 26px;
 font-weight: bold;
