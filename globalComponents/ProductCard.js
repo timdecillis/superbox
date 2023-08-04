@@ -16,7 +16,7 @@ const AlignContainer = styled.View`
   align-items: center;
 `;
 
-const CardContainer = styled.View`
+const CardContainer = styled.SafeAreaView`
   flex-direction: row;
   justify-content: center;
   width: 100%;
@@ -31,9 +31,14 @@ const ImgContainer = styled.View`
   width: 100%;
   height: 350px;
   border: 1px solid black;
-  margin-bottom: 40px;
+  margin-bottom: 26px;
   margin-top: 50px;
   justify-content: center;
+  shadow-color: #000;
+  shadow-offset: 3px 5.5px;
+  shadow-opacity: 0.75;
+  shadow-radius: 3.84px;
+  elevation: 5;
 `;
 
 const ProductImg = styled.Image`
@@ -46,7 +51,7 @@ align-items: center;
 `;
 
 const InfoContainer = styled.View`
-  height: 20%;
+  height: 32.5%;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -70,11 +75,17 @@ const InfoContainer = styled.View`
         }}
         />
         </ImgContainer>
-        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', marginBottom: 35}}>{product?.product_name ? product.product_name : ''}</GlobalTitle>
         <InfoContainer>
+        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', fontSize: 35, textShadowColor: 'rgba(0, 0, 0, 0.25)',
+  textShadowOffset: { width: .75, height: 1.25 },
+  textShadowRadius: 1}}>{product?.product_name ? 'THE AMAZING SPIDERMAN' : ''}</GlobalTitle>
         <DescPrice>
-        <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10}} >{product?.description ? product?.description : ''}</GlobalParagraph >
-        <GlobalPrice >$29.99</GlobalPrice>
+        <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10, fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.15)',
+  textShadowOffset: { width: .75, height: 1.25 },
+  textShadowRadius: 1}} >{product?.description ? product?.description : ''}</GlobalParagraph >
+        <GlobalPrice style={{fontSize: 18, marginBottom: 10, fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.05)',
+  textShadowOffset: { width: .75, height: 1.25 },
+  textShadowRadius: 1}} >$29.99</GlobalPrice>
         </DescPrice>
         <GlobalRating style={{ fontWeight: 'bold', textDecorationLine: 'underline'}} >★★★★★</GlobalRating>
         </InfoContainer>

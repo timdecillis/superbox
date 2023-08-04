@@ -33,17 +33,6 @@ export default function App() {
           {useNativeDriver: false}
         )}
         >
-        {/* <Pressable onPress={() => navigation.navigate('Product')}>
-        <View style={{height: 400}}>
-          <ProductCard />
-        </View>
-        </Pressable>
-        <View style={{height: 400}}>
-          <ProductCard />
-        </View>
-        <View style={{height: 400}}>
-          <ProductCard />
-        </View> */}
         {products.map(product =>
                   <View style={{height: 400}}>
                     <Pressable onPress={() => navigation.navigate('Product', {product: product})}>
