@@ -4,7 +4,7 @@ import { Text, View, Image, Button, ScrollView, Pressable} from 'react-native';
 import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 import { useNavigation } from '@react-navigation/native';
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
 
   const navigation = useNavigation();
 
@@ -20,8 +20,8 @@ const ProductCard = () => {
 
   const CardContainer = styled.View`
   flex-direction: row;
-  height: 85%;
-  max-height: 90%;
+  height: 100%;
+  max-height: 100%;
   `
 
   const Card = styled.View`
@@ -42,17 +42,6 @@ const ProductCard = () => {
   const ProductImg = styled.Image`
   height: 100%;
   width: 100%;
-  `;
-
-  const DescContainer = styled.View`
-  align-items: center;
-  margin-top: 10px;
-  `;
-
-  const PriceContainer = styled.View`
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
   `;
 
   const TempSellerText = styled.Text`
@@ -78,17 +67,10 @@ const ProductCard = () => {
         />
         </ImgContainer>
 
-        <GlobalTitle>The Amazing Spiderman</GlobalTitle>
-        <Pressable>
-        <TempSellerText>@Superbox</TempSellerText>
-        </Pressable>
-        <DescContainer>
-        <GlobalParagraph>50th Issue of The Amazing Spiderman</GlobalParagraph>
-        </DescContainer>
-        <PriceContainer>
-        <GlobalPrice>$29.99</GlobalPrice>
-        </PriceContainer>
-        <GlobalRating>★★★★★</GlobalRating>
+        <GlobalTitle style={{ textDecorationLine: 'underline', textAlign: 'center', marginBottom: 30}}>{product.product_name}</GlobalTitle>
+        <GlobalParagraph style={{ fontWeight: 'bold', textAlign: 'center', marginBottom: 10}} >{product.description}</GlobalParagraph >
+        <GlobalPrice style={{marginBottom: 40}}>$29.99</GlobalPrice>
+        <GlobalRating style={{ fontWeight: 'bold', textDecorationLine: 'underline'}} >★★★★★</GlobalRating>
       </Card>
       </CardContainer>
       </AlignContainer>
