@@ -24,8 +24,17 @@ const CartPage = () => {
   }, [])
 
   const calculateTotal = () => {
-    return products.reduce((accu,product) => accu + Number(product.price),  0)
+    const prices = parseMoney(products);
+    console.log(prices);
+    const total =  prices.reduce((accu,prices) => accu + prices, 0);
+    return new Intl.NumberFormat().format(total);
+
   }
+
+  const parseMoney = (products) => {
+    return products.map(product => Number(product.price.slice(1)));
+  }
+
   const navigation = useNavigation();
   console.log('this is the products, ', products);
   return (
@@ -42,7 +51,7 @@ const CartPage = () => {
           {products.map(product => <CartCard key={product.product_id} product={product}/>)}
         </CartInfoContainer>
         <SubTotalContainer>
-          <GlobalPrice>Subtotal: {calculateTotal()}</GlobalPrice>
+          {products[0].price ? <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice> : <></>}
           <GlobalCartButton
           onPress={() => {Alert.alert('Payment confirmed! Your items are on their way!'); navigation.navigate('Home')}}
         ><GlobalCartButtonText>Checkout</GlobalCartButtonText></GlobalCartButton>
