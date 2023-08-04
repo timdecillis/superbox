@@ -6,21 +6,25 @@ import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
 import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
-import {retrievePublic} from '../../lib/userRequestHelpers.js';
+import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
 
-export default function PublicProfile() {
+export default function PublicProfile({navigation}) {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
-  const [data, setData] = useState(userData);
+  const [profile, setProfile] = useState(userData);
   const [isAdmin, setIsAdmin] = useState(true);
   const [switchValue, setSwitchValue] = useState(false);
 
   const onToggleSwitch = () => {
-      setSwitchValue(!switchValue);
+    setSwitchValue(!switchValue);
+    updatePersonal(profile, 'ban', !switchValue)
   }
 
   useEffect(() => {
-    retrievePublic();
+    // retrievePublic()
+    // .then((data) => {
+    //   setProfile(data);
+    // })
   }, [])
 
 
@@ -30,14 +34,14 @@ export default function PublicProfile() {
       <ScrollView>
 
         <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{data.userName}</GlobalTitle>
-          <GlobalRating style={{ marginRight: 10}}>average rating: {data.rating}</GlobalRating>
+          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.userName}</GlobalTitle>
+          <GlobalRating style={{ marginRight: 10}}>average rating: {profile.rating}</GlobalRating>
         </GlobalViewFlat>
 
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Listings</GlobalText>
-          {data.listings.map((listing, i) => {
+          {profile.listings.map((listing, i) => {
             return (
               <GlobalViewFlat key={i} style={styles.listing}>
                 <GlobalViewFlat style={styles.listingLeft}>
@@ -52,7 +56,7 @@ export default function PublicProfile() {
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <TouchableOpacity
-          onPress={messageUser}
+          onPress={() => navigation.navigate('Messages')}
           style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
           </TouchableOpacity>
@@ -101,7 +105,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 300,
     padding: 5
-
   },
   infoBlock: {
     flexDirection: 'row',

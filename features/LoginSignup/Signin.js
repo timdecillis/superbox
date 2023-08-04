@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import axios from 'axios';
 import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
@@ -16,16 +16,16 @@ const SignIn = ({profile, setProfile}) => {
 
   const auth = Firebase_Auth;
 
+  useEffect(() => {
+    setProfile({});
+  }, [])
+
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
-      const endpoint = 'http://3.141.17.132/api/u/users';
+      console.log('profile',profile);
 
-      // const config = {
-      //   headers: {
-      //     authorization: `${profile.idToken}`,
-      //   },
-      // };
+      const endpoint = 'http://3.141.17.132/api/u/users';
 
       const response = await axios.post(endpoint, profile);
 
@@ -46,27 +46,22 @@ const SignIn = ({profile, setProfile}) => {
         'email': email,
         'idToken': response._tokenResponse.idToken
       });
-
       setSignUp(false);
       setLogin(false);
       setProfilePage(false);
       alert('Sign In Success')
 
-    // const config = {
-    //   headers: {
-    //     // authorization: `${response._tokenResponse.idToken}`,
-    //   },
-    //   body: {
+      console.log('idToken:', response._tokenResponse.idToken);
 
-    //   }
-    // };
+    const config = {
+      headers: {
+        authorization: `${response._tokenResponse.idToken}`,
+      },
+    };
 
-    const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
+    const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`, config);
 
-    setProfile({
-      ...profile,
-      ...backendResponse.data,
-    });
+    setProfile({...profile, ...backendResponse.data});
 
     console.log('Profile Data from Backend:', backendResponse.data);
 
@@ -79,7 +74,7 @@ const SignIn = ({profile, setProfile}) => {
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-console.log('RESPONSE',response)
+// console.log('IDTOKEN',response._tokenResponse.idToken)
       setProfile({
         ...profile,
         'firebase_uid': response.user.uid,
@@ -239,9 +234,7 @@ console.log('RESPONSE',response)
 
       <InputBarContainer>
         <InputField
-          onChangeText={(text) => {
-            const formattedNumber = handlePhoneNumber(text);
-            setProfile({ ...profile, Number: formattedNumber });
+          onChangeText={(text) => {setProfile({ ...profile, phone_number: text });
           }}
           placeholder="Number"
           keyboardType="phone-pad"

@@ -1,16 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, Animated, StyleSheet, View } from 'react-native';
 import Product from '../Listing/ProductPage'
 import { useNavigation } from '@react-navigation/native';
 import DynamicHeader from '../../globalComponents/Search.js';
 import ProductCard from '../../globalComponents/ProductCard.js';
+import { GlobalViewFlat, GlobalText, GlobalTitle } from '../../globalComponents/globalStyles.js';
+import axios from 'axios';
 
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://3.141.17.132/api/lp")
+    .then((response)=> {
+      setProducts(response.data);
+    })
+    .catch((error)=> {
+      console.log(error);
+    })
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
+      <GlobalViewFlat>
       <DynamicHeader animHeaderValue={scrollOffsetY} />
       <ScrollView
         scrollEventThrottle={16}
@@ -18,8 +32,8 @@ export default function App() {
           [{ nativeEvent: { contentOffset: { y: scrollOffsetY}}}],
           {useNativeDriver: false}
         )}
-      >
-        <Pressable onPress={() => navigation.navigate('Product')}>
+        >
+        {/* <Pressable onPress={() => navigation.navigate('Product')}>
         <View style={{height: 400}}>
           <ProductCard />
         </View>
@@ -29,8 +43,15 @@ export default function App() {
         </View>
         <View style={{height: 400}}>
           <ProductCard />
-        </View>
+        </View> */}
+        {products.map(product =>
+                  <View style={{height: 400}}>
+                    <Pressable onPress={() => navigation.navigate('Product', {product: product})}>
+                  <ProductCard key={product.id} product={product}/>
+                  </Pressable>
+                </View>)}
       </ScrollView>
+        </GlobalViewFlat>
     </SafeAreaView>
   );
 }
