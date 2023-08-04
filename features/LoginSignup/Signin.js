@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import axios from 'axios';
 import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
@@ -16,6 +16,10 @@ const SignIn = ({profile, setProfile}) => {
 
   const auth = Firebase_Auth;
 
+  useEffect(() => {
+    setProfile({});
+  }, [])
+
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
@@ -23,13 +27,7 @@ const SignIn = ({profile, setProfile}) => {
 
       const endpoint = 'http://3.141.17.132/api/u/users';
 
-      const config = {
-        headers: {
-          authorization: `${profile.idToken}`,
-        },
-      };
-
-      const response = await axios.post(endpoint, profile, config);
+      const response = await axios.post(endpoint, profile);
 
       console.log('Response:', response.data);
 
@@ -52,6 +50,8 @@ const SignIn = ({profile, setProfile}) => {
       setLogin(false);
       setProfilePage(false);
       alert('Sign In Success')
+
+      console.log('idToken:', response._tokenResponse.idToken);
 
     const config = {
       headers: {
