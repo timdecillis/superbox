@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
-import axios from 'axios';
+import { getMessages, createMessage, deleteMessage } from '../../lib/messagesRequests.js';
 
 const Messages = ({ currentUser, activeConversation, setActiveConversation, setConversationSelected, navigation }) => {
 
@@ -22,6 +22,28 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
     }
 
   }, [activeConversation]);
+
+  const handleSubmit = () => {
+    data = {
+      conversationId: activeConversation.id,
+      content: inputValue
+    }
+
+    createMessage(data, currentUser.idToken)
+      .catch((err) => {
+        console.error('Error posting message:', err);
+      })
+      .then(() => {
+        return getMessages(activeConversation.id)
+      })
+      .catch((err) => {
+        console.error('Error retrieving messages:', err);
+      })
+      .then((messages) => {
+        setMessagesArray(messages);
+        setInputValue('');
+      });
+  };
 
   messagesArray = [{ id: 1} , { id: 2}, { id: 3}, { id: 4}, { id: 5}, { id: 6}, { id: 7}, { id: 8}, { id: 9}, { id: 10}, { id: 11}, { id: 12}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}];
   // messagesArray = [{ id: 1} , { id: 2}];
@@ -48,17 +70,9 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
 
   };
 
-  const createMessage = (conversationId, userId) => {
-
-  };
-
-  const getMessages = (conversationId) => {
-
-  };
-
   return (
     <SafeAreaView style={styles.safeView} >
-    <View style={headerStyles.headerContainer}>
+      <View style={headerStyles.headerContainer}>
         <TouchableOpacity style={headerStyles.textContainer} onPress={() => {
           setActiveConversation({});
           setConversationSelected(false);
@@ -80,28 +94,32 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.bodyContainer}>
-        <FlatList
-          data={messagesArray}
-          renderItem={renderMessage}
-          keyExtractor={(item, index) => index}
-          showsVerticalScrollIndicator={false}
-          style={styles.flatList}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Send message..."
-          style={styles.input}
-          onSubmitEditing={Keyboard.dismiss}
-        />
-        <TouchableOpacity style={styles.submitButton}>
-          <Text style={styles.submitText}>
-            Send
-          </Text>
-        </TouchableOpacity>
-      </View>
-  </SafeAreaView>
+          {/* <KeyboardAvoidingView> */}
+        <View style={styles.bodyContainer}>
+          <FlatList
+            data={messagesArray}
+            renderItem={renderMessage}
+            keyExtractor={(item, index) => index}
+            showsVerticalScrollIndicator={false}
+            style={styles.flatList}
+            />
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Send message..."
+            style={styles.input}
+            onSubmitEditing={Keyboard.dismiss}
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+            />
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.submitText}>
+              Send
+            </Text>
+          </TouchableOpacity>
+            </View>
+        </View>
+      {/* </KeyboardAvoidingView> */}
+    </SafeAreaView>
   );
 };
 

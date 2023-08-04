@@ -3,28 +3,30 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, Fla
 import Messages from './Messages.js';
 import { GlobalView } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
-import axios from 'axios';
-
-// const customLanguage = {
-//   s: 's', // seconds
-//   m: 'min', // minutes
-//   h: 'hr', // hours
-//   d: 'd', // days
-//   w: 'w', // weeks
-//   M: 'mo', // months
-//   y: 'y' // years
-// };
-
-// moment.updateLocale('en', { relativeTime: customLanguage });
+import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 
 const Conversations = ({ currentUser, profile, setProfile, navigation, handleProfileUpdate }) => {
 
   let [conversationsArray, setConversationsArray] = useState([]);
   const [activeConversation, setActiveConversation] = useState({});
   const [conversationSelected, setConversationSelected] = useState(false);
-  const [inputValue, setInputValue] = useState('');
 
   conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
+
+  useEffect(() => {
+    if (!!currentUser) {
+      getConversations(currentUser.idToken)
+        .then((conversations) => {
+          console.log(conversations)
+          setConversationsArray(conversations);
+        })
+        .catch((err) => {
+          console.error('Error retrieving conversations:', err);
+          setConversationsArray([]);
+        })
+    }
+
+  }, [])
 
   const renderConversation = ({item}) => {
 
