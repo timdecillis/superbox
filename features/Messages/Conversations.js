@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import Messages from './Messages.js';
-import { GlobalView } from '../../globalComponents/globalStyles.js';
+import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
 import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
 
@@ -65,7 +66,7 @@ const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
     return (
       <SafeAreaView style={bodyStyles.safeView} >
           <View style={headerStyles.headerContainer}>
-            <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('User Profile', {
+            <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Profile', {
                   handleProfileUpdate: handleProfileUpdate
                 })}>
               <Text style={headerStyles.headerText}>
@@ -73,14 +74,16 @@ const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
               </Text>
             </TouchableOpacity>
             <View style={headerStyles.titleContainer}>
-              <Text style={headerStyles.titleText}>
+              <GlobalTitle>
                 Messages
-              </Text>
+              </GlobalTitle>
             </View>
             <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Cart')}>
-              <Text style={headerStyles.headerText}>
-                Cart
-              </Text>
+              <Icon
+                name="shopping-cart"
+                size={24}
+                color="#000"
+              />
             </TouchableOpacity>
           </View>
           <View style={bodyStyles.bodyContainer}>

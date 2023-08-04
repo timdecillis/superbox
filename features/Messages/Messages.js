@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { getMessages, createMessage, deleteMessage } from '../../lib/messagesRequests.js';
+import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const Messages = ({ currentUser, activeConversation, setActiveConversation, setConversationSelected, navigation }) => {
 
@@ -84,14 +87,16 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
           </Text>
         </TouchableOpacity>
         <View style={headerStyles.titleContainer}>
-          <Text style={headerStyles.titleText}>
+          <GlobalTitle>
             {activeConversation.username}
-          </Text>
+          </GlobalTitle>
         </View>
         <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Cart')}>
-          <Text style={headerStyles.headerText}>
-            Cart
-          </Text>
+          <Icon
+            name="shopping-cart"
+            size={24}
+            color="#000"
+          />
         </TouchableOpacity>
       </View>
           {/* <KeyboardAvoidingView> */}

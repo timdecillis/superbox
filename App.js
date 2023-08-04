@@ -46,8 +46,7 @@ function ProfileStack() {
   <Stack.Screen name="Public Profile" component={PublicProfile} />
   <Stack.Screen name="Purchases" component={Purchases} />
   <Stack.Screen name="My Listings" component={MyListings} />
-  <Stack.Screen name="Conversations" component={Conversations} />
-  <Stack.Screen name="Messages" component={Messages} />
+  <Stack.Screen name="Conversations" component={Conversations} options={{ headerShown: false }}/>
   </Stack.Navigator>
   );
 }
@@ -74,7 +73,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator initialRouteName='Marketplace'>
 
-        <Tab.Screen name="Marketplace" component={HomeStack}  options={{ headerShown: false}}/>
+        <Tab.Screen name="Marketplace" component={HomeStack}  options={{ headerShown: false }}/>
         <>
         <Tab.Screen
           name="User Profile"
@@ -90,6 +89,7 @@ export default function App() {
           name="SignIn"
           options={{
             tabBarLabel: 'Sign In',
+            headerShown: false,
           }}
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
         />
