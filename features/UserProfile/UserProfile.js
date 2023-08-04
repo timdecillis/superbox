@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, ScrollView, ImageBackground, Switch, Modal} from 'react-native';
-
+import React, { useState, useContext } from 'react';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
-import { updatePersonal } from '../../lib/userRequestHelpers.js';
 
 export default function UserProfile({ profile, setProfile, navigation, handleProfileUpdate }) {
 
@@ -28,11 +27,11 @@ export default function UserProfile({ profile, setProfile, navigation, handlePro
 
 
         <GlobalViewFlat style={styles.buttonHeading}>
-          <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
-            user_id: 1,
-            authorization: 1
+
+          <TouchableOpacity onPress={() => navigation.navigate('Conversations', {
+            currentUser: profile
           })} style={styles.buttonContainer}>
-            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
+            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Messages</GlobalText>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
