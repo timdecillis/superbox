@@ -107,7 +107,7 @@ export default function App() {
         )}
         >
         {products.map(product =>
-                  <View style={{height: 680}}>
+                  <View style={{height: 650}}>
                     <Pressable onPress={() => navigation.navigate('Product', {product: product})}>
                   <ProductCard key={product.id} product={product}/>
                   </Pressable>
