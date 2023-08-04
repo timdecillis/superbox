@@ -45,8 +45,8 @@ color: #E4B363;
 export const GlobalCartButton = styled.Pressable`
 alignItems: center;
 justifyContent: center;
-paddingVertical: 12;
-paddingHorizontal: 32;
+paddingVertical: 12px;
+paddingHorizontal: 32px;
 border-radius: 3px;
 elevation: 3;
 backgroundColor: #EF6461;

@@ -21,13 +21,13 @@ const SignIn = ({profile, setProfile}) => {
       alert('Profile Saved')
       const endpoint = 'http://3.141.17.132/api/u/users';
 
-      // const config = {
-      //   headers: {
-      //     authorization: `${profile.idToken}`,
-      //   },
-      // };
+      const config = {
+        headers: {
+          authorization: `${profile.idToken}`,
+        },
+      };
 
-      const response = await axios.post(endpoint, profile);
+      const response = await axios.post(endpoint, profile, config);
 
       console.log('Response:', response.data);
 
@@ -52,14 +52,11 @@ const SignIn = ({profile, setProfile}) => {
       setProfilePage(false);
       alert('Sign In Success')
 
-    // const config = {
-    //   headers: {
-    //     // authorization: `${response._tokenResponse.idToken}`,
-    //   },
-    //   body: {
-
-    //   }
-    // };
+    const config = {
+      headers: {
+        authorization: `${response._tokenResponse.idToken}`,
+      }
+    };
 
     const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
 
@@ -241,7 +238,7 @@ console.log('RESPONSE',response)
         <InputField
           onChangeText={(text) => {
             const formattedNumber = handlePhoneNumber(text);
-            setProfile({ ...profile, Number: formattedNumber });
+            setProfile({ ...profile, phone_number: formattedNumber });
           }}
           placeholder="Number"
           keyboardType="phone-pad"
