@@ -5,7 +5,7 @@ import { GlobalView } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
 import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 
-const Conversations = ({ currentUser, profile, setProfile, navigation, handleProfileUpdate }) => {
+const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
 
   let [conversationsArray, setConversationsArray] = useState([]);
   const [activeConversation, setActiveConversation] = useState({});
@@ -66,10 +66,6 @@ const Conversations = ({ currentUser, profile, setProfile, navigation, handlePro
       <SafeAreaView style={bodyStyles.safeView} >
           <View style={headerStyles.headerContainer}>
             <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('User Profile', {
-                  currentUser: profile,
-                  navigation: navigation,
-                  profile: profile,
-                  setProfile: setProfile,
                   handleProfileUpdate: handleProfileUpdate
                 })}>
               <Text style={headerStyles.headerText}>
