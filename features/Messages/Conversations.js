@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import Messages from './Messages.js';
-import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
+import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
 import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -49,14 +49,14 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
           </View>
           <View style={listStyles.textContainer}>
             <View style={listStyles.messageContainer}>
-              <Text numberOfLines={1} style={listStyles.messageText}>
+              <GlobalText numberOfLines={1} style={listStyles.messageText}>
                 Hello how are you? I would like to buy a comic.
-              </Text>
+              </GlobalText>
             </View>
             <View style={listStyles.timeContainer}>
-              <Text style={listStyles.timeText}>
+              <GlobalText style={listStyles.timeText}>
                 {dateTimeAgo}
-              </Text>
+              </GlobalText>
             </View>
           </View>
         </View>
@@ -67,13 +67,14 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   if (!conversationSelected) {
     return (
       <SafeAreaView style={bodyStyles.safeView} >
-          <View style={headerStyles.headerContainer}>
+        <GlobalViewFlat>
+          <GlobalViewFlat style={headerStyles.headerContainer}>
             <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Profile', {
                   handleProfileUpdate: handleProfileUpdate
                 })}>
-              <Text style={headerStyles.headerText}>
+              <GlobalText>
                 Back
-              </Text>
+              </GlobalText>
             </TouchableOpacity>
             <View style={headerStyles.titleContainer}>
               <GlobalTitle>
@@ -87,7 +88,7 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 color="#000"
               />
             </TouchableOpacity>
-          </View>
+          </GlobalViewFlat>
           <View style={bodyStyles.bodyContainer}>
             <FlatList
                 data={conversationsArray}
@@ -96,6 +97,7 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 showsVerticalScrollIndicator={false}
               />
           </View>
+        </GlobalViewFlat>
       </SafeAreaView>
     );
   } else {
@@ -139,7 +141,6 @@ const headerStyles = StyleSheet.create({
 const bodyStyles = StyleSheet.create({
   safeView: {
     flex: 1,
-    // backgroundColor: '#FDFAF4'
   },
   bodyContainer: {
     flex: 1
