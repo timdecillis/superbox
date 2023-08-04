@@ -1,17 +1,17 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch, TextInput } from 'react-native';
 
+import { UserProfileContext } from '../../App.js'
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating, GlobalPrice } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
 import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
 
 export default function PublicProfile({navigation}) {
-  let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
-  const [profile, setProfile] = useState(userData);
+  const { profile, setProfile } = useContext(UserProfileContext);
   const [isAdmin, setIsAdmin] = useState(true);
   const [switchValue, setSwitchValue] = useState(false);
 
@@ -20,13 +20,16 @@ export default function PublicProfile({navigation}) {
     updatePersonal(profile, 'ban', !switchValue)
   }
 
-  useEffect(() => {
-    // retrievePublic()
-    // .then((data) => {
-    //   setProfile(data);
-    // })
-  }, [])
+  // useEffect(() => {
+  //   retrievePublic()
+  //   .then((data) => {
+  //     setProfile(data);
+  //   })
+  // }, [])
 
+  if (profile === null) {
+    return null;
+  }
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -48,7 +51,7 @@ export default function PublicProfile({navigation}) {
                   <GlobalText style={styles.product}>{listing.product}</GlobalText>
                   <GlobalText style={styles.info}>{listing.info}</GlobalText>
                 </GlobalViewFlat>
-                <GlobalText>{listing.price}</GlobalText>
+                <GlobalPrice>{listing.price}</GlobalPrice>
               </GlobalViewFlat>
             );
           })}
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     height: 26,
-    borderRadius: 20,
+    borderRadius: 5,
     borderWidth: 1,
     width: 300,
     padding: 5
