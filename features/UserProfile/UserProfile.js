@@ -36,9 +36,7 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
 
         <GlobalViewFlat style={styles.buttonHeading}>
 
-          <TouchableOpacity onPress={() => navigation.navigate('Conversations', {
-            currentUser: profile
-          })} style={styles.buttonContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Conversations')} style={styles.buttonContainer}>
             <GlobalText style={[styles.option, { color: '#ef6461' }]}>Messages</GlobalText>
           </TouchableOpacity>
 
