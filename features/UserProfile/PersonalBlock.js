@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 const axios = require('axios');
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch, Modal, TextInput } from 'react-native';
 
+import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalCartButton, GlobalCartButtonText } from '../../globalComponents/globalStyles.js';
 import { updatePersonal } from '../../lib/userRequestHelpers.js';
 import AddressModal from './AddressModal.js';
@@ -17,8 +18,9 @@ const obscurePass = (password) => {
   return result;
 };
 
-export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
+export default PersonalBlock = () => {
 
+  const { profile, setProfile } = useContext(UserProfileContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');

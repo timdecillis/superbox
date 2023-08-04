@@ -8,24 +8,35 @@ import DynamicHeader from '../../globalComponents/Search.js';
 import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating, GlobalPrice } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
 import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
+import {getActiveListings} from '../../lib/orderRequestHelpers.js';
 
 export default function PublicProfile({navigation}) {
 
   const { profile, setProfile } = useContext(UserProfileContext);
   const [isAdmin, setIsAdmin] = useState(true);
   const [switchValue, setSwitchValue] = useState(false);
+  const [listings, setListings] = useState([]);
 
   const onToggleSwitch = () => {
     setSwitchValue(!switchValue);
     updatePersonal(profile, 'ban', !switchValue)
   }
 
-  // useEffect(() => {
-  //   retrievePublic()
-  //   .then((data) => {
-  //     setProfile(data);
-  //   })
-  // }, [])
+  useEffect(() => {
+    retrievePublic(profile.firebase_uid)
+    .then((data) => {
+      console.log(data);
+      setProfile(data);
+    })
+  }, [])
+
+  useEffect(() => {
+    getActiveListings(profile.firebase_uid, profile.idToken)
+    .then((data) => {
+      console.log(data);
+      setListings(data);
+    })
+  }, [])
 
   if (profile === null) {
     return null;
@@ -37,14 +48,14 @@ export default function PublicProfile({navigation}) {
       <ScrollView>
 
         <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.userName}</GlobalTitle>
-          <GlobalRating style={{ marginRight: 10}}>average rating: {profile.rating}</GlobalRating>
+          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.username}</GlobalTitle>
+          <GlobalRating style={{ marginRight: 10}}>average rating: {profile.interests}</GlobalRating>
         </GlobalViewFlat>
 
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Listings</GlobalText>
-          {profile.listings.map((listing, i) => {
+          {listings.map((listing, i) => {
             return (
               <GlobalViewFlat key={i} style={styles.listing}>
                 <GlobalViewFlat style={styles.listingLeft}>
