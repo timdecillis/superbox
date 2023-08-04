@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
-import { Text, View, FlatList, StyleSheet, Button } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import FilterBar from './FilterBar';
 import AddEditListingModal from './AddEditModal.js';
+import { UserProfileContext } from '../../App.js'
+import requestHelpers from '../../lib/productRequestHelpers.js'
+import SwipableList from './SwipableList';
+import exampleListings from './exampleListings.js'
 
 const MyListings = () => {
+  const [listings, setListings] = useState([]);
   const [activeFilter, setActiveFilter] = useState('active');
   const [showModal, setShowModal] = useState({type: null, visible:false, data:{}});
+  const { profile, setProfile } = useContext(UserProfileContext);
+  const [filteredListings, setFilteredListings] = useState([]);
 
-  const dummylistingsData = [
-    { id: '1', title: 'Listing 1', status: 'active' },
-    { id: '2', title: 'Listing 2', status: 'inactive' },
-    { id: '3', title: 'Listing 3', status: 'fulfilled' },
-    { id: '4', title: 'Listing 4', status: 'unfulfilled' },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const mylistings = await requestHelpers.getMyListings(profile);
+        setListings(mylistings);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
 
-  const filteredListings = dummylistingsData.filter(item => item.status === activeFilter);
+    // fetchProducts();
+    setListings(exampleListings); //just example listings for now
+  }, []);
+
+
+  useEffect(()=>{
+    setFilteredListings(listings.filter(item => item.status === activeFilter));
+  },[activeFilter, listings])
+
 
   const handleFilterChange = filter => {
     setActiveFilter(filter);
   };
 
   const handleOpenModal = (type, data) => {
-    console.log(type, 'data: ', data)
     setShowModal({type:type, visible:true, data:data});
   };
 
@@ -30,34 +47,38 @@ const MyListings = () => {
   };
 
   const handleSubmitListing = () => {
-    //axios.post to add new listing
-    //or axios.put to edit
-    // or axios.delete to remove listing
-    console.log('clicked');
   };
 
+  const deleteItem = (key) => {
+    setListings(listings.filter(item => item.id !== key));
+  };
 
-
+  const changeStatus = (key, newStatus) => {
+    const updatedListings = listings.map(item => {
+      if(item.id === key) {
+        return { ...item, status: newStatus };
+      }
+      return item;
+    });
+    setListings(updatedListings);
+  };
 
   return (
     <View style={styles.container}>
       <FilterBar activeFilter={activeFilter} onChangeFilter={handleFilterChange} />
-      <FlatList
+      <SwipableList
         data={filteredListings}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <Listing data={item} />}
+        renderItem={({ item }) => (
+          <View style={styles.listingItem}>
+            <Text>{item.title}</Text>
+            <Text>Status: {item.status}</Text>
+          </View>
+        )}
+        deleteItem={deleteItem}
+        changeStatus={changeStatus}
       />
       <Button title="Add New Listing" onPress={()=>handleOpenModal('add', {})} />
       <AddEditListingModal modalInfo={showModal} onClose={handleCloseModal} onSubmit={handleSubmitListing} />
-    </View>
-  );
-};
-
-const Listing = ({ title, status, handleEditListing }) => {
-  return (
-    <View style={styles.listingItem} onClick={(e)=>{handleOpenModal('edit',e)}}>
-      <Text>{title}</Text>
-      <Text>Status: {status}</Text>
     </View>
   );
 };
