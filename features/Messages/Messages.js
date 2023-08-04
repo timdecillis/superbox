@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { getMessages, createMessage, deleteMessage } from '../../lib/messagesRequests.js';
-import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
+import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-const Messages = ({ currentUser, activeConversation, setActiveConversation, setConversationSelected, navigation }) => {
+const Messages = ({ profile, activeConversation, setActiveConversation, setConversationSelected, navigation }) => {
 
   const [inputValue, setInputValue] = useState('');
   let [messagesArray, setMessagesArray] = useState([]);
@@ -13,10 +13,10 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
 
   useEffect(() => {
 
-    if (!!currentUser && !!activeConversation.id) {
+    if (!!profile && !!activeConversation.id) {
       getMessages(activeConversation.id)
         .then((result) => {
-          setMessagesArray(result);
+          setMessagesArray(result.data);
         })
         .catch((err) => {
           console.error('Error retrieving messages:', err);
@@ -32,7 +32,7 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
       content: inputValue
     }
 
-    createMessage(data, currentUser.idToken)
+    createMessage(data, profile.idToken)
       .catch((err) => {
         console.error('Error posting message:', err);
       })
@@ -48,25 +48,24 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
       });
   };
 
-  messagesArray = [{ id: 1} , { id: 2}, { id: 3}, { id: 4}, { id: 5}, { id: 6}, { id: 7}, { id: 8}, { id: 9}, { id: 10}, { id: 11}, { id: 12}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}];
-  // messagesArray = [{ id: 1} , { id: 2}];
+  // messagesArray = [{ id: 1} , { id: 2}, { id: 3}, { id: 4}, { id: 5}, { id: 6}, { id: 7}, { id: 8}, { id: 9}, { id: 10}, { id: 11}, { id: 12}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}];
 
   const renderMessage = ({ item }) => {
 
     if (item.id % 2 === 0) {
       return (
-        <View style={[styles.messageContainer, styles.currentUserMessageContainer]}>
-          <Text style={styles.messageText}>
+        <View style={[styles.messageContainer, styles.profileMessageContainer]}>
+          <GlobalText>
             This is a message {item.id}
-          </Text>
+          </GlobalText>
         </View>
       );
     } else {
       return (
         <View style={styles.messageContainer}>
-          <Text style={styles.messageText}>
+          <GlobalText>
             This is a message {item.id}
-          </Text>
+          </GlobalText>
         </View>
       );
     }
@@ -75,31 +74,31 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
 
   return (
     <SafeAreaView style={styles.safeView} >
-      <View style={headerStyles.headerContainer}>
-        <TouchableOpacity style={headerStyles.textContainer} onPress={() => {
-          setActiveConversation({});
-          setConversationSelected(false);
-          setMessagesArray([]);
-          }}
-        >
-          <Text style={headerStyles.headerText}>
-            Back
-          </Text>
-        </TouchableOpacity>
-        <View style={headerStyles.titleContainer}>
-          <GlobalTitle>
-            {activeConversation.username}
-          </GlobalTitle>
+      <GlobalViewFlat>
+        <View style={headerStyles.headerContainer}>
+          <TouchableOpacity style={headerStyles.textContainer} onPress={() => {
+            setActiveConversation({});
+            setConversationSelected(false);
+            setMessagesArray([]);
+            }}
+          >
+            <GlobalText>
+              Back
+            </GlobalText>
+          </TouchableOpacity>
+          <View style={headerStyles.titleContainer}>
+            <GlobalTitle>
+              {activeConversation.username}
+            </GlobalTitle>
+          </View>
+          <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Cart')}>
+            <Icon
+              name="shopping-cart"
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Cart')}>
-          <Icon
-            name="shopping-cart"
-            size={24}
-            color="#000"
-          />
-        </TouchableOpacity>
-      </View>
-          {/* <KeyboardAvoidingView> */}
         <View style={styles.bodyContainer}>
           <FlatList
             data={messagesArray}
@@ -123,7 +122,7 @@ const Messages = ({ currentUser, activeConversation, setActiveConversation, setC
           </TouchableOpacity>
             </View>
         </View>
-      {/* </KeyboardAvoidingView> */}
+      </GlobalViewFlat>
     </SafeAreaView>
   );
 };
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-end'
   },
-  currentUserMessageContainer: {
+  profileMessageContainer: {
     backgroundColor: '#E4B363',
     alignSelf: 'flex-end'
   },
