@@ -1,19 +1,26 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch, Linking } from 'react-native';
+
 import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
+import {updatePersonal} from '../../lib/userRequestHelpers.js';
 
-export default function UserProfile({ navigation, handleProfileUpdate }) {
+export default function UserProfile({navigation, handleProfileUpdate }) {
 
+
+  const [dark, setDark] = useState(false);
   const { profile, setProfile } = useContext(UserProfileContext);
 
-  const [switchValue, setSwitchValue] = useState(false);
-
   const onToggleSwitch = () => {
-      setSwitchValue(!switchValue);
+      setDark(!dark);
+      updatePersonal('dark', !dark);
   }
+
+  const handleContactUs = () => {
+    Linking.openURL('mailto:clarkkent@superbox.com');
+  };
 
   if (profile === null) {
     return null;
@@ -21,17 +28,16 @@ export default function UserProfile({ navigation, handleProfileUpdate }) {
 
   return (
     <GlobalViewFlat style={styles.container}>
+
+
       <ScrollView>
-        <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
+        <GlobalText style={styles.mainHeading}>Hi, {profile.username}!</GlobalText>
 
 
         <GlobalViewFlat style={styles.buttonHeading}>
 
-          <TouchableOpacity onPress={() => navigation.navigate('Inbox', {
-            user_id: 1,
-            authorization: 1
-          })} style={styles.buttonContainer}>
-            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Inbox</GlobalText>
+          <TouchableOpacity onPress={() => navigation.navigate('Conversations')} style={styles.buttonContainer}>
+            <GlobalText style={[styles.option, { color: '#ef6461' }]}>Messages</GlobalText>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('My Listings', {
@@ -51,7 +57,7 @@ export default function UserProfile({ navigation, handleProfileUpdate }) {
           <TouchableOpacity style={styles.buttonContainer}>
             <GlobalText onPress={() => navigation.navigate('Public Profile', {
               user_id: 1
-            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>View Profile</GlobalText>
+            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>Profile</GlobalText>
           </TouchableOpacity>
 
         </GlobalViewFlat>
@@ -65,7 +71,7 @@ export default function UserProfile({ navigation, handleProfileUpdate }) {
             <GlobalText style={styles.setting}>Dark Mode</GlobalText>
             <Switch
               style={styles.settingSwitch}
-              value={switchValue}
+              value={dark}
               onValueChange={onToggleSwitch}
             />
           </GlobalViewFlat>
@@ -73,7 +79,7 @@ export default function UserProfile({ navigation, handleProfileUpdate }) {
 
         <GlobalViewFlat style={styles.sectionContainer}>
 
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleContactUs}style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
           </TouchableOpacity>
 
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     color: '#ef6461',
-    fontSize: 20,
+    fontSize: 10,
   },
   infoLeft: {
     padding: '.5%'
@@ -131,7 +137,7 @@ const styles = StyleSheet.create({
   },
   option: {
     textDecorationLine: 'underline',
-    fontSize: 15,
+    fontSize: 17,
     width: 80,
   },
   sectionHeading: {

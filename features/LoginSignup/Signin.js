@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { TouchableOpacity, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
@@ -6,28 +6,26 @@ import Logo from '../../assets/logo.png';
 import { Firebase_Auth} from '../../FirebaseConfig.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import {Container, NoAccountContainer, LogoImage, Title, BoldText, SubHeader, ButtonContainer, Button, ContinueBtn, ButtonText, InputBarContainer, InputField, SignUpText, NoAccountText} from './SignIn_Styles';
+import { UserProfileContext } from '../../App.js'
 
-const SignIn = ({profile, setProfile}) => {
+const SignIn = () => {
   const [logIn, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false)
   const [profilePage, setProfilePage] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const auth = Firebase_Auth;
 
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
+      console.log('profile',profile);
+
       const endpoint = 'http://3.141.17.132/api/u/users';
 
-      const config = {
-        headers: {
-          authorization: `${profile.idToken}`,
-        },
-      };
-
-      const response = await axios.post(endpoint, profile, config);
+      const response = await axios.post(endpoint, profile);
 
       console.log('Response:', response.data);
 
@@ -38,45 +36,38 @@ const SignIn = ({profile, setProfile}) => {
 
   const signInFunc = async () => {
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = userCredential._tokenResponse.idToken;
+      const firebase_uid = userCredential.user.uid;
 
-      setProfile({
-        ...profile,
-        'firebase_uid': response.user.uid,
+      const config = {
+        headers: {
+          authorization: `${idToken}`,
+        },
+      };
+
+      const backendResponse = await axios.get(
+        `http://3.141.17.132/api/u/users/${firebase_uid}`,
+        config
+      );
+
+      setProfile((previousProfile) => ({
+        'firebase_uid': firebase_uid,
         'email': email,
-        'idToken': response._tokenResponse.idToken
-      });
-
-      setSignUp(false);
-      setLogin(false);
-      setProfilePage(false);
-      alert('Sign In Success')
-
-    const config = {
-      headers: {
-        authorization: `${response._tokenResponse.idToken}`,
-      }
-    };
-
-    const backendResponse = await axios.get(`http://3.141.17.132/api/u/users/${response.user.uid}`);
-
-    setProfile({
-      ...profile,
-      ...backendResponse.data,
-    });
-
-    console.log('Profile Data from Backend:', backendResponse.data);
-
+        'idToken': idToken,
+        ...backendResponse.data[0]
+      }));
     } catch (error) {
-      console.log(error);
-      alert('Sign in failed: ' + error.message)
+      console.error('Sign in failed:', error);
+      alert('Sign in failed: ' + error.message);
+    } finally {
+        alert('Sign In Success');
     }
-  }
+  };
 
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-console.log('RESPONSE',response)
       setProfile({
         ...profile,
         'firebase_uid': response.user.uid,
@@ -236,9 +227,7 @@ console.log('RESPONSE',response)
 
       <InputBarContainer>
         <InputField
-          onChangeText={(text) => {
-            const formattedNumber = handlePhoneNumber(text);
-            setProfile({ ...profile, phone_number: formattedNumber });
+          onChangeText={(text) => {setProfile({ ...profile, phone_number: text });
           }}
           placeholder="Number"
           keyboardType="phone-pad"

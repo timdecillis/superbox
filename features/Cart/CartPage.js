@@ -1,11 +1,11 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
 import styled from 'styled-components/native'
 import CartCard from './CartCard.js';
 import { useNavigation } from '@react-navigation/native';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
-import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalCartButton} from '../../globalComponents/globalStyles.js';
-
+import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalCartButton, GlobalCartButtonText, GlobalText} from '../../globalComponents/globalStyles.js';
+import {fetchCart} from '../../lib/cartRequestHelpers.js'
 const CartPage = () => {
 
   const[products, setProducts] = useState([
@@ -17,11 +17,17 @@ const CartPage = () => {
 
   ]);
 
+  useEffect(()=> {
+    fetchCart()
+      .then(result => setProducts(result.data))
+      .catch(err => console.log('unable to fetch cart, ', err));
+  }, [])
+
   const calculateTotal = () => {
-    return products.reduce((accu,product) => accu + Number(product.product_price),  0)
+    return products.reduce((accu,product) => accu + Number(product.price),  0)
   }
   const navigation = useNavigation();
-
+  console.log('this is the products, ', products);
   return (
     <GlobalView>
 
@@ -36,11 +42,10 @@ const CartPage = () => {
           {products.map(product => <CartCard key={product.product_id} product={product}/>)}
         </CartInfoContainer>
         <SubTotalContainer>
-          <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice>
+          <GlobalPrice>Subtotal: {calculateTotal()}</GlobalPrice>
           <GlobalCartButton
-          title="Checkout"
           onPress={() => {Alert.alert('Payment confirmed! Your items are on their way!'); navigation.navigate('Home')}}
-        />
+        ><GlobalCartButtonText>Checkout</GlobalCartButtonText></GlobalCartButton>
         </SubTotalContainer>
       </Container>
     </GlobalView>

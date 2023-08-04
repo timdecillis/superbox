@@ -26,11 +26,11 @@ export default function Purchases() {
                 <GlobalViewFlat style={styles.listingLeft}>
                   <GlobalText style={styles.product}>{purchase.product}</GlobalText>
                   <GlobalText style={styles.product}>{purchase.price}</GlobalText>
-                  <GlobalText style={styles.info}>{purchase.info}</GlobalText>
+                  <GlobalText style={styles.info}>{purchase.description}</GlobalText>
                 </GlobalViewFlat>
                 <GlobalViewFlat style={styles.listingLeft}>
 
-                  <GlobalText style={styles.product}>{purchase.date}</GlobalText>
+                  <GlobalText style={styles.product}>{purchase.created_at}</GlobalText>
                 </GlobalViewFlat>
               </GlobalViewFlat>
             );
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10
   },
+  info: {
+    fontSize: 13
+  },
   listing: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -56,13 +59,14 @@ const styles = StyleSheet.create({
   },
   product: {
     fontWeight: 'bold',
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    fontSize: 13
   },
   sectionContainer: {
     padding: 5
   },
   sectionHeading: {
-    fontSize: 22,
+    fontSize: 20,
     marginBottom: 8,
   },
 });
