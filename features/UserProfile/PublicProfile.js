@@ -1,19 +1,21 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Animated, Switch, TextInput } from 'react-native';
 
+import { UserProfileContext } from '../../App.js'
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
-import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
+import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating, GlobalPrice } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
 import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
+import {getActiveListings} from '../../lib/orderRequestHelpers.js';
 
 export default function PublicProfile({navigation}) {
-  let scrollOffsetY = useRef(new Animated.Value(0)).current;
 
-  const [profile, setProfile] = useState(userData);
+  const { profile, setProfile } = useContext(UserProfileContext);
   const [isAdmin, setIsAdmin] = useState(true);
   const [switchValue, setSwitchValue] = useState(false);
+  const [listings, setListings] = useState([]);
 
   const onToggleSwitch = () => {
     setSwitchValue(!switchValue);
@@ -21,12 +23,24 @@ export default function PublicProfile({navigation}) {
   }
 
   useEffect(() => {
-    // retrievePublic()
-    // .then((data) => {
-    //   setProfile(data);
-    // })
+    retrievePublic(profile.firebase_uid)
+    .then((data) => {
+      console.log(data);
+      setProfile(data);
+    })
   }, [])
 
+  useEffect(() => {
+    getActiveListings(profile.firebase_uid, profile.idToken)
+    .then((data) => {
+      console.log(data);
+      setListings(data);
+    })
+  }, [])
+
+  if (profile === null) {
+    return null;
+  }
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -34,21 +48,21 @@ export default function PublicProfile({navigation}) {
       <ScrollView>
 
         <GlobalViewFlat style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.userName}</GlobalTitle>
-          <GlobalRating style={{ marginRight: 10}}>average rating: {profile.rating}</GlobalRating>
+          <GlobalTitle style={{ textAlign: 'left', marginLeft: 10 }}>{profile.username}</GlobalTitle>
+          {/* <GlobalRating style={{ marginRight: 10}}>average rating: {profile.rating}</GlobalRating> */}
         </GlobalViewFlat>
 
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Listings</GlobalText>
-          {profile.listings.map((listing, i) => {
+          {listings.map((listing, i) => {
             return (
               <GlobalViewFlat key={i} style={styles.listing}>
                 <GlobalViewFlat style={styles.listingLeft}>
                   <GlobalText style={styles.product}>{listing.product}</GlobalText>
                   <GlobalText style={styles.info}>{listing.info}</GlobalText>
                 </GlobalViewFlat>
-                <GlobalText>{listing.price}</GlobalText>
+                <GlobalPrice>{listing.price}</GlobalPrice>
               </GlobalViewFlat>
             );
           })}
@@ -101,7 +115,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     height: 26,
-    borderRadius: 20,
+    borderRadius: 5,
     borderWidth: 1,
     width: 300,
     padding: 5

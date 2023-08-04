@@ -18,10 +18,6 @@ const SignIn = () => {
 
   const auth = Firebase_Auth;
 
-  // useEffect(() => {
-  //   setProfile({});
-  // }, [])
-
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
@@ -38,56 +34,40 @@ const SignIn = () => {
     }
   };
 
-  const signInFunc = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log('This is the user credential:', userCredential);
-        console.log('This is the user :', userCredential.user);
-        console.log('This is the token response:', userCredential._tokenResponse);
-        setProfile({
-          ...profile,
-          'firebase_uid': userCredential.user.uid,
-          'email': email,
-          'idToken': userCredential._tokenResponse.idToken
-        });
-        setSignUp(false);
-        setLogin(false);
-        setProfilePage(false);
-        return userCredential;
-      })
-      .then((userCredential) => {
-        alert('Sign In Success')
-        console.log('idToken:', userCredential._tokenResponse.idToken);
-        return userCredential;
-      })
-      .then((userCredential) => {
-        const config = {
-          headers: {
-            authorization: `${userCredential._tokenResponse.idToken}`,
-          },
-        };
-        return config
-      })
-      .then((config) => {
-        return axios.get(`http://3.141.17.132/api/u/users/${profile.uid}`, config);
-      })
-      .then((backendResponse) => {
-        console.log('Profile Data from Backend:', backendResponse.data[0]);
-        setProfile({...profile, ...backendResponse.data[0]});
-      })
-      .then(() => {
-        console.log(profile);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Sign in failed: ' + error.message)
-      });
-  }
+  const signInFunc = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = userCredential._tokenResponse.idToken;
+      const firebase_uid = userCredential.user.uid;
+
+      const config = {
+        headers: {
+          authorization: `${idToken}`,
+        },
+      };
+
+      const backendResponse = await axios.get(
+        `http://3.141.17.132/api/u/users/${firebase_uid}`,
+        config
+      );
+
+      setProfile((previousProfile) => ({
+        'firebase_uid': firebase_uid,
+        'email': email,
+        'idToken': idToken,
+        ...backendResponse.data[0]
+      }));
+    } catch (error) {
+      console.error('Sign in failed:', error);
+      alert('Sign in failed: ' + error.message);
+    } finally {
+        alert('Sign In Success');
+    }
+  };
 
   const signUpFunc = async () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-// console.log('IDTOKEN',response._tokenResponse.idToken)
       setProfile({
         ...profile,
         'firebase_uid': response.user.uid,

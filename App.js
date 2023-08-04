@@ -16,7 +16,7 @@ import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
 import Messages from './features/Messages/Messages.js';
 import Conversations from './features/Messages/Conversations.js';
-import {userData} from './assets/dummy-data/userData.js';
+// import {userData} from './assets/dummy-data/userData.js';
 export const UserProfileContext = React.createContext();
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -37,6 +37,13 @@ function HomeStack() {
   );
 }
 
+function ListingsStack() {
+  return (
+    <Stack.Navigator>
+    <Stack.Screen name="My Listings" component={MyListings} />
+    </Stack.Navigator>
+    );
+}
 
 
 function ProfileStack() {
@@ -67,16 +74,26 @@ function CartIcon() {
 
 export default function App() {
 
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState();
   return (
     <UserProfileContext.Provider value={{ profile, setProfile}}>
     <NavigationContainer>
       <Tab.Navigator initialRouteName='Marketplace'>
 
         <Tab.Screen name="Marketplace" component={HomeStack}  options={{ headerShown: false }}/>
+        { profile ?
         <>
         <Tab.Screen
-          name="User Profile"
+        name="Listings"
+        component={ListingsStack}
+        options={{
+          tabBarLabel: 'My Listings',
+          headerShown: false
+        }}
+      >
+      </Tab.Screen>
+        <Tab.Screen
+          name="My Profile"
           component={ProfileStack}
           options={{
             tabBarLabel: 'User Profile',
@@ -85,6 +102,7 @@ export default function App() {
         >
         </Tab.Screen>
         </>
+        :
         <Tab.Screen
           name="SignIn"
           options={{
@@ -92,7 +110,7 @@ export default function App() {
             headerShown: false,
           }}
           children={() => <SignIn profile={profile} setProfile={setProfile} />}
-        />
+        />}
 
       </Tab.Navigator>
     </NavigationContainer>

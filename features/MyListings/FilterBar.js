@@ -5,17 +5,17 @@ const FilterBar = ({ activeFilter, onChangeFilter }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.button, activeFilter === 'active' && styles.activeButton]}
-        onPress={() => onChangeFilter('active')}
-      >
-        <Text style={styles.buttonText}>Active</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
         style={[styles.button, activeFilter === 'inactive' && styles.activeButton]}
         onPress={() => onChangeFilter('inactive')}
       >
         <Text style={styles.buttonText}>Inactive</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, activeFilter === 'active' && styles.activeButton]}
+        onPress={() => onChangeFilter('active')}
+      >
+        <Text style={styles.buttonText}>Active</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

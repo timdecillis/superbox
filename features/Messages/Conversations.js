@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import Messages from './Messages.js';
-import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
+import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
 import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -12,30 +12,72 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   const [conversationsArray, setConversationsArray] = useState([]);
   const [activeConversation, setActiveConversation] = useState({});
   const [conversationSelected, setConversationSelected] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(UserProfileContext);
+  const { profile, setProfile } = useContext(UserProfileContext);
 
-  // conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
+  const conversations = [{
+    id: 1,
+    user_1_id: 1,
+    user_2_id: 2,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Batman123',
+    last_message_content: 'Hello?',
+    last_mesage_date_created:'2023-08-04T20:07:43Z'
+  }, {
+    id: 2,
+    user_1_id: 1,
+    user_2_id: 3,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'FunkoPopper',
+    last_message_content: 'I don\'t like Funko Pops.',
+    last_mesage_date_created: '2023-08-04T19:07:43Z',
+  }, {
+    id: 3,
+    user_1_id: 1,
+    user_2_id: 4,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Spiderman16',
+    last_message_content: '$1200 seems like a bad price.',
+    last_mesage_date_created:'2023-08-03T20:07:43Z',
+  }, {
+    id: 4,
+    user_1_id: 1,
+    user_2_id: 5,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'ComicMans',
+    last_message_content: 'You on Myspace?',
+    last_mesage_date_created: '2023-08-02T20:07:43Z',
+  }, {
+    id: 5,
+    user_1_id: 1,
+    user_2_id: 6,
+    user_1_username: 'Clark Kent',
+    user_2_username: 'Joker',
+    last_message_content: 'Where is Clark Kent?',
+    last_mesage_date_created: '2023-07-04T20:07:43Z',
+  }];
 
   useEffect(() => {
-    if (!!currentUser) {
-      getConversations(currentUser.idToken)
-        .then((conversations) => {
-          console.log('Retrieving conversations:', conversations)
-          setConversationsArray(conversations);
-        })
-        .catch((err) => {
-          console.error('Error retrieving conversations:', err);
-          setConversationsArray([]);
-        })
-    } else {
-      console.log('currentUser is undefined')
-    }
-  }, [currentUser])
+    setConversationsArray(conversations);
+    // if (!!profile) {
+    //   console.log(profile.idToken);
+    //   console.log('Retrieving conversations...')
+    //   getConversations(profile.idToken)
+    //     .then((result) => {
+    //       console.log('Retrieving conversations:', result.data)
+    //       setConversationsArray(result.data);
+    //     })
+    //     .catch((err) => {
+    //       console.error('Error retrieving conversations:', err);
+    //       setConversationsArray([]);
+    //     })
+    // } else {
+    //   console.log('profile is undefined')
+    // }
+  }, []);
 
   const renderConversation = ({item}) => {
 
-    const dateTimeAgo = moment(item.created_at).fromNow();
-    // const dateTimeAgo = moment('2023-08-03T20:40:54+0000').fromNow();
+    const dateTimeAgo = moment(item.last_mesage_date_created).fromNow();
 
     return (
       <TouchableOpacity onPress={() => {
@@ -45,19 +87,19 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
         <View style={listStyles.container}>
           <View style={listStyles.icon}>
             <Text style={listStyles.iconText}>
-              P
+              {item.user_2_username.slice(0, 1)}
             </Text>
           </View>
           <View style={listStyles.textContainer}>
             <View style={listStyles.messageContainer}>
-              <Text numberOfLines={1} style={listStyles.messageText}>
-                Hello how are you? I would like to buy a comic.
-              </Text>
+              <GlobalText numberOfLines={1} style={listStyles.messageText}>
+                {item.last_message_content}
+              </GlobalText>
             </View>
             <View style={listStyles.timeContainer}>
-              <Text style={listStyles.timeText}>
+              <GlobalText style={listStyles.timeText}>
                 {dateTimeAgo}
-              </Text>
+              </GlobalText>
             </View>
           </View>
         </View>
@@ -68,13 +110,13 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   if (!conversationSelected) {
     return (
       <SafeAreaView style={bodyStyles.safeView} >
-          <View style={headerStyles.headerContainer}>
+          <GlobalViewFlat style={headerStyles.headerContainer}>
             <TouchableOpacity style={headerStyles.textContainer} onPress={() => navigation.navigate('Profile', {
-                  handleProfileUpdate: handleProfileUpdate
+              handleProfileUpdate: handleProfileUpdate
                 })}>
-              <Text style={headerStyles.headerText}>
+              <GlobalText>
                 Back
-              </Text>
+              </GlobalText>
             </TouchableOpacity>
             <View style={headerStyles.titleContainer}>
               <GlobalTitle>
@@ -86,9 +128,10 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 name="shopping-cart"
                 size={24}
                 color="#000"
-              />
+                />
             </TouchableOpacity>
-          </View>
+          </GlobalViewFlat>
+        <GlobalView>
           <View style={bodyStyles.bodyContainer}>
             <FlatList
                 data={conversationsArray}
@@ -97,11 +140,12 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
                 showsVerticalScrollIndicator={false}
               />
           </View>
+        </GlobalView>
       </SafeAreaView>
     );
   } else {
     return (
-      <Messages currentUser={currentUser} activeConversation={activeConversation} setActiveConversation={setActiveConversation} setConversationSelected={setConversationSelected} navigation={navigation} />
+      <Messages profile={profile} activeConversation={activeConversation} setActiveConversation={setActiveConversation} setConversationSelected={setConversationSelected} navigation={navigation} />
     );
   }
 };
@@ -140,7 +184,6 @@ const headerStyles = StyleSheet.create({
 const bodyStyles = StyleSheet.create({
   safeView: {
     flex: 1,
-    backgroundColor: '#FDFAF4'
   },
   bodyContainer: {
     flex: 1
