@@ -26,11 +26,11 @@ export default function Purchases() {
                 <GlobalViewFlat style={styles.listingLeft}>
                   <GlobalText style={styles.product}>{purchase.product}</GlobalText>
                   <GlobalText style={styles.product}>{purchase.price}</GlobalText>
-                  <GlobalText style={styles.info}>{purchase.info}</GlobalText>
+                  <GlobalText style={styles.info}>{purchase.description}</GlobalText>
                 </GlobalViewFlat>
                 <GlobalViewFlat style={styles.listingLeft}>
 
-                  <GlobalText style={styles.product}>{purchase.date}</GlobalText>
+                  <GlobalText style={styles.product}>{purchase.created_at}</GlobalText>
                 </GlobalViewFlat>
               </GlobalViewFlat>
             );

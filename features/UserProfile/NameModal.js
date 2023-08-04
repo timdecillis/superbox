@@ -54,10 +54,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     height: 26,
-    borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: .5,
     width: 300,
-    padding: 5
+    padding: 5,
+    height: 40,
+    fontSize: 20
   },
   modalContainer: {
     position: 'absolute',

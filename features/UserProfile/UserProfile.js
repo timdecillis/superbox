@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch, Linking } from 'react-native';
 
 import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
@@ -16,6 +16,10 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
       setDark(!dark);
       updatePersonal('dark', !dark);
   }
+
+  const handleContactUs = () => {
+    Linking.openURL('mailto:clarkkent@superbox.com');
+  };
 
   if (profile === null) {
     return null;
@@ -76,7 +80,7 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
 
         <GlobalViewFlat style={styles.sectionContainer}>
 
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleContactUs}style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Contact Us</GlobalText>
           </TouchableOpacity>
 
