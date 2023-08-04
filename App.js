@@ -67,7 +67,6 @@ function CartIcon() {
 
 export default function App() {
 
-  const [profile, setProfile] = useState({});
   return (
     <UserProfileContext.Provider value={{ profile, setProfile}}>
     <NavigationContainer>

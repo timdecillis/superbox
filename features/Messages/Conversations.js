@@ -12,13 +12,17 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   const [conversationsArray, setConversationsArray] = useState([]);
   const [activeConversation, setActiveConversation] = useState({});
   const [conversationSelected, setConversationSelected] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(UserProfileContext);
-
-  // conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   useEffect(() => {
-    if (!!currentUser) {
-      getConversations(currentUser.idToken)
+    console.log('Profile when arriving to conversations:', profile);
+  }, [])
+
+  useEffect(() => {
+    if (!!profile) {
+      console.log(profile.idToken);
+      console.log('Retrieving conversations...')
+      getConversations(profile.idToken)
         .then((conversations) => {
           console.log('Retrieving conversations:', conversations)
           setConversationsArray(conversations);
@@ -28,14 +32,13 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
           setConversationsArray([]);
         })
     } else {
-      console.log('currentUser is undefined')
+      console.log('profile is undefined')
     }
-  }, [currentUser])
+  }, []);
 
   const renderConversation = ({item}) => {
 
     const dateTimeAgo = moment(item.created_at).fromNow();
-    // const dateTimeAgo = moment('2023-08-03T20:40:54+0000').fromNow();
 
     return (
       <TouchableOpacity onPress={() => {
@@ -101,7 +104,7 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
     );
   } else {
     return (
-      <Messages currentUser={currentUser} activeConversation={activeConversation} setActiveConversation={setActiveConversation} setConversationSelected={setConversationSelected} navigation={navigation} />
+      <Messages profile={profile} activeConversation={activeConversation} setActiveConversation={setActiveConversation} setConversationSelected={setConversationSelected} navigation={navigation} />
     );
   }
 };
@@ -140,7 +143,7 @@ const headerStyles = StyleSheet.create({
 const bodyStyles = StyleSheet.create({
   safeView: {
     flex: 1,
-    backgroundColor: '#FDFAF4'
+    // backgroundColor: '#FDFAF4'
   },
   bodyContainer: {
     flex: 1
