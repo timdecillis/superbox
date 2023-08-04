@@ -1,21 +1,36 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, FlatList, StyleSheet, Button } from 'react-native';
 import FilterBar from './FilterBar';
 import AddEditListingModal from './AddEditModal.js';
+import { UserProfileContext } from '../../App.js'
+import requestHelpers from '../../lib/productRequestHelpers.js'
+
 
 const MyListings = () => {
+  const [listings, setListings] = useState([]);
   const [activeFilter, setActiveFilter] = useState('active');
   const [showModal, setShowModal] = useState({type: null, visible:false, data:{}});
   const { profile, setProfile } = useContext(UserProfileContext);
+  const [filteredListings, setFilteredListings] = useState([]);
 
-  const dummylistingsData = [
-    { id: '1', title: 'Listing 1', status: 'active' },
-    { id: '2', title: 'Listing 2', status: 'inactive' },
-    { id: '3', title: 'Listing 3', status: 'fulfilled' },
-    { id: '4', title: 'Listing 4', status: 'unfulfilled' },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const mylistings = await requestHelpers.getMyListings(profile);
+        setListings(mylistings);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
 
-  const filteredListings = dummylistingsData.filter(item => item.status === activeFilter);
+    fetchProducts();
+  }, []);
+
+
+  useEffect(()=>{
+    setFilteredListings(listings.filter(item => item.status === activeFilter));
+  },[activeFilter])
+
 
   const handleFilterChange = filter => {
     setActiveFilter(filter);

@@ -27,7 +27,6 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
       try {
         const products = await requestHelpers.getProductNamesIdsCats();
         setProductsList(products);
-        console.log(products); // Optional: Log the products fetched from the server
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -36,7 +35,6 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
     fetchProducts();
   }, []);
 
-  //axios.get ( all products {productName, product_Id})
   const [isNewProduct, setIsNewProduct] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [prodName, setProdName] = useState("");
