@@ -17,16 +17,20 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
   // conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
 
   useEffect(() => {
+    if (!!currentUser) {
       getConversations(currentUser.idToken)
         .then((conversations) => {
-          console.log(conversations)
+          console.log('Retrieving conversations:', conversations)
           setConversationsArray(conversations);
         })
         .catch((err) => {
           console.error('Error retrieving conversations:', err);
           setConversationsArray([]);
         })
-  }, [])
+    } else {
+      console.log('currentUser is undefined')
+    }
+  }, [currentUser])
 
   const renderConversation = ({item}) => {
 
