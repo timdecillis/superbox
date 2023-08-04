@@ -7,7 +7,7 @@ import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 import {updatePersonal} from '../../lib/userRequestHelpers.js';
 
-export default function UserProfile({navigation, handleProfileUpdate }) {
+export default function UserProfile({navigation}) {
 
 
   const [dark, setDark] = useState(false);
@@ -15,7 +15,7 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
 
   const onToggleSwitch = () => {
       setDark(!dark);
-      updatePersonal('dark', !dark);
+      updatePersonal(profile.firebase_uid, profile.idToken, 'dark', !dark);
   }
 
   const handleContactUs = () => {
@@ -63,7 +63,7 @@ export default function UserProfile({navigation, handleProfileUpdate }) {
         </GlobalViewFlat>
 
 
-        <PersonalBlock handleProfileUpdate={handleProfileUpdate} profile={profile} />
+        <PersonalBlock profile={profile} />
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Settings</GlobalText>

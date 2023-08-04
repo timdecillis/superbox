@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
+import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalRating } from '../../globalComponents/globalStyles.js';
 import logo from '../../assets/LogoTitle.png';
 import { userData } from '../../assets/dummy-data/userData.js';
@@ -8,11 +9,17 @@ import {getPurchases} from '../../lib/orderRequestHelpers.js';
 
 export default function Purchases() {
 
-  const [data, setData] = useState(userData);
+  const [purchases, setPurchases] = useState([]);
+  const { profile, setProfile } = useContext(UserProfileContext);
 
-  useEffect(() => {
-    getPurchases();
-  }, []);
+
+  // useEffect(() => {
+  //   getPurchases(profile.firebase_uid, profile.idToken)
+  //   .then((data) => {
+  //     console.log(data)
+  //     setPurchases(data);
+  //   })
+  // }, []);
 
   return (
     <GlobalViewFlat style={styles.container}>
@@ -20,7 +27,7 @@ export default function Purchases() {
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <GlobalText style={styles.sectionHeading}>Your Purchases</GlobalText>
-          {data.purchases.map((purchase, i) => {
+          {purchases.map((purchase, i) => {
             return (
               <GlobalViewFlat key={i} style={styles.listing}>
                 <GlobalViewFlat style={styles.listingLeft}>

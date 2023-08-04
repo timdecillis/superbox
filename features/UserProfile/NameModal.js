@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 const axios = require('axios');
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Switch, Modal, TextInput } from 'react-native';
 
+import { UserProfileContext } from '../../App.js'
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalCartButton, GlobalCartButtonText } from '../../globalComponents/globalStyles.js';
 import { updatePersonal } from '../../lib/userRequestHelpers.js';
 
 export default NameModal = ({name, setName, nameModalOpen, setNameModalOpen}) => {
+
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const closeModal = () => {
     setNameModalOpen(false);
@@ -25,7 +28,7 @@ export default NameModal = ({name, setName, nameModalOpen, setNameModalOpen}) =>
                 <GlobalCartButtonText onPress={closeModal}>Cancel</GlobalCartButtonText>
               </GlobalCartButton>
               <GlobalCartButton onPress={() => {
-                updatePersonal('name', name);
+                updatePersonal(profile.firebase_uid, profile.idToken, 'full_name', name);
                 closeModal();
               }} style={[styles.button, { backgroundColor: '#e4b363' }]}>
                 <GlobalCartButtonText>Continue</GlobalCartButtonText>
