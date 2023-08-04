@@ -6,7 +6,7 @@ import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
 import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
-import {retrievePublic} from '../../lib/userRequestHelpers.js';
+import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
 
 export default function PublicProfile() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
@@ -16,11 +16,15 @@ export default function PublicProfile() {
   const [switchValue, setSwitchValue] = useState(false);
 
   const onToggleSwitch = () => {
+      updatePersonal('ban')
       setSwitchValue(!switchValue);
   }
 
   useEffect(() => {
-    retrievePublic();
+    retrievePublic()
+    .then((data) => {
+      setData(data);
+    })
   }, [])
 
 
