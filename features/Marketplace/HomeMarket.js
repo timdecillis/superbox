@@ -46,7 +46,9 @@ export default function App() {
         </View> */}
         {products.map(product =>
                   <View style={{height: 400}}>
+                    <Pressable onPress={() => navigation.navigate('Product', {product: product})}>
                   <ProductCard key={product.id} product={product}/>
+                  </Pressable>
                 </View>)}
       </ScrollView>
         </GlobalViewFlat>
