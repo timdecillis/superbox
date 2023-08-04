@@ -111,13 +111,6 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
 };
 
 const styles = StyleSheet.create({
-  button: {
-    height: 40,
-    width: 90,
-    elevation: 0,
-    paddingHorizontal: 2,
-    paddingVertical: 2
-  },
   buttonContainer: {
     paddingTop: '1%',
     alignItems: 'center',
