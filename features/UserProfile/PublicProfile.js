@@ -7,7 +7,7 @@ import { userData } from '../../assets/dummy-data/userData.js';
 import DynamicHeader from '../../globalComponents/Search.js';
 import { GlobalViewFlat, GlobalText, GlobalView, GlobalTitle, GlobalRating, GlobalPrice } from '../../globalComponents/globalStyles.js';
 import {messageUser} from '../../lib/messagesRequestHelpers.js';
-import {retrievePublic, updatePersonal} from '../../lib/userRequestHelpers.js';
+import {retrievePublic, banUser, updatePersonal} from '../../lib/userRequestHelpers.js';
 import {getActiveListings} from '../../lib/orderRequestHelpers.js';
 
 export default function PublicProfile({navigation}) {
@@ -19,7 +19,7 @@ export default function PublicProfile({navigation}) {
 
   const onToggleSwitch = () => {
     setSwitchValue(!switchValue);
-    updatePersonal(profile, 'ban', !switchValue)
+    banUser(profile.firebase_uid, profile.idToken);
   }
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function PublicProfile({navigation}) {
 
         <GlobalViewFlat style={styles.sectionContainer}>
           <TouchableOpacity
-          onPress={() => navigation.navigate('Messages')}
+          onPress={() => navigation.navigate('Conversations')}
           style={styles.buttonContainer}>
             <GlobalText style={[styles.sectionHeading, { color: '#ef6461', textDecorationLine: 'underline' }]}>Message User</GlobalText>
           </TouchableOpacity>
