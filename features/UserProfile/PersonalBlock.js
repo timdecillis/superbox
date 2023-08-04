@@ -82,7 +82,7 @@ export default PersonalBlock = ({ profile, handleProfileUpdate }) => {
         <GlobalViewFlat style={styles.infoBlock}>
           <GlobalViewFlat style={styles.infoLeft}>
             <GlobalText style={styles.infoType}>Primary phone number:</GlobalText>
-            <GlobalText style={styles.info}>{profile.phone}</GlobalText>
+            <GlobalText style={styles.info}>{profile.phone.slice(0, 3)}-{profile.phone.slice(3, 6)}-{profile.phone.slice(6, 10)}</GlobalText>
           </GlobalViewFlat>
           <TouchableOpacity onPress={() => {
             setPhoneModalOpen(true);
