@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import Messages from './Messages.js';
 import { GlobalView, GlobalText, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
 import moment from 'moment';
 import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { UserProfileContext } from '../../App.js'
 
-const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
+const Conversations = ({ navigation, handleProfileUpdate }) => {
 
-  let [conversationsArray, setConversationsArray] = useState([]);
+  const [conversationsArray, setConversationsArray] = useState([]);
   const [activeConversation, setActiveConversation] = useState({});
   const [conversationSelected, setConversationSelected] = useState(false);
+  const { currentUser, setCurrentUser } = useContext(UserProfileContext);
 
-  conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
+  // conversationsArray = [{ username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T21:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T20:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T19:38:29Z'}, { username: 'Patrick', content: 'Hello how are you? I would like to buy a comic.', created_at: '2023-08-02T18:38:29Z'}];
 
   useEffect(() => {
-    if (!!currentUser) {
       getConversations(currentUser.idToken)
         .then((conversations) => {
           console.log(conversations)
@@ -25,8 +26,6 @@ const Conversations = ({ currentUser, navigation, handleProfileUpdate }) => {
           console.error('Error retrieving conversations:', err);
           setConversationsArray([]);
         })
-    }
-
   }, [])
 
   const renderConversation = ({item}) => {
