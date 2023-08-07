@@ -8,4 +8,6 @@ run "npx expo start" in terminal
 
 tap i to open ios view
 tap a to open android view
-![Uploading Simulator Screen Recording - iPhone 14 Pro Max - 2023-08-06 at 21.45.54.gif…]()
+
+
+![Simulator Screen Recording - iPhone 14 Pro Max - 2023-08-06 at 21 34 21](https://github.com/Dexter-s-Laboratory/Superbox/assets/104655832/61dbf020-a35c-40f5-bedc-4fef3d41cde6)
