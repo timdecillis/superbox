@@ -15,10 +15,10 @@
 ## Team
 * [Tim DeCillis](https://github.com/timdecillis)
 * [Aaron Brandenberger](https://github.com/trilly-con-queso)
-* [Patrick Nilan](https://github.com/pnilan)
 * [Ahu Su](https://github.com/ahusu)
+* [Patrick Nilan](https://github.com/pnilan)
+* [Oscar Carvente](https://github.com/ocarvente)
 * [Holly Stefan](https://github.com/HollyB-collab)
-* [Oscar Carvante](https://github.com/ocarvente)
 * [Muzammil Waheed](https://github.com/muzammilwaheedisme)
 * [Joseph Camarena Castro](https://github.com/mexicanpepe)
 
@@ -29,16 +29,6 @@
 * Add / Delete Items
 * Chat
 * Checkout Cart
-
-## Team
-* [Tim DeCillis](https://github.com/timdecillis)
-* [Aaron Brandenberger](https://github.com/trilly-con-queso)
-* [Ahu Su](https://github.com/ahusu)
-* [Patrick Nilan](https://github.com/pnilan)
-* [Oscar Carvente](https://github.com/ocarvente)
-* [Holly Stefan](https://github.com/HollyB-collab)
-* [Muzammil Waheed](https://github.com/muzammilwaheedisme)
-* [Joseph Camarena Castro](https://github.com/mexicanpepe)
 
 ## Getting Started
 1. From terminal, clone repo
