@@ -12,6 +12,16 @@
 
 ![Simulator Screen Recording - iPhone 14 Pro Max - 2023-08-06 at 21 34 21](https://github.com/Dexter-s-Laboratory/Superbox/assets/104655832/61dbf020-a35c-40f5-bedc-4fef3d41cde6)
 
+## Team
+* [Tim DeCillis](https://github.com/timdecillis)
+* [Aaron Brandenberger](https://github.com/trilly-con-queso)
+* [Ahu Su](https://github.com/ahusu)
+* [Patrick Nilan](https://github.com/pnilan)
+* [Oscar Carvente](https://github.com/ocarvente)
+* [Holly Stefan](https://github.com/HollyB-collab)
+* [Muzammil Waheed](https://github.com/muzammilwaheedisme)
+* [Joseph Camarena Castro](https://github.com/mexicanpepe)
+  
 # Navigating Screens
 * Sign In / Sign Up
 * Market Place
