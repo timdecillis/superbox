@@ -21,7 +21,7 @@
 * [Holly Stefan](https://github.com/HollyB-collab)
 * [Muzammil Waheed](https://github.com/muzammilwaheedisme)
 * [Joseph Camarena Castro](https://github.com/mexicanpepe)
-  
+
 # Navigating Screens
 * Sign In / Sign Up
 * Market Place
@@ -29,8 +29,6 @@
 * Add / Delete Items
 * Chat
 * Checkout Cart
-
-
 
 ## Getting Started
 1. From terminal, clone repo
