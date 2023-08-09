@@ -9,6 +9,8 @@ import AddressModal from './AddressModal.js';
 import PhoneModal from './PhoneModal.js';
 import NameModal from './NameModal.js';
 import EmailModal from './EmailModal.js';
+import {userData} from '../../assets/dummy-data/userData.js';
+
 
 const obscurePass = (password) => {
   let result = '';
@@ -20,6 +22,7 @@ const obscurePass = (password) => {
 
 export default PersonalBlock = () => {
 
+  // const [profile, setProfile] = useState(userData);
   const { profile, setProfile } = useContext(UserProfileContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

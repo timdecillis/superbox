@@ -9,7 +9,7 @@ import {getPurchases} from '../../lib/orderRequestHelpers.js';
 
 export default function Purchases() {
 
-  const [purchases, setPurchases] = useState([]);
+  // const [purchases, setPurchases] = useState(userData.purchases);
   const { profile, setProfile } = useContext(UserProfileContext);
 
 

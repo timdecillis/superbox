@@ -6,12 +6,14 @@ import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalParagraph, GlobalPrice, 
 import logo from '../../assets/LogoTitle.png';
 import PersonalBlock from './PersonalBlock.js';
 import {updatePersonal} from '../../lib/userRequestHelpers.js';
+import {userData} from '../../assets/dummy-data/userData.js';
 
 export default function UserProfile({navigation}) {
 
 
   const [dark, setDark] = useState(false);
   const { profile, setProfile } = useContext(UserProfileContext);
+  // const [profile, setProfile] = useState(userData)
 
   const onToggleSwitch = () => {
       setDark(!dark);
