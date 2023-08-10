@@ -12,6 +12,7 @@ import {getActiveListings} from '../../lib/orderRequestHelpers.js';
 
 export default function PublicProfile({navigation}) {
 
+  // const [profile, setProfile] = useState(userData);
   const { profile, setProfile } = useContext(UserProfileContext);
   const [isAdmin, setIsAdmin] = useState(true);
   const [switchValue, setSwitchValue] = useState(false);
