@@ -7,11 +7,11 @@
 * [Patrick Nilan](https://github.com/pnilan) - Product Manager
 * [Ahu Su](https://github.com/ahusu) - Architect Owner
 * [Aaron Brandenberger](https://github.com/trilly-con-queso) - UI Owner
-* [Joseph Camarena Castro](https://github.com/mexicanpepe)
-* [Oscar Carvente](https://github.com/ocarvente)
-* [Tim DeCillis](https://github.com/timdecillis)
-* [Holly Stefan](https://github.com/HollyB-collab)
-* [Muzammil Waheed](https://github.com/muzammilwaheedisme)
+* [Joseph Camarena Castro](https://github.com/mexicanpepe) - Full Stack Software Engineer
+* [Oscar Carvente](https://github.com/ocarvente) - Full Stack Software Engineer
+* [Tim DeCillis](https://github.com/timdecillis) - Full Stack Software Engineer
+* [Holly Stefan](https://github.com/HollyB-collab) - Full Stack Software Engineer
+* [Muzammil Waheed](https://github.com/muzammilwaheedisme) - Full Stack Software Engineer
 
 > # Table of Contents
 1. [Introduction](#introduction)
