@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
+
 import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
 
 const SwipableList = ({ data, deleteItem, changeStatus, handleEdit, activeFilter }) => {
@@ -83,9 +84,6 @@ const SwipableList = ({ data, deleteItem, changeStatus, handleEdit, activeFilter
 };
 
 export default SwipableList;
-
-
-// Styles
 
 const styles = StyleSheet.create({
   rowFront: {

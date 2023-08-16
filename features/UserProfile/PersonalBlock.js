@@ -22,8 +22,7 @@ const obscurePass = (password) => {
 
 export default PersonalBlock = () => {
 
-  // const [profile, setProfile] = useState(userData);
-  const { profile, setProfile } = useContext(UserProfileContext);
+  const [profile, setProfile] = useState(userData);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -33,12 +32,6 @@ export default PersonalBlock = () => {
   const [phoneModalOpen, setPhoneModalOpen] = useState(false);
   const [addressModalOpen, setAddressModalOpen] = useState(false);
 
-  // const handleUpdate = (field, newData) => {
-  //   return axios.put(`/api/u/users/${profile.user_id}/profile`, {[field]: newData})
-  //   .then(() => {
-  //     handleProfileUpdate()
-  //   })
-  // };
   return (
     <GlobalViewFlat style={styles.sectionContainer}>
 
@@ -75,15 +68,7 @@ export default PersonalBlock = () => {
             <GlobalText style={styles.editButton}>Edit</GlobalText>
           </TouchableOpacity>
         </GlobalViewFlat>
-        {/* <GlobalViewFlat style={styles.infoBlock}>
-                <GlobalViewFlat style={styles.infoLeft}>
-                  <GlobalText style={styles.infoType}>Password:</GlobalText>
-                  <GlobalText style={styles.info}>{obscurePass(profile.password)}</GlobalText>
-                </GlobalViewFlat>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <GlobalText style={styles.editButton}>Edit</GlobalText>
-                </TouchableOpacity>
-              </GlobalViewFlat> */}
+
         <GlobalViewFlat style={styles.infoBlock}>
           <GlobalViewFlat style={styles.infoLeft}>
             <GlobalText style={styles.infoType}>Primary phone number:</GlobalText>
@@ -187,5 +172,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 8,
   },
-
 });

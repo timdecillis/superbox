@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+import moment from 'moment';
+
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import Messages from './Messages.js';
-import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
-import moment from 'moment';
-import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
+import { getConversations, archiveConversation } from '../../lib/messagesRequests.js';
 import { UserProfileContext } from '../../App.js'
 
 const Conversations = ({ navigation, handleProfileUpdate }) => {
@@ -58,21 +59,6 @@ const Conversations = ({ navigation, handleProfileUpdate }) => {
 
   useEffect(() => {
     setConversationsArray(conversations);
-    // if (!!profile) {
-    //   console.log(profile.idToken);
-    //   console.log('Retrieving conversations...')
-    //   getConversations(profile.idToken)
-    //     .then((result) => {
-    //       console.log('Retrieving conversations:', result.data)
-    //       setConversationsArray(result.data);
-    //     })
-    //     .catch((err) => {
-    //       console.error('Error retrieving conversations:', err);
-    //       setConversationsArray([]);
-    //     })
-    // } else {
-    //   console.log('profile is undefined')
-    // }
   }, []);
 
   const renderConversation = ({item}) => {

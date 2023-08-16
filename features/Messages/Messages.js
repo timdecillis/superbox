@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { getMessages, createMessage, deleteMessage } from '../../lib/messagesRequests.js';
 import { GlobalView, GlobalText, GlobalViewFlat, GlobalTitle, GlobalCartButtonText, GlobalCartButton } from '../../globalComponents/globalStyles.js';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Messages = ({ profile, activeConversation, setActiveConversation, setConversationSelected, navigation }) => {
@@ -63,43 +64,10 @@ const Messages = ({ profile, activeConversation, setActiveConversation, setConve
   ];
 
   useEffect(() => {
-
-    // if (!!profile && !!activeConversation.id) {
-    //   getMessages(activeConversation.id)
-    //     .then((result) => {
-    //       setMessagesArray(result.data);
-    //     })
-    //     .catch((err) => {
-    //       console.error('Error retrieving messages:', err);
-    //       setMessagesArray([]);
-    //     });
-    // }
-
     setMessagesArray(messages);
-
   }, [activeConversation]);
 
   const handleSubmit = () => {
-    // data = {
-    //   conversationId: activeConversation.id,
-    //   content: inputValue
-    // }
-
-    // createMessage(data, profile.idToken)
-    //   .catch((err) => {
-    //     console.error('Error posting message:', err);
-    //   })
-    //   .then(() => {
-    //     return getMessages(activeConversation.id)
-    //   })
-    //   .catch((err) => {
-    //     console.error('Error retrieving messages:', err);
-    //   })
-    //   .then((messages) => {
-    //     setMessagesArray(messages);
-    //     setInputValue('');
-    //   });
-
     let messagesCopy = messagesArray.slice();
     messagesCopy.push({
         id: 8,
@@ -110,8 +78,6 @@ const Messages = ({ profile, activeConversation, setActiveConversation, setConve
 
     setMessagesArray(messagesCopy);
   };
-
-  // messagesArray = [{ id: 1} , { id: 2}, { id: 3}, { id: 4}, { id: 5}, { id: 6}, { id: 7}, { id: 8}, { id: 9}, { id: 10}, { id: 11}, { id: 12}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}, { id: 13}];
 
   const renderMessage = ({ item }) => {
 
@@ -275,6 +241,5 @@ const headerStyles = StyleSheet.create({
     flexWrap: 'wrap'
   }
 });
-
 
 export default Messages;

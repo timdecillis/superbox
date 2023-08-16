@@ -9,17 +9,7 @@ import {getPurchases} from '../../lib/orderRequestHelpers.js';
 
 export default function Purchases() {
 
-  // const [purchases, setPurchases] = useState(userData.purchases);
-  const { profile, setProfile } = useContext(UserProfileContext);
-
-
-  // useEffect(() => {
-  //   getPurchases(profile.firebase_uid, profile.idToken)
-  //   .then((data) => {
-  //     console.log(data)
-  //     setPurchases(data);
-  //   })
-  // }, []);
+  const [purchases, setPurchases] = useState(userData.purchases);
 
   return (
     <GlobalViewFlat style={styles.container}>

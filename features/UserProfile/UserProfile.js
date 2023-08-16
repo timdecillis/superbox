@@ -12,8 +12,7 @@ export default function UserProfile({navigation}) {
 
 
   const [dark, setDark] = useState(false);
-  const { profile, setProfile } = useContext(UserProfileContext);
-  // const [profile, setProfile] = useState(userData)
+  const [profile, setProfile] = useState(userData)
 
   const onToggleSwitch = () => {
       setDark(!dark);

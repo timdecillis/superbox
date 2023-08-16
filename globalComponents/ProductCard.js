@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components/native'
 import { Text, View, Image, Button, ScrollView, Pressable} from 'react-native';
-import { GlobalView, GlobalPrice, ProductTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { GlobalView, GlobalPrice, ProductTitle, GlobalParagraph, GlobalRating} from  '../globalComponents/globalStyles.js';
 
 const ProductCard = ( {product}) => {
   const navigation = useNavigation();

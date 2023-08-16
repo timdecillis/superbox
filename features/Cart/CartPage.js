@@ -1,11 +1,13 @@
 import {useState, useEffect} from "react";
 import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
 import styled from 'styled-components/native'
-import CartCard from './CartCard.js';
 import { useNavigation } from '@react-navigation/native';
+
+import CartCard from './CartCard.js';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
 import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalCartButton, GlobalCartButtonText, GlobalText} from '../../globalComponents/globalStyles.js';
 import {fetchCart} from '../../lib/cartRequestHelpers.js'
+
 const CartPage = () => {
 
   const[products, setProducts] = useState([

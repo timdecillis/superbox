@@ -1,13 +1,14 @@
 import React from "react";
 import {useContext} from 'react';
-import {UserProfileContext} from '../../App.js'
 import styled from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
 import { Text, View, Image, Pressable } from 'react-native';
+import  axios from 'axios';
+
+import {UserProfileContext} from '../../App.js'
 import { GlobalView, GlobalPrice, GlobalTitle, GlobalParagraph, GlobalCartButton, GlobalCartButtonText } from  '../../globalComponents/globalStyles.js';
 import ProductCard from "../../globalComponents/ProductCard.js"
-import  axios from 'axios';
 
 const Product = () => {
   const { profile, setProfile } = useContext(UserProfileContext);
@@ -35,10 +36,6 @@ const addToCart = async (idToken) => {
     console.error(error);
   }
 }
-
-
-
-
 
   return (
     <GlobalView>

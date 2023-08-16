@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
 import {
   View,
   Modal,
@@ -13,6 +12,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+
+import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
 import requestHelpers from '../../lib/productRequestHelpers.js';
 
 const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
@@ -43,9 +44,6 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
   const [photos, setPhotos] = useState(listingInfo.photos || []);
 
   const handleSave = () => {
-    //TODO: add validation logic here before saving the new listing
-    // onSave(listingInfo);
-
     setListingInfo({ ...listingInfo, name: product.name });
     setListingInfo({ ...listingInfo, photos });
     if (isNewProduct) {
@@ -102,8 +100,6 @@ const AddEditListingModal = ({ modalInfo, onClose, onSubmit }) => {
         break;
     }
   };
-
-
 
   return (
     <Modal visible={modalInfo.visible} animationType="slide">

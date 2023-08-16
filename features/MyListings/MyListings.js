@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import FilterBar from './FilterBar';
+
 import AddEditListingModal from './AddEditModal.js';
 import { UserProfileContext } from '../../App.js'
 import requestHelpers from '../../lib/productRequestHelpers.js'
 import SwipableList from './SwipableList';
 import exampleListings from './exampleListings.js'
 import { GlobalViewFlat, GlobalView } from '../../globalComponents/globalStyles.js'
-
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);
@@ -26,8 +26,7 @@ const MyListings = () => {
       }
     };
 
-    // fetchProducts();
-    setListings(exampleListings); //just example listings for now
+    setListings(exampleListings);
   }, []);
   useEffect(()=>{
     setFilteredListings(listings.filter(item => item.status === activeFilter));

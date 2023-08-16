@@ -24,5 +24,4 @@ export const CardContainer = styled.View`
     justifyContent: space-between;
     alignItems: center;
     margin: 15px;
-
 `;

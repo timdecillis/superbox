@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, Animated, StyleSheet, View, TextInput, Button } from 'react-native';
-import Product from '../Listing/ProductPage'
 import { useNavigation } from '@react-navigation/native';
+import { Feather, Entypo, AntDesign } from "@expo/vector-icons";
+import axios from 'axios';
+
+import Product from '../Listing/ProductPage'
 import DynamicHeader from '../../globalComponents/Search.js';
 import ProductCard from '../../globalComponents/ProductCard.js';
 import { GlobalViewFlat, GlobalText, GlobalTitle, GlobalView } from '../../globalComponents/globalStyles.js';
-import { Feather, Entypo, AntDesign } from "@expo/vector-icons";
-import axios from 'axios';
 
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
