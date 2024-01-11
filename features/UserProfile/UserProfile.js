@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, ScrollView, ImageBackground, Switch, Linking } from 'react-native';
 
 import { UserProfileContext } from '../../App.js'
@@ -36,7 +36,7 @@ export default function UserProfile({navigation}) {
 
 
       <ScrollView>
-        <GlobalText style={styles.mainHeading}>Hi, {profile.username}!</GlobalText>
+        <GlobalText style={styles.mainHeading}>Hi, {profile.firstName}!</GlobalText>
 
 
         <GlobalViewFlat style={styles.buttonHeading}>
