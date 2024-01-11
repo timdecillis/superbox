@@ -24,7 +24,7 @@ const Stack = createStackNavigator();
 function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Market" component={HomeMarket} options={{
+      <Stack.Screen name="Marketplace" component={HomeMarket} options={{
           headerRight: () => <CartIcon />,
         }}  />
             <Stack.Screen
