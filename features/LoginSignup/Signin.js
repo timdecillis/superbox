@@ -53,10 +53,9 @@ const SignIn = () => {
       // );
 
       setProfile((previousProfile) => ({
-        'firebase_uid': firebase_uid,
+        'firebase_uid': 0,
         'email': email,
-        'idToken': idToken,
-        ...backendResponse.data[0]
+        'idToken': 0
       }));
     } catch (error) {
       console.error('Sign in failed:', error);
