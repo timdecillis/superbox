@@ -37,20 +37,20 @@ const SignIn = () => {
 
   const signInFunc = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const idToken = userCredential._tokenResponse.idToken;
-      const firebase_uid = userCredential.user.uid;
+      // const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // const idToken = userCredential._tokenResponse.idToken;
+      // const firebase_uid = userCredential.user.uid;
 
-      const config = {
-        headers: {
-          authorization: `${idToken}`,
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     authorization: `${idToken}`,
+      //   },
+      // };
 
-      const backendResponse = await axios.get(
-        `http://3.141.17.132/api/u/users/${firebase_uid}`,
-        config
-      );
+      // const backendResponse = await axios.get(
+      //   `http://3.141.17.132/api/u/users/${firebase_uid}`,
+      //   config
+      // );
 
       setProfile((previousProfile) => ({
         'firebase_uid': firebase_uid,
