@@ -60,8 +60,6 @@ const SignIn = () => {
     } catch (error) {
       console.error('Sign in failed:', error);
       alert('Sign in failed: ' + error.message);
-    } finally {
-        alert('Sign In Success');
     }
   };
 
