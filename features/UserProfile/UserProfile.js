@@ -62,7 +62,7 @@ export default function UserProfile({navigation}) {
           <TouchableOpacity style={styles.buttonContainer}>
             <GlobalText onPress={() => navigation.navigate('Public Profile', {
               user_id: 1
-            })} style={[styles.option, { color: '#ef6461', textAlign: 'center' }]}>Profile</GlobalText>
+            })} style={[styles.option, { color: '#ef6461' }]}>Profile</GlobalText>
           </TouchableOpacity>
 
         </GlobalViewFlat>
@@ -104,8 +104,8 @@ export default function UserProfile({navigation}) {
 const styles = StyleSheet.create({
   buttonHeading: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
+    justifyContent: 'space-between',
+    padding: 20,
     alignItems: 'center'
   },
   container: {
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 17,
     width: 80,
+    textAlign: 'center'
   },
   sectionHeading: {
     fontSize: 20,
