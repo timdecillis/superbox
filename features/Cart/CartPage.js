@@ -11,12 +11,7 @@ import {fetchCart} from '../../lib/cartRequestHelpers.js'
 const CartPage = () => {
 
   const[products, setProducts] = useState([
-    {product_id: 1, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 2, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 3, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 4, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"},
-    {product_id: 5, product_name: "Spiderman", product_price: "200", product_image:'https://cdn.marvel.com/u/prod/marvel/i/mg/3/c0/63863d142d94e/clean.jpg', product_description: "Great condition spiderman comic", product_quantity: "4"}
-
+    {id: 3, product_name: 'the amazing spider-man #50', photo_url: "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto", price:'$79.99'}
   ]);
 
   useEffect(()=> {
@@ -50,7 +45,7 @@ const CartPage = () => {
           </GlobalTitle>
         </ItemNumberContainer>
         <CartInfoContainer>
-          {products.map(product => <CartCard key={product.product_id} product={product}/>)}
+          {products.map((product, i) => <CartCard key={i} product={product}/>)}
         </CartInfoContainer>
         <SubTotalContainer>
           {products[0].price ? <GlobalPrice>Subtotal: ${calculateTotal()}</GlobalPrice> : <></>}
