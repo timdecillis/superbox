@@ -1,8 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import { StyleSheet, Text, View, Image, Button, Alert} from 'react-native';
 import styled from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native';
 
+import { userData } from "../../assets/dummy-data/userData.js";
+
+import {UserProfileContext} from '../../App.js'
 import CartCard from './CartCard.js';
 import {Container, ItemNumberContainer, CartInfoContainer, SubTotalContainer} from './styles.js';
 import {GlobalView, GlobalTitle, GlobalParagraph, GlobalPrice, GlobalCartButton, GlobalCartButtonText, GlobalText} from '../../globalComponents/globalStyles.js';
@@ -10,15 +13,13 @@ import {fetchCart} from '../../lib/cartRequestHelpers.js'
 
 const CartPage = () => {
 
-  const[products, setProducts] = useState([
-    {id: 3, product_name: 'the amazing spider-man #50', photo_url: "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto", price:'$79.99'}
-  ]);
+  const[products, setProducts] = useState([]);
 
-  useEffect(()=> {
-    fetchCart()
-      .then(result => setProducts(result.data))
-      .catch(err => console.log('unable to fetch cart, ', err));
-  }, [])
+  // useEffect(()=> {
+  //   fetchCart()
+  //     .then(result => setProducts(result.data))
+  //     .catch(err => console.log('unable to fetch cart, ', err));
+  // }, [])
 
   const calculateTotal = () => {
     const prices = parseMoney(products);

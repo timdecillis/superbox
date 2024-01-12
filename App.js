@@ -16,7 +16,7 @@ import Purchases from './features/UserProfile/Purchases.js';
 import Product from './features/Listing/ProductPage.js';
 import Messages from './features/Messages/Messages.js';
 import Conversations from './features/Messages/Conversations.js';
-// import {userData} from './assets/dummy-data/userData.js';
+import {userData} from './assets/dummy-data/userData.js';
 export const UserProfileContext = React.createContext();
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -74,7 +74,7 @@ function CartIcon() {
 
 export default function App() {
 
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState(userData);
   return (
     <UserProfileContext.Provider value={{ profile, setProfile}}>
     <NavigationContainer>

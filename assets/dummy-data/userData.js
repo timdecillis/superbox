@@ -11,6 +11,9 @@ export const userData = {
   state: 'California',
   zip: '90210',
   interests: ['flying', 'Lois Lane', 'journalism'],
+  cart: [
+    {id: 3, product_name: 'the amazing spider-man #50', photo_url: "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto", price:'$79.99'}
+  ],
   messages: [
     { user: 'lexluthor487', date: '12:06:2023', text: 'sup' },
     { user: 'batman46', date: '09:27:2023', text: 'hey dude!' },

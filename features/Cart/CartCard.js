@@ -12,7 +12,7 @@ const CartCard = ({product}) => {
       <Image
         source={{uri:product.photo_url }}
         style={{width: 50, height: 45, marginRight: 20}} />
-      <Text style={{ marginRight: 20}}>{product.product_name}</Text>
+      <Text style={{ marginRight: 20}}>{product.product_name.toUpperCase()}</Text>
       <GlobalPrice> {product.price} </GlobalPrice>
     </CardContainer>
   )
