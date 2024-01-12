@@ -22,13 +22,10 @@ const SignIn = () => {
   const sendProfileData = async () => {
     try {
       alert('Profile Saved')
-      console.log('profile',profile);
 
       const endpoint = 'http://3.141.17.132/api/u/users';
 
       const response = await axios.post(endpoint, profile);
-
-      console.log('Response:', response.data);
 
     } catch (error) {
       console.error('Error:', error);
