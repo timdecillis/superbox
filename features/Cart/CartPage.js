@@ -13,7 +13,10 @@ import {fetchCart} from '../../lib/cartRequestHelpers.js'
 
 const CartPage = () => {
 
-  const[products, setProducts] = useState([]);
+  const { profile, setProfile } = useContext(UserProfileContext);
+  console.log('profile from cart:', profile)
+  const[products, setProducts] = useState([{id: 1, product_name: 'x-men #1', photo_url: 'https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCDL263604.jpg', price: '$199.99'}]);
+
 
   // useEffect(()=> {
   //   fetchCart()
@@ -34,7 +37,6 @@ const CartPage = () => {
   }
 
   const navigation = useNavigation();
-  console.log('this is the products, ', products);
   return (
     <GlobalView>
 
