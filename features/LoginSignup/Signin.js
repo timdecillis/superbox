@@ -136,7 +136,7 @@ const SignIn = () => {
         <Title>Welcome back</Title>
 
         <InputBarContainer>
-            <InputField onChangeText={(text) => setEmail(text)} value={email} placeholder="Email address" autocapitalize="none"/>
+            <InputField onChangeText={(text) => setEmail(text)} value={email} placeholder="Email address" autoCapitalize="none"/>
         </InputBarContainer>
         <InputBarContainer>
             <InputField onChangeText={(text) => setPassword(text)} value={password} placeholder="Password" secureTextEntry={true}/>
