@@ -27,7 +27,7 @@ import {
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([{id: 1}, {id: 1}, {id: 1}]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [resetList, setResetList] = useState(false);
@@ -63,8 +63,8 @@ export default function App() {
               { useNativeDriver: false }
             )}
           >
-            {products.map((product) => (
-              <View style={{ height: 650 }}>
+            {products.map((product, i) => (
+              <View key={i} style={{ height: 650 }}>
                 <Pressable
                   onPress={() =>
                     navigation.navigate("Product", { product: product })
