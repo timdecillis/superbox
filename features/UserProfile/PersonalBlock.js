@@ -36,7 +36,7 @@ export default PersonalBlock = () => {
     <GlobalViewFlat style={styles.sectionContainer}>
 
     <NameModal name={name} setName={setName} nameModalOpen={nameModalOpen} setNameModalOpen={setNameModalOpen}/>
-    <EmailModal email={email} setEmail={setEmail} emailModalOpen={emailModalOpen} setEmailModalOpen={setEmailModalOpen}/>
+    <EmailModal profile={profile} setProfile={setProfile} email={email} setEmail={setEmail} emailModalOpen={emailModalOpen} setEmailModalOpen={setEmailModalOpen}/>
     <PhoneModal phone={[phone]} setPhone={setPhone} phoneModalOpen={phoneModalOpen} setPhoneModalOpen={setPhoneModalOpen}/>
     <AddressModal address={[address]} setAddress={setAddress} addressModalOpen={addressModalOpen} setAddressModalOpen={setAddressModalOpen}/>
 

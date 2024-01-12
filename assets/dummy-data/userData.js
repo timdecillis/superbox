@@ -2,7 +2,7 @@ export const userData = {
   firstName: 'Clark',
   lastName: 'Kent',
   userName: 'superman367',
-  email: 'super@krypton.com',
+  email: 'oldemail@krypton.com',
   password: 'loislane',
   phone: '(453)039-4857',
   address1: '4324 Main St.',
