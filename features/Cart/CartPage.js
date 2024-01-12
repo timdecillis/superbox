@@ -14,8 +14,8 @@ import {fetchCart} from '../../lib/cartRequestHelpers.js'
 const CartPage = () => {
 
   const { profile, setProfile } = useContext(UserProfileContext);
-  console.log('profile from cart:', profile)
-  const[products, setProducts] = useState([{id: 1, product_name: 'x-men #1', photo_url: 'https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCDL263604.jpg', price: '$199.99'}]);
+  console.log('cart from cart:', profile.cart)
+  const[products, setProducts] = useState(profile.cart);
 
 
   // useEffect(()=> {
@@ -26,7 +26,6 @@ const CartPage = () => {
 
   const calculateTotal = () => {
     const prices = parseMoney(products);
-    console.log(prices);
     const total =  prices.reduce((accu,prices) => accu + prices, 0);
     return new Intl.NumberFormat().format(total);
 

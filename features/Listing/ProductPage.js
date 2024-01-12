@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
@@ -19,6 +19,7 @@ import ProductCard from "../../globalComponents/ProductCard.js";
 
 const Product = () => {
   const { profile, setProfile } = useContext(UserProfileContext);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const route = useRoute();
   const { product } = route.params;
@@ -35,17 +36,24 @@ const Product = () => {
   const addToCart = () => {
     let oldCart = profile.cart;
     oldCart.push(product);
+    setConfirmOpen(true);
+    setTimeout(() => {
+      setConfirmOpen(false);
+    }, 2000)
   };
 
   return (
     <GlobalView>
       <CardSizer>
         <ProductCard product={product} />
+        {confirmOpen &&
+        <Text>Added to Cart!</Text>}
         <GlobalCartButton
           onPress={addToCart}
         >
           <GlobalCartButtonText>Add to Cart</GlobalCartButtonText>
         </GlobalCartButton>
+
       </CardSizer>
     </GlobalView>
   );
