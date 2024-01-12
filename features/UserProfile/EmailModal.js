@@ -36,7 +36,8 @@ export default EmailModal = ({
   };
 
   const handleEmailSave = () => {
-    setProfile({...profile, email})
+    setProfile({...profile, email});
+    setEmailModalOpen(false);
   }
 
   return (
