@@ -28,10 +28,10 @@ export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
   const [products, setProducts] = useState([
-    {id: 2, product_name: 'x-men', photo_url: 'https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCDL263604.jpg'},
-    {id: 1},
-    {id: 1},
-    {id: 1}
+    {id: 1, product_name: 'x-men #1', photo_url: 'https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCDL263604.jpg', price: '$199.99'},
+    {id: 2, product_name: 'batman the killing joke', photo_url: "https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCD356988.jpg", price: '$49.99'},
+    {id: 3, product_name: 'the amazing spider-man #50', photo_url: "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto", price:'$79.99'},
+    {id: 4, product_name: 'the death of superman', photo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Superman75.jpg/220px-Superman75.jpg", price: '$39.95'}
   ]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);

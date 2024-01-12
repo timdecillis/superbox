@@ -78,10 +78,7 @@ const ProductCard = ({ product }) => {
               <ImgContainer>
                 <ProductImg
                   source={{
-                    uri:
-                      product.id === 1
-                        ? "https://img.buzzfeed.com/buzzfeed-static/static/2022-03/30/23/asset/c14c01274175/sub-buzz-532-1648681737-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto"
-                        : product.photo_url,
+                    uri: product.photo_url,
                   }}
                 />
               </ImgContainer>
@@ -96,26 +93,10 @@ const ProductCard = ({ product }) => {
                     textShadowRadius: 1,
                   }}
                 >
-                  {product.id === 1
-                    ? "THE AMAZING SPIDERMAN"
-                    : product.product_name.toUpperCase()}
+                  {product.product_name.toUpperCase()}
                 </ProductTitle>
                 <DescPrice>
-                  <GlobalParagraph
-                    style={{
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      marginBottom: 10,
-                      fontSize: 20,
-                      textShadowColor: "rgba(0, 0, 0, 0.15)",
-                      textShadowOffset: { width: 0.75, height: 1.25 },
-                      textShadowRadius: 1,
-                    }}
-                  >
-                    {product.id === 1
-                      ? "Peter Parker gets his 50th comic book"
-                      : product.description}
-                  </GlobalParagraph>
+
                   <GlobalPrice
                     style={{
                       fontSize: 18,
@@ -126,7 +107,7 @@ const ProductCard = ({ product }) => {
                       textShadowRadius: 1,
                     }}
                   >
-                    $29.99
+                    {product.price}
                   </GlobalPrice>
                 </DescPrice>
                 <GlobalRating
