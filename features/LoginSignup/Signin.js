@@ -113,7 +113,7 @@ const SignIn = () => {
 
           <LogoImage source={Logo} />
           <Title>Welcome to <BoldText>SUPERBOX</BoldText></Title>
-          <SubHeader>Login to continue</SubHeader>
+          {/* <SubHeader>Please log in or sign up to continue</SubHeader> */}
 
           <ButtonContainer>
 
