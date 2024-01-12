@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, View, Image, Button, ScrollView, Pressable } from "react-native";
+import { Text, View, Image, Button, ScrollView, Pressable,
+StyleSheet } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import {
@@ -36,11 +37,11 @@ const ProductCard = ({ product }) => {
 
   const ImgContainer = styled.View`
     width: 100%;
-    height: 350px;
+    max-height: 350px;
     background-color: #fdfaf4;
     border: 1px solid black;
     margin-bottom: 26px;
-    margin-top: 50px;
+    margin-top: 36px;
     justify-content: center;
     shadow-color: #000;
     shadow-offset: 3px 5.5px;
@@ -59,9 +60,7 @@ const ProductCard = ({ product }) => {
   `;
 
   const InfoContainer = styled.View`
-    height: 32.5%;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
   `;
 
@@ -70,18 +69,19 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <GlobalView>
-      <ScrollContainer>
-        <AlignContainer>
-          <CardContainer>
-            <Card>
-              <ImgContainer>
+    <GlobalView style={styles.view} >
+      <ScrollContainer style={styles.view}>
+        <AlignContainer style={styles.view}>
+          <CardContainer style={styles.view}>
+            <Card style={styles.view}>
+              <ImgContainer >
                 <ProductImg
                   source={{
                     uri: product.photo_url,
                   }}
                 />
               </ImgContainer>
+
               <InfoContainer>
                 <ProductTitle
                   style={{
@@ -95,12 +95,11 @@ const ProductCard = ({ product }) => {
                 >
                   {product.product_name.toUpperCase()}
                 </ProductTitle>
-                <DescPrice>
 
+                <DescPrice>
                   <GlobalPrice
                     style={{
                       fontSize: 18,
-                      marginBottom: 10,
                       fontSize: 20,
                       textShadowColor: "rgba(0, 0, 0, 0.05)",
                       textShadowOffset: { width: 0.75, height: 1.25 },
@@ -110,6 +109,7 @@ const ProductCard = ({ product }) => {
                     {product.price}
                   </GlobalPrice>
                 </DescPrice>
+
                 <GlobalRating
                   style={{
                     fontWeight: "bold",
@@ -118,7 +118,9 @@ const ProductCard = ({ product }) => {
                 >
                   ★★★★★
                 </GlobalRating>
+
               </InfoContainer>
+
             </Card>
           </CardContainer>
         </AlignContainer>
@@ -128,3 +130,10 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
+const styles = StyleSheet.create({
+  view: {
+    marginBottom: 0,
+    marginTop: 0
+  }
+});
