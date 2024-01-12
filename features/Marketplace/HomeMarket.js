@@ -27,7 +27,12 @@ import {
 export default function App() {
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const [products, setProducts] = useState([{id: 1}, {id: 1}, {id: 1}]);
+  const [products, setProducts] = useState([
+    {id: 2, product_name: 'x-men', photo_url: 'https://cdn.powered-by-nitrosell.com/product_images/14/3286/DCDL263604.jpg'},
+    {id: 1},
+    {id: 1},
+    {id: 1}
+  ]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [resetList, setResetList] = useState(false);
